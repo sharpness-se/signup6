@@ -34,7 +34,7 @@ class UserMapperTest {
 
     assertEquals("Admin", user.getFirstName());
     assertEquals("Istratör", user.getLastName());
-    assertEquals("Administratör för SignUp4", user.getComment().trim());
+    assertEquals("Administratör för SignUp", user.getComment());
     assertEquals("admin@crisp.se", user.getEmail());
     assertEquals("08-55695015", user.getPhone());
     assertEquals(Permission.Administrator, user.getPermission());
