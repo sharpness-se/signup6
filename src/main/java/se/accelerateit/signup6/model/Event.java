@@ -12,13 +12,14 @@ public class Event {
   private Long id;
 
   private Group group;
+
   private String name;
   private String description = "";
   private LocalDateTime startTime;
   private LocalDateTime endTime;
   private LocalDate lastSignUpDate;
-  private String venue;
-  private Boolean allowExtraFriends;
+  private String venue = "";
+  private boolean allowExtraFriends = false;
   private EventStatus eventStatus = Created;
   private Integer maxParticipants;
   private String cancellationReason;

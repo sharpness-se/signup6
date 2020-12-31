@@ -15,6 +15,11 @@ public interface UserMapper {
   Optional<User> findByEmail(@Param("email") String email);
 
   @Select(
+    "select * from users where id = #{id}"
+  )
+  Optional<User> findById(@Param("id") Long id);
+
+  @Select(
     "select * from users"
   )
   List<User> findAll();

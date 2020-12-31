@@ -46,7 +46,7 @@ class EventMapperTest extends SignupDbTest {
     assertEquals(LocalDateTime.of(2021, 5, 3, 19, 0), event.getEndTime());
     assertEquals(LocalDate.of(2021, 5, 2), event.getLastSignUpDate());
     assertEquals("Crisp Office", event.getVenue());
-    assertEquals(false, event.getAllowExtraFriends());
+    assertFalse(event.isAllowExtraFriends());
     assertEquals(EventStatus.Created, event.getEventStatus());
     assertNull(event.getMaxParticipants());
     assertNull(event.getCancellationReason());

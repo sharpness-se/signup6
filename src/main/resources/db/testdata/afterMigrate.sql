@@ -23,8 +23,8 @@ INSERT INTO public.events VALUES (-2, 'Crisp RD', 'Scala 3.0 och Play 3.0', 'Cri
 INSERT INTO public.events VALUES (-3, 'Julbord', 'Hej tomtegubbar...', 'Crisp Office', '2012-12-20 17:30:00', '2012-12-20 17:30:00', -2, '2012-12-20 00:00:00', false, 'Created', NULL, NULL) ON CONFLICT DO NOTHING;
 
 
-INSERT INTO public.participations VALUES (1, 'Off', 'Måste till svärmor', -3, -1, 1, NULL) ON CONFLICT DO NOTHING;
-INSERT INTO public.participations VALUES (2, 'On', 'Trevligt!', -1, -1, 1, NULL) ON CONFLICT DO NOTHING;
-INSERT INTO public.participations VALUES (3, 'Maybe', 'Får se...', -4, -1, 1, NULL) ON CONFLICT DO NOTHING;
-INSERT INTO public.participations VALUES (-5, 'On', 'Nice!', -5, -1, 1, NULL) ON CONFLICT DO NOTHING;
+INSERT INTO public.participations VALUES (-1, 'Off', 'Måste till svärmor', -3, -1, 1, '2021-05-03 10:00:00') ON CONFLICT DO NOTHING;
+INSERT INTO public.participations VALUES (-2, 'On', 'Trevligt!', -1, -1, 1, '2021-04-02 21:15:00') ON CONFLICT DO NOTHING;
+INSERT INTO public.participations VALUES (-3, 'Maybe', 'Får se...', -4, -1, 1, '2021-05-01 13:00:00') ON CONFLICT DO NOTHING;
+INSERT INTO public.participations VALUES (-4, 'On', 'Nice!', -5, -1, 1, '2021-05-02 00:00:00') ON CONFLICT DO NOTHING;
 
