@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @ContextConfiguration(initializers = {SignupDbTest.Initializer.class})
 class EventMapperTest extends SignupDbTest {
-  Logger logger = LoggerFactory.getLogger(EventMapperTest.class);
+  static final Logger logger = LoggerFactory.getLogger(EventMapperTest.class);
 
   private final EventMapper eventMapper;
 

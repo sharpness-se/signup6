@@ -18,8 +18,7 @@ public class SignupDbTestcontainer extends PostgreSQLContainer<SignupDbTestconta
       container = new SignupDbTestcontainer()
         .withDatabaseName("signup")
         .withUsername("signup4")
-        .withPassword("password")
-        .withExposedPorts(15432);
+        .withPassword("password");
     }
     return container;
   }
