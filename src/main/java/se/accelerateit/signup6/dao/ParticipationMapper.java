@@ -15,8 +15,8 @@ import java.util.Optional;
 public interface ParticipationMapper {
 
   @Results({
-    @Result(property = "user", column = "userx", one = @One(select = "se.accelerateit.signup6.dao.UserMapper.findById")),
-    @Result(property = "event", column = "event", one = @One(select = "se.accelerateit.signup6.dao.EventMapper.findById"))
+    @Result(property = "userId", column = "userx"),
+    @Result(property = "eventId", column = "event")
   })
   @Select(
     "select * from participations where userx = #{userId} and event = #{eventId}"

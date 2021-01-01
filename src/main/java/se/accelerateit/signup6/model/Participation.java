@@ -11,7 +11,7 @@ public class Participation {
   private ParticipationStatus status = ParticipationStatus.On;
   private int numberOfParticipants = 1;
   private String comment = "";
-  private User user;
-  private Event event;
+  private Long userId;
+  private Long eventId;
   private LocalDateTime signUpTime;
 }
