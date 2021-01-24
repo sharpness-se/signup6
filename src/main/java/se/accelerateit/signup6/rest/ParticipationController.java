@@ -12,7 +12,7 @@ import se.accelerateit.signup6.modelvalidator.NotMemberOfGroupException;
 import java.util.Optional;
 
 @RestController
-public class ParticipationController {
+public class ParticipationController extends BaseApiController {
   private final ParticipationMapper participationMapper;
   private final EventValidator eventValidator;
 

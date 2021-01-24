@@ -47,7 +47,7 @@ public class ParticipationTest {
     Mockito.when(participationMapper.findByUserAndEvent(userId, eventId)).thenReturn(Optional.of(participation));
     Mockito.when(eventValidator.isMemberOfGroupForEvent(userId, eventId)).thenReturn(true);
 
-    mockMvc.perform(get("/participations").param("userId", userId.toString()).param("eventId", eventId.toString()))
+    mockMvc.perform(get("/api/participations").param("userId", userId.toString()).param("eventId", eventId.toString()))
       .andExpect(status().isOk())
       .andExpect(jsonPath("$.id", Matchers.equalTo(id.intValue())))
       .andExpect(jsonPath("$.status", Matchers.equalTo(ParticipationStatus.On.toString())))
@@ -64,7 +64,7 @@ public class ParticipationTest {
     Mockito.when(participationMapper.findByUserAndEvent(userId, eventId)).thenReturn(Optional.empty());
     Mockito.when(eventValidator.isMemberOfGroupForEvent(userId, eventId)).thenReturn(true);
 
-    mockMvc.perform(get("/participations").param("userId", userId.toString()).param("eventId", eventId.toString()))
+    mockMvc.perform(get("/api/participations").param("userId", userId.toString()).param("eventId", eventId.toString()))
       .andExpect(status().isOk())
       .andExpect(jsonPath("$.id", Matchers.equalTo(null)))
       .andExpect(jsonPath("$.status", Matchers.equalTo(ParticipationStatus.Unregistered.toString())))
@@ -81,7 +81,7 @@ public class ParticipationTest {
     Mockito.when(participationMapper.findByUserAndEvent(userId, eventId)).thenReturn(Optional.empty());
     Mockito.when(eventValidator.isMemberOfGroupForEvent(userId, eventId)).thenReturn(false);
 
-    mockMvc.perform(get("/participations").param("userId", userId.toString()).param("eventId", eventId.toString()))
+    mockMvc.perform(get("/api/participations").param("userId", userId.toString()).param("eventId", eventId.toString()))
       .andExpect(status().isNotFound())
       .andExpect(content().string("User is not member of required group"));
   }
