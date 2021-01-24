@@ -14,4 +14,12 @@ public interface GroupMapper {
     "select * from groups where id = #{id}"
   )
   Optional<Group> findById(@Param("id") Long id);
+
+  @Select(
+    "select m.id from memberships m, events e where " +
+      "e.id = #{eventId}" +
+      "and m.groupx = e.groupx " +
+      "and m.userx = #{userId}"
+  )
+  Optional<Long> findMembershipForEvent(@Param("userId") Long userId, @Param("eventId") Long eventId);
 }

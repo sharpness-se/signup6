@@ -27,10 +27,14 @@ dependencies {
   implementation 'org.springframework.boot:spring-boot-starter-web'
   implementation 'org.flywaydb:flyway-core'
   implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.4'
+
   compileOnly 'org.projectlombok:lombok'
-  developmentOnly 'org.springframework.boot:spring-boot-devtools'
-  runtimeOnly 'org.postgresql:postgresql'
   annotationProcessor 'org.projectlombok:lombok'
+
+  runtimeOnly 'org.postgresql:postgresql'
+
+  developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
   testImplementation 'org.springframework.boot:spring-boot-starter-test'
   testImplementation "org.testcontainers:junit-jupiter:${testcontainersVersion}"
   testImplementation "org.testcontainers:postgresql:${testcontainersVersion}"
