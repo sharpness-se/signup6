@@ -36,7 +36,7 @@ jobs:
     steps:
     # Use a newer version of Java than 1.8
     - name: Setup Java JDK
-      uses: actions/setup-java@v1.3.0
+      uses: actions/setup-java@v1
       with:
         java-version: 15
 
