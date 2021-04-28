@@ -23,15 +23,15 @@ public interface ParticipationMapper {
   )
   Optional<Participation> findByUserAndEvent(@Param("userId") Long userId, @Param("eventId") Long eventId);
 
-  @Insert(
-    "insert into participations (status, comment, userx, event, number_of_participants, signup_time) " +
-      "values (#{status}, #{comment}, #{userId}, #{eventId}, #{numberOfParticipants}, #{signUpTime})"
-  )
+  @Insert("""
+    insert into participations (status, comment, userx, event, number_of_participants, signup_time)
+      values (#{status}, #{comment}, #{userId}, #{eventId}, #{numberOfParticipants}, #{signUpTime})
+  """)
   int create(Participation participation);
 
-  @Update(
-    "update participations set status=#{status}, comment=#{comment}, number_of_participants=#{numberOfParticipants}, signup_time=#{signUpTime} " +
-      "where userx=#{userId} and event=#{eventId}"
-  )
+  @Update("""
+    update participations set status = #{status}, comment = #{comment}, number_of_participants = #{numberOfParticipants}, signup_time = #{signUpTime}
+      where userx=#{userId} and event=#{eventId}
+  """)
   int update(Participation participation);
 }
