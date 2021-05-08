@@ -39,7 +39,7 @@ dependencies {
 
   implementation(platform("org.testcontainers:testcontainers-bom:1.15.1")) //import bom
   testImplementation("org.testcontainers:junit-jupiter:1.15.1")
-  testImplementation("org.testcontainers:postgresql:1.15.1")
+  testImplementation("org.testcontainers:postgresql:1.15.3")
 }
 
 
