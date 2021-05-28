@@ -26,7 +26,7 @@ dependencies {
   implementation("org.springframework.boot:spring-boot-starter-hateoas")
   implementation("org.springframework.boot:spring-boot-starter-web")
   implementation("org.flywaydb:flyway-core")
-  implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.4")
+  implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0")
 
   compileOnly("org.projectlombok:lombok:1.18.20")
   annotationProcessor("org.projectlombok:lombok:1.18.20")
