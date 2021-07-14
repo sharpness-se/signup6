@@ -1,19 +1,11 @@
 package se.accelerateit.signup6.apitest;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.web.servlet.MockMvc;
-import se.accelerateit.signup6.dao.ParticipationMapper;
-import se.accelerateit.signup6.dao.UserMapper;
 import se.accelerateit.signup6.model.ImageProvider;
 import se.accelerateit.signup6.model.Permission;
 import se.accelerateit.signup6.model.User;
-import se.accelerateit.signup6.modelvalidator.EventValidator;
 
 import java.util.Optional;
 
@@ -22,28 +14,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest
-public class UserApiTest {
 
-  @Autowired
-  private MockMvc mockMvc;
 
-  @MockBean
-  private EventValidator eventValidator;
-
-  @MockBean
-  private ParticipationMapper participationMapper;
-
-  @MockBean
-  private UserMapper userMapper;
-
-  private final ObjectMapper jsonMapper;
-
-  public UserApiTest() {
-    jsonMapper = new ObjectMapper();
-    jsonMapper.findAndRegisterModules(); // to get mapping of LocalDateTime correct
-  }
-
+public class UserApiTest extends SignupApiTest {
 
   @Test
   public void getExistingUser() throws Exception {
