@@ -10,6 +10,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import se.accelerateit.signup6.dao.ParticipationMapper;
+import se.accelerateit.signup6.dao.UserMapper;
 import se.accelerateit.signup6.model.Participation;
 import se.accelerateit.signup6.model.ParticipationStatus;
 import se.accelerateit.signup6.modelvalidator.EventValidator;
@@ -33,6 +34,9 @@ public class ParticipationApiTest {
 
   @MockBean
   private ParticipationMapper participationMapper;
+
+  @MockBean
+  private UserMapper userMapper;
 
   private ObjectMapper jsonMapper;
 

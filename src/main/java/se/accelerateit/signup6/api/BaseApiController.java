@@ -1,4 +1,4 @@
-package se.accelerateit.signup6.rest;
+package se.accelerateit.signup6.api;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 

@@ -1,4 +1,4 @@
-package se.accelerateit.signup6.integrationtest;
+package se.accelerateit.signup6.integrationtest.dao;
 
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import se.accelerateit.signup6.dao.GroupMapper;
+import se.accelerateit.signup6.integrationtest.SignupDbTest;
 import se.accelerateit.signup6.model.Group;
 
 import java.util.Optional;

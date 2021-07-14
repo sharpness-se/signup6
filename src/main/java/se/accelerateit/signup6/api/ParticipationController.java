@@ -1,5 +1,6 @@
-package se.accelerateit.signup6.rest;
+package se.accelerateit.signup6.api;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +18,7 @@ public class ParticipationController extends BaseApiController {
   private final ParticipationMapper participationMapper;
   private final EventValidator eventValidator;
 
+  @Autowired
   ParticipationController(ParticipationMapper participationMapper, EventValidator eventValidator) {
     this.participationMapper = participationMapper;
     this.eventValidator = eventValidator;

@@ -1,5 +1,6 @@
 package se.accelerateit.signup6.model;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -9,18 +10,18 @@ import static se.accelerateit.signup6.model.EventStatus.Created;
 
 @Data
 public class Event {
-  private Long id;
+  @JsonView(Visibility.Public.class) private Long id;
 
-  private Group group;
+  @JsonView(Visibility.Public.class) private Group group;
 
-  private String name;
-  private String description = "";
-  private LocalDateTime startTime;
-  private LocalDateTime endTime;
-  private LocalDate lastSignUpDate;
-  private String venue = "";
-  private boolean allowExtraFriends = false;
-  private EventStatus eventStatus = Created;
-  private Integer maxParticipants;
-  private String cancellationReason;
+  @JsonView(Visibility.Public.class) private String name;
+  @JsonView(Visibility.Public.class) private String description = "";
+  @JsonView(Visibility.Public.class) private LocalDateTime startTime;
+  @JsonView(Visibility.Public.class) private LocalDateTime endTime;
+  @JsonView(Visibility.Public.class) private LocalDate lastSignUpDate;
+  @JsonView(Visibility.Public.class) private String venue = "";
+  @JsonView(Visibility.Public.class) private boolean allowExtraFriends = false;
+  @JsonView(Visibility.Public.class) private EventStatus eventStatus = Created;
+  @JsonView(Visibility.Public.class) private Integer maxParticipants;
+  @JsonView(Visibility.Public.class) private String cancellationReason;
 }

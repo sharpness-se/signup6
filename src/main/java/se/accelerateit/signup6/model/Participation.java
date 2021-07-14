@@ -1,5 +1,6 @@
 package se.accelerateit.signup6.model;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -8,14 +9,14 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 public class Participation {
-  private Long id;
+  @JsonView(Visibility.Public.class) private Long id;
 
-  private ParticipationStatus status = ParticipationStatus.Unregistered;
-  private int numberOfParticipants = 1;
-  private String comment = "";
-  private Long userId;
-  private Long eventId;
-  private LocalDateTime signUpTime = LocalDateTime.now();
+  @JsonView(Visibility.Public.class) private ParticipationStatus status = ParticipationStatus.Unregistered;
+  @JsonView(Visibility.Public.class) private int numberOfParticipants = 1;
+  @JsonView(Visibility.Public.class) private String comment = "";
+  @JsonView(Visibility.Public.class) private Long userId;
+  @JsonView(Visibility.Public.class) private Long eventId;
+  @JsonView(Visibility.Public.class) private LocalDateTime signUpTime = LocalDateTime.now();
 
   public Participation(ParticipationStatus status, Long userId, Long eventId) {
     this.status = status;
