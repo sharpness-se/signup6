@@ -1,16 +1,10 @@
 package se.accelerateit.signup6.apitest;
 
-import com.fasterxml.jackson.annotation.JsonView;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import se.accelerateit.signup6.model.Event;
-import se.accelerateit.signup6.model.EventStatus;
 import se.accelerateit.signup6.model.Group;
-import se.accelerateit.signup6.model.ImageProvider;
-import se.accelerateit.signup6.model.Permission;
-import se.accelerateit.signup6.model.User;
-import se.accelerateit.signup6.model.Visibility;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

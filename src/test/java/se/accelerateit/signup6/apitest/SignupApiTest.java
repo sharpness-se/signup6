@@ -28,7 +28,7 @@ public abstract class SignupApiTest {
   @MockBean
   protected EventMapper eventMapper;
 
-  protected ObjectMapper jsonMapper;
+  protected final ObjectMapper jsonMapper;
 
   protected SignupApiTest() {
     jsonMapper = new ObjectMapper();
