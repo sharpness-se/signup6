@@ -37,7 +37,7 @@ dependencies {
 
   testImplementation("org.springframework.boot:spring-boot-starter-test")
 
-  implementation(platform("org.testcontainers:testcontainers-bom:1.15.3")) //import bill of materials (BOM)
+  implementation(platform("org.testcontainers:testcontainers-bom:1.16.0")) //import bill of materials (BOM)
   testImplementation("org.testcontainers:junit-jupiter")
   testImplementation("org.testcontainers:postgresql")
 }
