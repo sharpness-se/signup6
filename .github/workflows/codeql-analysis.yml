@@ -12,11 +12,13 @@
 name: "CodeQL"
 
 on:
-  push:
-    branches: [ master ]
+# push doesn't work well with Dependabot
+#  push:
+#    branches: [ master ]
   pull_request:
     # The branches below must be a subset of the branches above
-    branches: [ master ]
+# does not seem to be necessary
+#    branches: [ master ]
   schedule:
     - cron: '24 21 * * 6'
 
