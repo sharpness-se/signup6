@@ -25,7 +25,7 @@ repositories {
 dependencies {
   implementation("org.springframework.boot:spring-boot-starter-hateoas:2.5.5")
   implementation("org.springframework.boot:spring-boot-starter-web:2.5.5")
-  implementation("org.flywaydb:flyway-core:7.14.1")
+  implementation("org.flywaydb:flyway-core:8.0.1")
   implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0")
 
   compileOnly("org.projectlombok:lombok:1.18.22")
