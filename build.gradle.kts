@@ -29,7 +29,7 @@ dependencies {
   implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0")
 
   compileOnly("org.projectlombok:lombok:1.18.22")
-  annotationProcessor("org.projectlombok:lombok:1.18.20")
+  annotationProcessor("org.projectlombok:lombok:1.18.22")
 
   implementation("org.postgresql:postgresql:42.3.0")
 
