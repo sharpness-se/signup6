@@ -35,7 +35,7 @@ dependencies {
 
   developmentOnly("org.springframework.boot:spring-boot-devtools:2.5.5")
 
-  testImplementation("org.springframework.boot:spring-boot-starter-test:2.5.5")
+  testImplementation("org.springframework.boot:spring-boot-starter-test:2.5.6")
 
   implementation(platform("org.testcontainers:testcontainers-bom:1.16.1")) //import bill of materials (BOM)
   testImplementation("org.testcontainers:junit-jupiter:1.16.1")
