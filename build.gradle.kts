@@ -31,7 +31,7 @@ dependencies {
   compileOnly("org.projectlombok:lombok:1.18.22")
   annotationProcessor("org.projectlombok:lombok:1.18.22")
 
-  implementation("org.postgresql:postgresql:42.3.0")
+  implementation("org.postgresql:postgresql:42.3.1")
 
   developmentOnly("org.springframework.boot:spring-boot-devtools:2.5.6")
 
