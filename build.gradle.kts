@@ -33,7 +33,7 @@ dependencies {
 
   implementation("org.postgresql:postgresql:42.3.1")
 
-  developmentOnly("org.springframework.boot:spring-boot-devtools:2.5.6")
+  developmentOnly("org.springframework.boot:spring-boot-devtools:2.5.7")
 
   testImplementation("org.springframework.boot:spring-boot-starter-test:2.5.6")
 
