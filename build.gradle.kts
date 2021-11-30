@@ -23,7 +23,7 @@ repositories {
 
 
 dependencies {
-  implementation("org.springframework.boot:spring-boot-starter-hateoas:2.6.0")
+  implementation("org.springframework.boot:spring-boot-starter-hateoas:2.6.1")
   implementation("org.springframework.boot:spring-boot-starter-web:2.6.0")
   implementation("org.flywaydb:flyway-core:8.1.0")
   implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0")
