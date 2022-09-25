@@ -8,7 +8,7 @@ group = "se.accelerateit"
 version = "0.0.1-SNAPSHOT"
 
 java {
-  sourceCompatibility = JavaVersion.VERSION_16
+  sourceCompatibility = JavaVersion.VERSION_17
 }
 
 configurations {
