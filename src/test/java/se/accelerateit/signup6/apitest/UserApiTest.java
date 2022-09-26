@@ -22,19 +22,20 @@ public class UserApiTest extends SignupApiTest {
   public void getExistingUser() throws Exception {
     Long userId = 99L;
 
-    User user = new User();
-    user.setId(userId);
-    user.setFirstName("Hugo");
-    user.setLastName("Boss");
-    user.setComment("A guy with a suite");
-    user.setEmail("hugo@boss.suite");
-    user.setPhone("1234567890");
-    user.setPermission(Permission.NormalUser);
-    user.setPwd("secretpassword");
-    user.setImageProvider(ImageProvider.Gravatar);
-    user.setImageVersion("v1.0");
-    user.setProviderKey("a key");
-    user.setAuthInfo("secret stuff");
+    User user = User.builder()
+            .id(userId)
+            .firstName("Goblin")
+            .lastName("Boblin")
+            .comment("")
+            .email("Goblin@gob.com")
+            .phone("")
+            .permission(Permission.NormalUser)
+            .pwd("*")
+            .imageProvider(ImageProvider.Gravatar)
+            .imageVersion(null)
+            .providerKey(null)
+            .authInfo(null)
+            .build();
 
 
     Mockito.when(userMapper.findById(userId)).thenReturn(Optional.of(user));

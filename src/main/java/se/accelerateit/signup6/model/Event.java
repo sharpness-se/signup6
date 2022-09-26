@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 
 import static se.accelerateit.signup6.model.EventStatus.Created;
 
+
 @Data
 public class Event {
   @JsonView(Public.class) private Long id;

@@ -1,5 +1,7 @@
 package se.accelerateit.signup6.dao;
 
+import lombok.Builder;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -22,4 +24,14 @@ public interface GroupMapper {
       and m.userx = #{userId}
   """)
   Optional<Long> findMembershipForEvent(@Param("userId") Long userId, @Param("eventId") Long eventId);
+
+  @Insert(
+    "insert into groups(name, description, mail_from, mail_subject_prefix)" +
+            "values(" +
+            "#{name}" +
+            "#{description}" +
+            "#{mailFrom}" +
+            "#{mailSubjectPrefix})"
+  )
+  void insertGroup(Group group);
 }

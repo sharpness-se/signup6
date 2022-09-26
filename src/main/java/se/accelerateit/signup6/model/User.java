@@ -2,11 +2,13 @@ package se.accelerateit.signup6.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
+import lombok.Builder;
 import lombok.Data;
 import se.accelerateit.signup6.model.Visibility.Administrator;
 import se.accelerateit.signup6.model.Visibility.Personal;
 import se.accelerateit.signup6.model.Visibility.Public;
 
+@Builder
 @Data
 public class User {
   @JsonView(Public.class) private Long id;

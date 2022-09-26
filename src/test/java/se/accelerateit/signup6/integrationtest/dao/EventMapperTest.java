@@ -9,12 +9,11 @@ import org.springframework.test.context.ContextConfiguration;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import se.accelerateit.signup6.dao.EventMapper;
 import se.accelerateit.signup6.integrationtest.SignupDbTest;
-import se.accelerateit.signup6.model.Event;
-import se.accelerateit.signup6.model.EventStatus;
-import se.accelerateit.signup6.model.Group;
+import se.accelerateit.signup6.model.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -58,4 +57,55 @@ class EventMapperTest extends SignupDbTest {
     assertEquals("", group.getMailFrom());
     assertEquals("Crisp Rocket Days", group.getMailSubjectPrefix());
   }
+
+  @Test
+  void findAllEventsTest(){
+    List<Event> eventList = eventMapper.findAll();
+    logger.info("eventList = {}", eventList);
+
+    assertEquals(3, eventList.size());
+  }
+
+  @Test
+  void insertMonsterEvent(){
+    Group existingIdGroup = new Group();
+    existingIdGroup.setId(-1L);
+    existingIdGroup.setName("");
+    existingIdGroup.setDescription("");
+    existingIdGroup.setMailFrom("");
+    existingIdGroup.setMailSubjectPrefix("");
+
+    Event monster = new Event();
+    monster.setId(null);
+    monster.setName("Monster consumption");
+    monster.setDescription("Monster drinkin innit");
+    monster.setStartTime(LocalDateTime.parse("2022-12-24T14:15:01"));
+    monster.setEndTime(LocalDateTime.parse("2026-12-24T23:00:01"));
+    monster.setLastSignUpDate(LocalDate.parse("2021-12-13"));
+    monster.setVenue("Everywhere");
+    monster.setAllowExtraFriends(true);
+    monster.setEventStatus(EventStatus.Created);
+    monster.setMaxParticipants(null);
+    monster.setCancellationReason(null);
+    monster.setGroup(existingIdGroup);
+
+    try{
+      eventMapper.insertEvent(monster);
+    }catch (Exception e){
+      e.printStackTrace();
+    }
+
+
+    Optional<Event> dbResponse = eventMapper.findById(1L);
+    assertTrue(dbResponse.isPresent(), "could not find the user in db");
+    Event event = dbResponse.get();
+    logger.info("user = {}", event);
+
+    assertEquals("Monster consumption", event.getName());
+    assertEquals("Monster drinkin innit", event.getDescription());
+    assertEquals("Everywhere", event.getVenue());
+    assertEquals(EventStatus.Created, event.getEventStatus());
+    assertTrue(event.isAllowExtraFriends());
+  }
+
 }

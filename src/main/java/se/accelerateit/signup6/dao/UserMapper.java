@@ -1,5 +1,6 @@
 package se.accelerateit.signup6.dao;
 
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -25,5 +26,24 @@ public interface UserMapper {
     "select * from users"
   )
   List<User> findAll();
+
+  //TODO: Find some way to pass ID that does not need to be set
+  @Insert(
+          "insert into users(first_name, last_name, comment, email, phone, permission, " +
+                  "pwd, image_provider, image_version, provider_key, auth_info) " +
+                  "values(" +
+                  "#{firstName}," +
+                  "#{lastName}," +
+                  "#{comment}," +
+                  "#{email}," +
+                  "#{phone}," +
+                  "#{permission}," +
+                  "#{pwd}," +
+                  "#{imageProvider}," +
+                  "#{imageVersion}," +
+                  "#{providerKey}," +
+                  "#{authInfo})"
+  )
+  void insertUser(User user);
 
 }

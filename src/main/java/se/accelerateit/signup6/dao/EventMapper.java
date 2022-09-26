@@ -1,13 +1,9 @@
 package se.accelerateit.signup6.dao;
 
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.One;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import se.accelerateit.signup6.model.Event;
 
+import java.util.List;
 import java.util.Optional;
 
 @Mapper
@@ -20,4 +16,27 @@ public interface EventMapper {
     "select * from events where id = #{id}"
   )
   Optional<Event> findById(@Param("id") Long id);
+
+  @Select(
+          "select * from events"
+  )
+  List<Event> findAll();
+
+  @Insert(
+          "insert into events(name, description, start_time, end_time, groupx, last_signup_date, " +
+                  "venue, allow_extra_friends, event_status, max_participants, cancellation_reason) " +
+                  "values(" +
+                  "#{name}," +
+                  "#{description}," +
+                  "#{startTime}," +
+                  "#{endTime}," +
+                  "#{group.id}," +
+                  "#{lastSignUpDate}," +
+                  "#{venue}," +
+                  "#{allowExtraFriends}," +
+                  "#{eventStatus}," +
+                  "#{maxParticipants}," +
+                  "#{cancellationReason})"
+  )
+  void insertEvent(Event event);
 }

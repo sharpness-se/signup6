@@ -24,6 +24,13 @@ public class EventApiTest extends SignupApiTest {
     Long eventId = 99L;
     Long groupId = 9999L;
 
+    Group group = new Group();
+    group.setId(groupId);
+    group.setName("Familjen");
+    group.setDescription("Våra aktiviteter");
+    group.setMailFrom("familjen@family.name");
+    group.setMailSubjectPrefix("OBS!");
+
     Event event = new Event();
     event.setId(eventId);
     event.setName("Julafton");
@@ -36,14 +43,6 @@ public class EventApiTest extends SignupApiTest {
     event.setEventStatus(Created);
     event.setMaxParticipants(null);
     event.setCancellationReason(null);
-
-    Group group = new Group();
-    group.setId(groupId);
-    group.setName("Familjen");
-    group.setDescription("Våra aktiviteter");
-    group.setMailFrom("familjen@family.name");
-    group.setMailSubjectPrefix("OBS!");
-
     event.setGroup(group);
 
 

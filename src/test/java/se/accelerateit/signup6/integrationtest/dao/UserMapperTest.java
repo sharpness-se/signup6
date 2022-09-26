@@ -68,4 +68,40 @@ class UserMapperTest extends SignupDbTest {
     assertEquals(ImageProvider.Gravatar, user.getImageProvider());
   }
 
+  @Test
+  void insertGoblinUser(){
+    User goblin = User.builder()
+            .id(null)
+            .firstName("Goblin")
+            .lastName("Boblin")
+            .comment("")
+            .email("Goblin@gob.com")
+            .phone("")
+            .permission(Permission.NormalUser)
+            .pwd("*")
+            .imageProvider(ImageProvider.Gravatar)
+            .imageVersion(null)
+            .providerKey(null)
+            .authInfo(null)
+            .build();
+
+    try{
+      userMapper.insertUser(goblin);
+    }catch (Exception e){
+      e.printStackTrace();
+    }
+
+
+    Optional<User> dbResponse = userMapper.findByEmail("Goblin@gob.com");
+    assertTrue(dbResponse.isPresent(), "could not find the user in db");
+    User user = dbResponse.get();
+    logger.info("user = {}", user);
+
+    assertEquals("Goblin", user.getFirstName());
+    assertEquals("Boblin", user.getLastName());
+    assertEquals("", user.getComment());
+    assertEquals("Goblin@gob.com", user.getEmail());
+    assertEquals("", user.getPhone());
+  }
+
 }
