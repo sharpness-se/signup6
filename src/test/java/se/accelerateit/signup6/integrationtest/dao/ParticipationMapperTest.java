@@ -114,7 +114,8 @@ class ParticipationMapperTest extends SignupDbTest {
 
   @Test
   void findByEventIdTest(){
-    List<Participation> participation = participationMapper.findByEventId(-1L);
-    assertEquals(4, participation.size());
+    List<Participation> participationList = participationMapper.findByEventId(-1L);
+    assertFalse(participationList.isEmpty());
+    assertEquals(4, participationList.size());
   }
 }

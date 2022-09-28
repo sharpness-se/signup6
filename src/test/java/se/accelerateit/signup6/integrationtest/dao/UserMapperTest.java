@@ -13,11 +13,10 @@ import se.accelerateit.signup6.model.ImageProvider;
 import se.accelerateit.signup6.model.Permission;
 import se.accelerateit.signup6.model.User;
 
+import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 @Testcontainers
@@ -35,7 +34,7 @@ class UserMapperTest extends SignupDbTest {
 
 
   @Test
-  void findAdminUser() {
+  void findAdminUserByEmail() {
     Optional<User> dbResponse = userMapper.findByEmail("admin@crisp.se");
     assertTrue(dbResponse.isPresent(), "could not find the user in db");
     User user = dbResponse.get();
@@ -52,7 +51,7 @@ class UserMapperTest extends SignupDbTest {
   }
 
   @Test
-  void findFrodoUser() {
+  void findFrodoUserByEmail() {
     Optional<User> dbResponse = userMapper.findByEmail("frodo.baggins@crisp.se");
     assertTrue(dbResponse.isPresent(), "could not find the user in db");
     User user = dbResponse.get();
@@ -66,6 +65,32 @@ class UserMapperTest extends SignupDbTest {
     assertEquals(Permission.NormalUser, user.getPermission());
     assertNotNull(user.getPwd());
     assertEquals(ImageProvider.Gravatar, user.getImageProvider());
+  }
+
+  @Test
+  void findJohnUserById(){
+    Optional<User> dbResponse = userMapper.findById(-5L);
+    assertTrue(dbResponse.isPresent(), "Ya boi doesn't exist in db");
+    User user = dbResponse.get();
+    logger.info("user = {}", user);
+
+    assertEquals("John", user.getFirstName());
+    assertEquals("Doe", user.getLastName());
+    assertEquals("john@doe.net", user.getEmail());
+    assertEquals(Permission.NormalUser, user.getPermission());
+    assertEquals(ImageProvider.Gravatar, user.getImageProvider());
+  }
+
+  @Test
+  void findNoUserById(){
+    Optional<User> dbResponse = userMapper.findById(-99L);
+    assertTrue(dbResponse.isEmpty());
+  }
+
+  @Test
+  void findNoUserByEmail(){
+    Optional<User> dbResponse = userMapper.findByEmail("Oogabooga@testmail.test");
+    assertTrue(dbResponse.isEmpty());
   }
 
   @Test
@@ -102,6 +127,13 @@ class UserMapperTest extends SignupDbTest {
     assertEquals("", user.getComment());
     assertEquals("Goblin@gob.com", user.getEmail());
     assertEquals("", user.getPhone());
+  }
+
+  @Test
+  void findAllUsersTest() {
+    List<User> userList = userMapper.findAll();
+    assertFalse(userList.isEmpty());
+    assertEquals(6, userList.size());
   }
 
 }

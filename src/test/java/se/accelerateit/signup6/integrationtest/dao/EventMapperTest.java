@@ -34,7 +34,7 @@ class EventMapperTest extends SignupDbTest {
 
 
   @Test
-  void findOneEvent() {
+  void findOneEventById() {
     Optional<Event> dbResponse = eventMapper.findById(-1L);
     assertTrue(dbResponse.isPresent(), "could not find the event in db");
     Event event = dbResponse.get();
@@ -59,10 +59,15 @@ class EventMapperTest extends SignupDbTest {
   }
 
   @Test
+  void findNoEventById(){
+    Optional<Event> dbResponse = eventMapper.findById(-99L);
+    assertTrue(dbResponse.isEmpty(), "Found an event that should not exist");
+  }
+
+  @Test
   void findAllEventsTest(){
     List<Event> eventList = eventMapper.findAll();
     logger.info("eventList = {}", eventList);
-
     assertEquals(3, eventList.size());
   }
 
