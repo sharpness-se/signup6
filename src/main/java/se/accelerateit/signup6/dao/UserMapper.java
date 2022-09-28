@@ -25,5 +25,4 @@ public interface UserMapper {
     "select * from users"
   )
   List<User> findAll();
-
 }

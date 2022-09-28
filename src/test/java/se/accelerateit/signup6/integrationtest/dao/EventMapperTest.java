@@ -15,6 +15,7 @@ import se.accelerateit.signup6.model.Group;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -57,5 +58,15 @@ class EventMapperTest extends SignupDbTest {
     assertEquals("För dej som vill lära dej mer", group.getDescription());
     assertEquals("", group.getMailFrom());
     assertEquals("Crisp Rocket Days", group.getMailSubjectPrefix());
+  }
+
+  @Test
+  void findAllEvent() {
+
+    List<Event> eventList = eventMapper.findAllEvents();
+    logger.info("eventList = {}", eventList);
+
+
+    assertEquals("Julbord", eventList.get(2).getName());
   }
 }
