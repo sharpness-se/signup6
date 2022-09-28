@@ -13,6 +13,7 @@ import se.accelerateit.signup6.model.Participation;
 import se.accelerateit.signup6.model.ParticipationStatus;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -109,5 +110,11 @@ class ParticipationMapperTest extends SignupDbTest {
     assertEquals("OK!!", participation.getComment());
     assertEquals(-2L, participation.getUserId());
     assertEquals(-2L, participation.getEventId());
+  }
+
+  @Test
+  void findByEventIdTest(){
+    List<Participation> participation = participationMapper.findByEventId(-1L);
+    assertEquals(4, participation.size());
   }
 }

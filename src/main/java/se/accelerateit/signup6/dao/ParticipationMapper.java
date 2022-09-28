@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import se.accelerateit.signup6.model.Participation;
 
+import java.util.List;
 import java.util.Optional;
 
 @Mapper
@@ -22,6 +23,11 @@ public interface ParticipationMapper {
     "select * from participations where userx=#{userId} and event=#{eventId}"
   )
   Optional<Participation> findByUserAndEvent(@Param("userId") Long userId, @Param("eventId") Long eventId);
+
+  @Select(
+          "select * from participations where event=#{eventId}"
+  )
+  List<Participation> findByEventId(@Param("eventId") Long eventId);
 
   @Insert("""
     insert into participations (status, comment, userx, event, number_of_participants, signup_time)
