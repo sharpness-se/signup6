@@ -1,9 +1,7 @@
 package se.accelerateit.signup6.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import se.accelerateit.signup6.dao.UserMapper;
 import se.accelerateit.signup6.model.User;
 import se.accelerateit.signup6.modelvalidator.UserDoesNotExistException;
