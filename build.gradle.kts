@@ -1,6 +1,6 @@
 plugins {
-  id("org.springframework.boot") version "2.7.3"
-  id("io.spring.dependency-management") version "1.0.13.RELEASE"
+  id("org.springframework.boot") version "2.7.4"
+  id("io.spring.dependency-management") version "1.0.14.RELEASE"
   java
 }
 
@@ -8,7 +8,7 @@ group = "se.accelerateit"
 version = "0.0.1-SNAPSHOT"
 
 java {
-  sourceCompatibility = JavaVersion.VERSION_16
+  sourceCompatibility = JavaVersion.VERSION_17
 }
 
 configurations {
