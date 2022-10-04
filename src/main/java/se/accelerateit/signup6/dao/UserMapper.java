@@ -4,6 +4,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import se.accelerateit.signup6.model.ParticipationStatus;
 import se.accelerateit.signup6.model.User;
 
 import java.util.List;
@@ -44,5 +45,13 @@ public interface UserMapper {
                   "#{authInfo})"
   )
   void insertUser(User user);
+
+  @Select(
+          "select u.* from users u, participations p " +
+                  "where u.id = p.userx " +
+                  "and p.event = #{eventId} " +
+                  "and p.status = #{status}"
+  )
+  List<User> findSpecificStatusForEvent(@Param("eventId") Long eventId, @Param("status") ParticipationStatus status);
 
 }

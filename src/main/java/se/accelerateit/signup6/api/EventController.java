@@ -6,7 +6,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import se.accelerateit.signup6.dao.EventMapper;
 import se.accelerateit.signup6.model.Event;
+import se.accelerateit.signup6.model.User;
 import se.accelerateit.signup6.modelvalidator.EventDoesNotExistException;
+
+import java.util.List;
 
 @RestController
 public class EventController extends BaseApiController {
