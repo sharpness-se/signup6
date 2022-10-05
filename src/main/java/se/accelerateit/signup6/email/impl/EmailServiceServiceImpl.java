@@ -4,11 +4,15 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import se.accelerateit.signup6.email.EmailSenderService;
+import se.accelerateit.signup6.model.Event;
+import se.accelerateit.signup6.model.User;
+
+import java.util.List;
 
 @Service
 public class EmailServiceServiceImpl implements EmailSenderService {
-
     private final JavaMailSender mailSender;
+    private final String emailToSendFrom = "example@gmail.com";
 
     public EmailServiceServiceImpl(JavaMailSender mailSender) {
         this.mailSender = mailSender;
@@ -19,11 +23,25 @@ public class EmailServiceServiceImpl implements EmailSenderService {
     public void send(String to, String subject, String message) {
 
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
-        simpleMailMessage.setFrom("miguel.h.ogren@gmail.com");
+        simpleMailMessage.setFrom(emailToSendFrom);
         simpleMailMessage.setTo(to);
         simpleMailMessage.setSubject(subject);
         simpleMailMessage.setText(message);
 
         this.mailSender.send(simpleMailMessage);
+    }
+
+    @Override
+    public void sendReminders(List<User> users, Event event){
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom(emailToSendFrom);
+        message.setSubject("Påminnelse " + event.getName());
+        message.setText("Glöm ej anmäla dig till " + event.getName()
+                + "Länk till sammankomst: " + "URL");
+
+        for (User user : users) {
+            message.setTo(user.getEmail());
+            mailSender.send(message);
+        }
     }
 }
