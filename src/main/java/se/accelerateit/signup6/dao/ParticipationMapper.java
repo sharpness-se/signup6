@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import se.accelerateit.signup6.model.Participation;
+import se.accelerateit.signup6.model.ParticipationStatus;
 
 import java.util.List;
 import java.util.Optional;
@@ -28,6 +29,16 @@ public interface ParticipationMapper {
           "select * from participations where event=#{eventId}"
   )
   List<Participation> findByEventId(@Param("eventId") Long eventId);
+
+
+  @Results({
+    @Result(property = "eventId", column = "event"),
+    @Result(property = "status", column = "status")
+  })
+  @Select(
+    "select * from participations where event=#{eventId} and status=#{status}"
+  )
+  List<Participation> findByStatusAndEventId(@Param("eventId") Long eventId, @Param("status") ParticipationStatus status);
 
   @Insert("""
     insert into participations (status, comment, userx, event, number_of_participants, signup_time)
