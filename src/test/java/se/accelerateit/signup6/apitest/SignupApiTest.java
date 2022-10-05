@@ -8,7 +8,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import se.accelerateit.signup6.dao.EventMapper;
 import se.accelerateit.signup6.dao.ParticipationMapper;
 import se.accelerateit.signup6.dao.UserMapper;
-import se.accelerateit.signup6.email.impl.EmailServiceServiceImpl;
+import se.accelerateit.signup6.email.impl.EmailSenderServiceImpl;
 import se.accelerateit.signup6.modelvalidator.EventValidator;
 
 @WebMvcTest
@@ -30,7 +30,7 @@ public abstract class SignupApiTest {
   protected EventMapper eventMapper;
 
   @MockBean
-  protected EmailServiceServiceImpl emailService;
+  protected EmailSenderServiceImpl emailService;
 
   protected final ObjectMapper jsonMapper;
 

@@ -10,11 +10,11 @@ import se.accelerateit.signup6.model.User;
 import java.util.List;
 
 @Service
-public class EmailServiceServiceImpl implements EmailSenderService {
+public class EmailSenderServiceImpl implements EmailSenderService {
     private final JavaMailSender mailSender;
     private final String emailToSendFrom = "example@gmail.com";
 
-    public EmailServiceServiceImpl(JavaMailSender mailSender) {
+    public EmailSenderServiceImpl(JavaMailSender mailSender) {
         this.mailSender = mailSender;
     }
 
