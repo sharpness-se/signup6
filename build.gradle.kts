@@ -29,6 +29,8 @@ dependencies {
   implementation("org.flywaydb:flyway-core")
   implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2")
 
+  implementation("org.springframework.boot:spring-boot-starter-mail")
+
   compileOnly("org.projectlombok:lombok")
   annotationProcessor("org.projectlombok:lombok")
 
