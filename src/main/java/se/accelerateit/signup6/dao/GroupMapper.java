@@ -18,6 +18,7 @@ public interface GroupMapper {
   )
   Optional<Group> findById(@Param("id") Long id);
 
+  //TODO Should this be in MembershipMapper? Yes. Should we refactor EventValidator to MembershipMapper dependency?
   @Select("""
     select m.id from memberships m, events e where
       e.id = #{eventId}
