@@ -3,6 +3,7 @@ package se.accelerateit.signup6.dao;
 import org.apache.ibatis.annotations.*;
 import se.accelerateit.signup6.model.Event;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,4 +40,9 @@ public interface EventMapper {
                   "#{cancellationReason})"
   )
   void insertEvent(Event event);
+
+  @Select(
+          "select * from events where last_signup_date >= #{dateToday}"
+  )
+  List<Event> findAllUpcomingEvents(@Param("dateToday") LocalDate dateToday);
 }
