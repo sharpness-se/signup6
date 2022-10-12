@@ -32,7 +32,6 @@ public class MembershipMapperTest extends SignupDbTest{
         this.membershipMapper = membershipMapper;
     }
 
-
     @Test
     void findMembershipForEvent() {
 

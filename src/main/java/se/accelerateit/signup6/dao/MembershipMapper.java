@@ -21,7 +21,6 @@ public interface MembershipMapper {
 
     @Result(property = "userId", column = "userx")
     @Result(property = "groupId", column = "groupx")
-    @Result(property = "userId", column = "userx")
     @Select("select * from memberships where groupx=#{groupId}")
     List<Membership> findUsersByGroup(@Param("groupId") Long groupId);
 
