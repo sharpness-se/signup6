@@ -50,7 +50,7 @@ public class UserFilter {
         return usersToRemind;
     }
 
-    private List<User> getAllUsersFromGroup(Group group){
+    public List<User> getAllUsersFromGroup(Group group){
         List<Membership> memberships = membershipMapper.findUsersByGroup(group.getId());
         List<User> usersToReturn = new ArrayList<>();
 
@@ -60,7 +60,7 @@ public class UserFilter {
         return usersToReturn;
     }
 
-    private List<User> getAllUsersFromParticipations(List<Participation> participationList){
+    public List<User> getAllUsersFromParticipations(List<Participation> participationList){
         List<User> usersToReturn = new ArrayList<>();
 
         for (Participation part : participationList) {
@@ -70,15 +70,15 @@ public class UserFilter {
         return usersToReturn;
     }
 
-    private User getUserFromParticipation(Participation part){
+    public User getUserFromParticipation(Participation part){
         return userMapper.findById(part.getUserId()).get();
     }
 
-    private Group getGroupToRemind(Event eventToRemind){
+    public Group getGroupToRemind(Event eventToRemind){
         return eventToRemind.getGroup();
     }
 
-    private List<Participation> getEventParticipations(Event eventToRemind){
+    public List<Participation> getEventParticipations(Event eventToRemind){
         return participationMapper.findByEventId(eventToRemind.getId());
     }
 

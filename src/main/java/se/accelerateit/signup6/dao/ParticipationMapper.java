@@ -16,25 +16,23 @@ import java.util.Optional;
 @Mapper
 public interface ParticipationMapper {
 
-  @Results({
-    @Result(property = "userId", column = "userx"),
-    @Result(property = "eventId", column = "event")
-  })
+  @Result(property = "userId", column = "userx")
+  @Result(property = "eventId", column = "event")
   @Select(
     "select * from participations where userx=#{userId} and event=#{eventId}"
   )
   Optional<Participation> findByUserAndEvent(@Param("userId") Long userId, @Param("eventId") Long eventId);
 
+
+  @Result(property = "userId", column = "userx")
   @Select(
           "select * from participations where event=#{eventId}"
   )
   List<Participation> findByEventId(@Param("eventId") Long eventId);
 
 
-  @Results({
-    @Result(property = "eventId", column = "event"),
-    @Result(property = "status", column = "status")
-  })
+  @Result(property = "eventId", column = "event")
+  @Result(property = "status", column = "status")
   @Select(
     "select * from participations where event=#{eventId} and status=#{status}"
   )

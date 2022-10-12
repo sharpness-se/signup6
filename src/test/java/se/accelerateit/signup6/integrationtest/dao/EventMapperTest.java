@@ -104,7 +104,7 @@ class EventMapperTest extends SignupDbTest {
     Optional<Event> dbResponse = eventMapper.findById(1L);
     assertTrue(dbResponse.isPresent(), "could not find the user in db");
     Event event = dbResponse.get();
-    logger.info("user = {}", event);
+    logger.info("event = {}", event);
 
     assertEquals("Monster consumption", event.getName());
     assertEquals("Monster drinkin innit", event.getDescription());

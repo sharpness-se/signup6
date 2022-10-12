@@ -10,15 +10,16 @@ import java.util.Optional;
 @Mapper
 public interface MembershipMapper {
 
-    @Results({
-            @Result(property = "userId", column = "userx"),
-            @Result(property = "groupId", column = "groupx")
-    })
+    @Result(property = "userId", column = "userx")
+    @Result(property = "groupId", column = "groupx")
     @Select(
             "select * from memberships where userx=#{userId} and group=#{groupId}"
     )
     Optional<Membership> findByUserAndGroup(@Param("userId") Long userId, @Param("groupId") Long groupId);
 
+
+
+    @Result(property = "userId", column = "userx")
     @Result(property = "groupId", column = "groupx")
     @Select("select * from memberships where groupx=#{groupId}")
     List<Membership> findUsersByGroup(@Param("groupId") Long groupId);
