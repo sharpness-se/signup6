@@ -11,8 +11,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.test.util.TestPropertyValues;
 import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.transaction.annotation.Transactional;
 import org.testcontainers.junit.jupiter.Container;
 
+@Transactional
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public abstract class SignupDbTest {
   private static final Logger logger = LoggerFactory.getLogger(SignupDbTest.class);
