@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import se.accelerateit.signup6.dao.GroupMapper;
+import se.accelerateit.signup6.dao.MembershipMapper;
 import se.accelerateit.signup6.integrationtest.SignupDbTest;
 import se.accelerateit.signup6.model.Group;
 
@@ -42,20 +43,6 @@ class GroupMapperTest extends SignupDbTest {
     assertEquals("För dej som vill lära dej mer", group.getDescription());
     assertEquals("", group.getMailFrom());
     assertEquals("Crisp Rocket Days", group.getMailSubjectPrefix());
-  }
-
-  @Test
-  void checkMembership() {
-
-    assertEquals(-1L, groupMapper.findMembershipForEvent(-1L, -2L).orElseThrow(), "User -1 should be member of group where event -2 is planned");
-    assertEquals(-2L, groupMapper.findMembershipForEvent(-2L, -2L).orElseThrow(), "User -2 should be member of group where event -2 is planned");
-    assertEquals(-3L, groupMapper.findMembershipForEvent(-3L, -3L).orElseThrow(), "User -3 should be member of group where event -3 is planned");
-
-    assertFalse(groupMapper.findMembershipForEvent(-5L, -2L).isPresent(), "User -5 should NOT be member of group where event -2 is planned");
-    assertFalse(groupMapper.findMembershipForEvent(-1L, -222L).isPresent(), "User -1 should NOT be member of group for a non-existent event -222");
-    assertFalse(groupMapper.findMembershipForEvent(-111L, -2L).isPresent(), "Non-existing user -111 NOT be member of group where event -2 is planned");
-    assertFalse(groupMapper.findMembershipForEvent(-111L, -222L).isPresent(), "Non-existing user -111 NOT be member of group for a non-existent event -222");
-
   }
 
   @Test

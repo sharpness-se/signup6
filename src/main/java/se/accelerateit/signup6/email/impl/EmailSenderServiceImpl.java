@@ -1,5 +1,6 @@
 package se.accelerateit.signup6.email.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -14,10 +15,10 @@ public class EmailSenderServiceImpl implements EmailSenderService {
     private final JavaMailSender mailSender;
     private final String emailToSendFrom = "example@gmail.com";
 
+    @Autowired
     public EmailSenderServiceImpl(JavaMailSender mailSender) {
         this.mailSender = mailSender;
     }
-
 
     @Override
     public void send(String to, String subject, String message) {
