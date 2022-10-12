@@ -15,11 +15,12 @@ public interface MembershipMapper {
             @Result(property = "groupId", column = "groupx")
     })
     @Select(
-            "select * from memberships where userx=#{userId} and group=#{groupId}"
+            "select * from memberships where userx=#{userId} and groupx=#{groupId}"
     )
     Optional<Membership> findByUserAndGroup(@Param("userId") Long userId, @Param("groupId") Long groupId);
 
     @Result(property = "groupId", column = "groupx")
+    @Result(property = "userId", column = "userx")
     @Select("select * from memberships where groupx=#{groupId}")
     List<Membership> findUsersByGroup(@Param("groupId") Long groupId);
 
