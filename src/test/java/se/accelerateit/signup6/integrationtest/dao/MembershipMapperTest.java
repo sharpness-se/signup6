@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.testcontainers.junit.jupiter.Testcontainers;
-import se.accelerateit.signup6.dao.GroupMapper;
 import se.accelerateit.signup6.dao.MembershipMapper;
 import se.accelerateit.signup6.integrationtest.SignupDbTest;
 import se.accelerateit.signup6.model.Membership;

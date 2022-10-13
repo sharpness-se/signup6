@@ -5,10 +5,16 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import se.accelerateit.signup6.email.EmailSenderService;
+import se.accelerateit.signup6.email.emailUtil.EmailMessageBuilder;
 import se.accelerateit.signup6.model.Event;
 import se.accelerateit.signup6.model.User;
 
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.internet.MimeMessage;
 import java.util.List;
+import java.util.Properties;
 
 @Service
 public class EmailSenderServiceImpl implements EmailSenderService {
@@ -20,6 +26,7 @@ public class EmailSenderServiceImpl implements EmailSenderService {
         this.mailSender = mailSender;
     }
 
+    /*
     @Override
     public void send(String to, String subject, String message) {
 
@@ -30,6 +37,22 @@ public class EmailSenderServiceImpl implements EmailSenderService {
         simpleMailMessage.setText(message);
 
         this.mailSender.send(simpleMailMessage);
+    }
+    */
+
+    Properties properties=new Properties();
+    Session session=Session.getInstance(properties,null);
+
+    @Override
+    public void send(String to, String subject, String message) throws MessagingException {
+        MimeMessage mimeMessage = new MimeMessage(session);
+        mimeMessage.setFrom(emailToSendFrom);
+        mimeMessage.setRecipients(Message.RecipientType.TO, to);
+        mimeMessage.setSubject(subject);
+
+        mimeMessage.setContent(EmailMessageBuilder.exmplMessage(),"text/html");
+
+        this.mailSender.send(mimeMessage);
     }
 
     @Override

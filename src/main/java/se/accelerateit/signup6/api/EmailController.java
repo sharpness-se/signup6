@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 import se.accelerateit.signup6.email.EmailSenderService;
 import se.accelerateit.signup6.model.EmailMessage;
 
+import javax.mail.MessagingException;
+
 @RestController
 public class EmailController extends BaseApiController{
 
@@ -19,7 +21,7 @@ public class EmailController extends BaseApiController{
     }
 
     @PostMapping("/send-email")
-    public ResponseEntity sendEmail(@RequestBody EmailMessage emailMessage) {
+    public ResponseEntity sendEmail(@RequestBody EmailMessage emailMessage) throws MessagingException {
         this.emailSenderService.send(emailMessage.getTo(), emailMessage.getSubject(), emailMessage.getMessage());
         return ResponseEntity.ok("Email sent");
     }
