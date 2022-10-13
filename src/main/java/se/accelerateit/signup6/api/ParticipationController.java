@@ -13,6 +13,8 @@ import se.accelerateit.signup6.modelvalidator.EventValidator;
 import se.accelerateit.signup6.modelvalidator.NotMemberOfGroupException;
 import se.accelerateit.signup6.modelvalidator.WtfException;
 
+import java.util.Optional;
+
 @RestController
 public class ParticipationController extends BaseApiController {
   private final ParticipationMapper participationMapper;
@@ -52,4 +54,47 @@ public class ParticipationController extends BaseApiController {
     }
     return participationMapper.findByUserAndEvent(participation.getUserId(), participation.getEventId()).orElseThrow(WtfException::new);
   }
+
+  @GetMapping("/participations/registration")
+  public Participation registerToEvent(@RequestParam(value = "userId") Long userId,
+                                       @RequestParam(value= "eventId") Long eventId,
+                                       @RequestParam(value= "pStatus") Long pStatus){
+
+    final Optional<Participation> p = participationMapper.findByUserAndEvent(userId, eventId);
+    if(p.isPresent()){
+      Participation oldParticipation = p.get();
+      oldParticipation = setStatus(oldParticipation, pStatus);
+      participationMapper.update(oldParticipation);
+
+      return oldParticipation;
+    }
+    else {
+      Participation newPart = new Participation();
+      newPart.setUserId(userId);
+      newPart.setEventId(eventId);
+      newPart = setStatus(newPart, pStatus);
+
+      participationMapper.create(newPart);
+      return newPart;
+    }
+  }
+
+  public Participation setStatus(Participation part, Long pStatus){
+    switch (Math.toIntExact(pStatus)){
+      case 1 -> {
+        part.setStatus(ParticipationStatus.On);
+      }
+      case 2 -> {
+        part.setStatus(ParticipationStatus.Maybe);
+      }
+      case 3 -> {
+        part.setStatus(ParticipationStatus.Off);
+      }
+      default -> {
+        part.setStatus(ParticipationStatus.Unregistered);
+      }
+    }
+    return part;
+  }
+
 }
