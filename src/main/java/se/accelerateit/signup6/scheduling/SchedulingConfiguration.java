@@ -10,6 +10,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import se.accelerateit.signup6.dao.ParticipationMapper;
 import se.accelerateit.signup6.email.EmailSenderService;
+import se.accelerateit.signup6.email.emailUtil.EmailMessageBuilder;
 import se.accelerateit.signup6.email.impl.EmailSenderServiceImpl;
 import se.accelerateit.signup6.model.User;
 
@@ -22,7 +23,6 @@ import java.util.List;
 @ConditionalOnProperty(name= "scheduling.enabled", matchIfMissing = true)
 public class SchedulingConfiguration {
 
-    EmailSenderServiceImpl emailSenderService = new EmailSenderServiceImpl(new JavaMailSenderImpl());
     private final ScheduledEvents scheduledEvents;
 
     @Autowired
