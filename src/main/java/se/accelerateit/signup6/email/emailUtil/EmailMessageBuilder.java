@@ -1,6 +1,6 @@
 package se.accelerateit.signup6.email.emailUtil;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import se.accelerateit.signup6.model.Event;
 import se.accelerateit.signup6.model.Group;
 import se.accelerateit.signup6.model.ParticipationStatus;
@@ -8,7 +8,7 @@ import se.accelerateit.signup6.model.User;
 
 import java.net.URI;
 
-@Component
+@Service
 public class EmailMessageBuilder {
 
     public String newEventInviteMessage(User user, Group group, Event event) {
@@ -21,7 +21,7 @@ public class EmailMessageBuilder {
                 + "\nThe date for the event is" + event.getStartTime() + ", please respond before " + event.getLastSignUpDate();
     }
 
-    public static String exmplMessage() {
+    public String exmplMessage() {
         String newLine = "<br></br>";
         return "Hello " + "<b><em>User,</b></em>" + newLine + "<b><em>Sharpness</b></em>" + " has invited you to a new event - " + "<b><em>AW</b></em>"
                 + newLine + "that takes place at " + "<b><em>16:00</b></em>";

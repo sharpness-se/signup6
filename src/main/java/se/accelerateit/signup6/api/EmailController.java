@@ -21,9 +21,9 @@ public class EmailController extends BaseApiController{
     private final EmailMessageBuilder emailMessageBuilder;
 
     @Autowired
-    public EmailController(EmailSenderService emailSenderService, EmailMessageBuilder messageBuilder) {
+    public EmailController(EmailSenderService emailSenderService, EmailMessageBuilder emailMessageBuilder) {
         this.emailSenderService = emailSenderService;
-        this.emailMessageBuilder = messageBuilder;
+        this.emailMessageBuilder = emailMessageBuilder;
     }
 
     @PostMapping("/send-email")
