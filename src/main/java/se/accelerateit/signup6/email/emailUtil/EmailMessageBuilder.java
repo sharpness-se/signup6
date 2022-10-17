@@ -1,5 +1,6 @@
 package se.accelerateit.signup6.email.emailUtil;
 
+import org.springframework.stereotype.Component;
 import se.accelerateit.signup6.model.Event;
 import se.accelerateit.signup6.model.Group;
 import se.accelerateit.signup6.model.ParticipationStatus;
@@ -7,6 +8,7 @@ import se.accelerateit.signup6.model.User;
 
 import java.net.URI;
 
+@Component
 public class EmailMessageBuilder {
 
     public String newEventInviteMessage(User user, Group group, Event event) {
@@ -25,7 +27,7 @@ public class EmailMessageBuilder {
                 + newLine + "that takes place at " + "<b><em>16:00</b></em>";
     }
 
-    public static String reminderMail(User user, Event event){
+    public String reminderMail(User user, Event event){
         String newLine = "<br></br>";
         String body = "Hello " + user.getFirstName() +  ", don't forget responding to your invitation for " + event.getName();
 
@@ -39,7 +41,7 @@ public class EmailMessageBuilder {
     }
 
     //http://localhost:8080/api/participations/registration?userId=-5&eventId=-2&pStatus=1
-    public static String getLink(User user, Event event, ParticipationStatus status){
+    public String getLink(User user, Event event, ParticipationStatus status){
         String userPar = "userId=" + user.getId();
         String eventPar = "eventId=" + event.getId();
         String statusPar = "pStatus=" + setStatus(status);
@@ -49,7 +51,7 @@ public class EmailMessageBuilder {
     }
     //<a href="url">link text</a>
 
-    private static String setLinkText(ParticipationStatus status){
+    private String setLinkText(ParticipationStatus status){
         if (status.equals(ParticipationStatus.On)){
             return "Click here to say yes";
         }
@@ -59,7 +61,7 @@ public class EmailMessageBuilder {
         return "Click here to say maybe";
     }
 
-    private static String setStatus(ParticipationStatus status){
+    private String setStatus(ParticipationStatus status){
         if (status.equals(ParticipationStatus.On)){
             return "1";
         }

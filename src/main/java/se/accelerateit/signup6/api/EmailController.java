@@ -18,10 +18,12 @@ import javax.mail.MessagingException;
 public class EmailController extends BaseApiController{
 
     private final EmailSenderService emailSenderService;
+    private final EmailMessageBuilder emailMessageBuilder;
 
     @Autowired
-    public EmailController(EmailSenderService emailSenderService) {
+    public EmailController(EmailSenderService emailSenderService, EmailMessageBuilder messageBuilder) {
         this.emailSenderService = emailSenderService;
+        this.emailMessageBuilder = messageBuilder;
     }
 
     @PostMapping("/send-email")
@@ -38,7 +40,7 @@ public class EmailController extends BaseApiController{
         event.setId(-2L);
         ParticipationStatus pStatus = ParticipationStatus.Maybe;
 
-        return EmailMessageBuilder.getLink(user, event, pStatus);
+        return emailMessageBuilder.getLink(user, event, pStatus);
     }
 
 }

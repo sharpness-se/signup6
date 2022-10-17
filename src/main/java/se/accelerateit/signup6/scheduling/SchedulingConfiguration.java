@@ -1,6 +1,7 @@
 package se.accelerateit.signup6.scheduling;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -12,6 +13,7 @@ import se.accelerateit.signup6.email.EmailSenderService;
 import se.accelerateit.signup6.email.impl.EmailSenderServiceImpl;
 import se.accelerateit.signup6.model.User;
 
+import javax.mail.MessagingException;
 import java.util.Date;
 import java.util.List;
 
@@ -21,6 +23,12 @@ import java.util.List;
 public class SchedulingConfiguration {
 
     EmailSenderServiceImpl emailSenderService = new EmailSenderServiceImpl(new JavaMailSenderImpl());
+    private final ScheduledEvents scheduledEvents;
+
+    @Autowired
+    public SchedulingConfiguration(ScheduledEvents scheduledEvents){
+        this.scheduledEvents = scheduledEvents;
+    }
 
     @Scheduled(cron = "*/5 * * * * *")
     public void scheduledTrigger() {

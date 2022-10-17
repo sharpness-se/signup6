@@ -19,26 +19,14 @@ import java.util.Properties;
 @Service
 public class EmailSenderServiceImpl implements EmailSenderService {
     private final JavaMailSender mailSender;
+    private final EmailMessageBuilder messageBuilder;
     private final String emailToSendFrom = "example@gmail.com";
 
     @Autowired
-    public EmailSenderServiceImpl(JavaMailSender mailSender) {
+    public EmailSenderServiceImpl(JavaMailSender mailSender, EmailMessageBuilder messageBuilder) {
         this.mailSender = mailSender;
+        this.messageBuilder = messageBuilder;
     }
-
-    /*
-    @Override
-    public void send(String to, String subject, String message) {
-
-        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
-        simpleMailMessage.setFrom(emailToSendFrom);
-        simpleMailMessage.setTo(to);
-        simpleMailMessage.setSubject(subject);
-        simpleMailMessage.setText(message);
-
-        this.mailSender.send(simpleMailMessage);
-    }
-    */
 
     Properties properties=new Properties();
     Session session=Session.getInstance(properties,null);
@@ -56,15 +44,14 @@ public class EmailSenderServiceImpl implements EmailSenderService {
     }
 
     @Override
-    public void sendReminders(List<User> users, Event event){
-        SimpleMailMessage message = new SimpleMailMessage();
+    public void sendReminders(List<User> users, Event event) throws MessagingException{
+        MimeMessage message = new MimeMessage(session);
         message.setFrom(emailToSendFrom);
         message.setSubject("Påminnelse " + event.getName());
-        message.setText("Glöm ej anmäla dig till " + event.getName()
-                + "Länk till sammankomst: " + "URL");
 
         for (User user : users) {
-            message.setTo(user.getEmail());
+            message.setRecipients(Message.RecipientType.TO,user.getEmail());
+            message.setText(messageBuilder.reminderMail(user, event));
             mailSender.send(message);
         }
     }
