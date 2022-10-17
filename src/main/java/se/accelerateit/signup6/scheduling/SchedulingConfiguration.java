@@ -33,6 +33,7 @@ public class SchedulingConfiguration {
     @Scheduled(cron = "*/5 * * * * *")
     public void scheduledTrigger() {
         System.out.println("5 seconds has passed " + new Date());
+        scheduledEvents.sendReminders();
     }
 
 //    public List<User> findUsersToRemind() {

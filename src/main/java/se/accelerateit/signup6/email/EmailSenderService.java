@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface EmailSenderService {
     void send(String to, String subject, String message) throws MessagingException;
-    void sendReminders(List<User> users, Event event);
+    void sendReminders(List<User> users, Event event) throws MessagingException;
 }
