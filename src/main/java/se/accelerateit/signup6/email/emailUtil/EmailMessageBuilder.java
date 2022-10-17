@@ -5,6 +5,8 @@ import se.accelerateit.signup6.model.Group;
 import se.accelerateit.signup6.model.ParticipationStatus;
 import se.accelerateit.signup6.model.User;
 
+import java.net.URI;
+
 public class EmailMessageBuilder {
 
     public String newEventInviteMessage(User user, Group group, Event event) {
@@ -29,14 +31,41 @@ public class EmailMessageBuilder {
 
         return body +
                 newLine +
-                getLink(user, ParticipationStatus.On) +
+                getLink(user, event, ParticipationStatus.On) +
                 newLine +
-                getLink(user, ParticipationStatus.Maybe) +
+                getLink(user, event, ParticipationStatus.Maybe) +
                 newLine +
-                getLink(user, ParticipationStatus.Off);
+                getLink(user, event, ParticipationStatus.Off);
     }
 
-    public static String getLink(User user, ParticipationStatus status){
-        return "info + api link participationcontroller, post/update participation, + userId as path variable + yes, maybe, no as path variable";
+    //http://localhost:8080/api/participations/registration?userId=-5&eventId=-2&pStatus=1
+    public static String getLink(User user, Event event, ParticipationStatus status){
+        String userPar = "userId=" + user.getId();
+        String eventPar = "eventId=" + event.getId();
+        String statusPar = "pStatus=" + setStatus(status);
+        String toAppend = "?" + userPar + "&" + eventPar + "&" + statusPar;
+        String url = "http://localhost:8080/api/participations/registration" + toAppend;
+        return "<a href=\""+ url + "\">" + setLinkText(status) + "</a>";
+    }
+    //<a href="url">link text</a>
+
+    private static String setLinkText(ParticipationStatus status){
+        if (status.equals(ParticipationStatus.On)){
+            return "Click here to say yes";
+        }
+        if (status.equals(ParticipationStatus.Off)){
+            return "Click here to say no";
+        }
+        return "Click here to say maybe";
+    }
+
+    private static String setStatus(ParticipationStatus status){
+        if (status.equals(ParticipationStatus.On)){
+            return "1";
+        }
+        if (status.equals(ParticipationStatus.Off)){
+            return "3";
+        }
+        return "2";
     }
 }

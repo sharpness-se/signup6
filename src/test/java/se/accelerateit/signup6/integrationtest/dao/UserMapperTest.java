@@ -95,20 +95,19 @@ class UserMapperTest extends SignupDbTest {
 
   @Test
   void insertGoblinUser(){
-    User goblin = User.builder()
-            .id(null)
-            .firstName("Goblin")
-            .lastName("Boblin")
-            .comment("")
-            .email("Goblin@gob.com")
-            .phone("")
-            .permission(Permission.NormalUser)
-            .pwd("*")
-            .imageProvider(ImageProvider.Gravatar)
-            .imageVersion(null)
-            .providerKey(null)
-            .authInfo(null)
-            .build();
+    User goblin = new User();
+    goblin.setId(null);
+    goblin.setFirstName("Goblin");
+    goblin.setLastName("Boblin");
+    goblin.setComment("");
+    goblin.setEmail("Goblin@gob.com");
+    goblin.setPhone("");
+    goblin.setPermission(Permission.NormalUser);
+    goblin.setPwd("*");
+    goblin.setImageProvider(ImageProvider.Gravatar);
+    goblin.setImageVersion(null);
+    goblin.setProviderKey(null);
+    goblin.setAuthInfo(null);
 
     try{
       userMapper.insertUser(goblin);
