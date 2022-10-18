@@ -36,8 +36,8 @@ public class EmailSenderServiceImpl implements EmailSenderService {
         mimeMessage.setFrom(emailToSendFrom);
         mimeMessage.setRecipients(Message.RecipientType.TO, to);
         mimeMessage.setSubject(subject);
-        
-        mimeMessage.setContent(messageBuilder.exmplMessage(),"text/html");
+
+        mimeMessage.setContent("String ","text/html");
 
 
         this.mailSender.send(mimeMessage);

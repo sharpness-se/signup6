@@ -2,30 +2,11 @@ package se.accelerateit.signup6.email.emailUtil;
 
 import org.springframework.stereotype.Service;
 import se.accelerateit.signup6.model.Event;
-import se.accelerateit.signup6.model.Group;
 import se.accelerateit.signup6.model.ParticipationStatus;
 import se.accelerateit.signup6.model.User;
 
-import java.net.URI;
-
 @Service
 public class EmailMessageBuilder {
-
-    public String newEventInviteMessage(User user, Group group, Event event) {
-        return "Hello " + user.getFirstName() + "\n" + group.getName() + " has invited you to a new event - " + event.getName()
-                + "that takes place " + event.getStartTime();
-    }
-
-    public String eventReminderMessage(User user, Event event) {
-        return "Hello " + user.getFirstName() + "\nYou haven't notified if you are able to attend " + event.getName() + "."
-                + "\nThe date for the event is" + event.getStartTime() + ", please respond before " + event.getLastSignUpDate();
-    }
-
-    public String exmplMessage() {
-        String newLine = "<br></br>";
-        return "Hello " + "<b><em>User,</b></em>" + newLine + "<b><em>Sharpness</b></em>" + " has invited you to a new event - " + "<b><em>AW</b></em>"
-                + newLine + "that takes place at " + "<b><em>16:00</b></em>";
-    }
 
     public String reminderMail(User user, Event event){
         String newLine = "<br></br>";
