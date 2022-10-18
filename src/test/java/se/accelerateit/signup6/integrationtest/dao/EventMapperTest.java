@@ -68,7 +68,7 @@ class EventMapperTest extends SignupDbTest {
   void findAllEventsTest() {
     List<Event> eventList = eventMapper.findAll();
     logger.info("eventList = {}", eventList);
-    assertEquals(3, eventList.size());
+    assertEquals(4, eventList.size());
   }
 
   @Test

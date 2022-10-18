@@ -36,8 +36,9 @@ public class EmailSenderServiceImpl implements EmailSenderService {
         mimeMessage.setFrom(emailToSendFrom);
         mimeMessage.setRecipients(Message.RecipientType.TO, to);
         mimeMessage.setSubject(subject);
-
+        
         mimeMessage.setContent(messageBuilder.exmplMessage(),"text/html");
+
 
         this.mailSender.send(mimeMessage);
     }
@@ -50,7 +51,7 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 
         for (User user : users) {
             message.setRecipients(Message.RecipientType.TO,user.getEmail());
-            message.setText(messageBuilder.reminderMail(user, event));
+            message.setText(messageBuilder.reminderMail(user, event), "UTF-8", "html");
             mailSender.send(message);
             System.out.println("Tried to send mail to: " + user + "\n for event: " + event); //TODO remove sout
         }

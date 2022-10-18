@@ -29,7 +29,7 @@ public class EmailMessageBuilder {
 
     public String reminderMail(User user, Event event){
         String newLine = "<br></br>";
-        String body = "Hello " + user.getFirstName() +  ", don't forget responding to your invitation for " + event.getName();
+        String body = "Hello <b>" + user.getFirstName() +  "</b>, don't forget responding to your invitation for <b> " + event.getName() + "</b>";
 
         return body +
                 newLine +
