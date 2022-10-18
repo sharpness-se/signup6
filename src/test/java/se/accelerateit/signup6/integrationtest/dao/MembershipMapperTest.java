@@ -46,7 +46,7 @@ public class MembershipMapperTest extends SignupDbTest{
     }
 
     @Test
-    void findByUserAndGroup(){
+    void findByUserAndGroup() {
         Optional<Membership> dbResponse = membershipMapper.findByUserAndGroup(-1L, -1L);
         assertTrue(dbResponse.isPresent());
         logger.info("Existing user and group = {}", dbResponse);
@@ -74,6 +74,9 @@ public class MembershipMapperTest extends SignupDbTest{
         List<Membership> dbResponse = membershipMapper.findUsersByGroup(-2L);
         assertFalse(dbResponse.isEmpty());
 
+        List<Membership> dbResponse2 = membershipMapper.findUsersByGroup(-9L);
+        assertFalse(dbResponse2.isEmpty());
+
         Membership membershipOne = dbResponse.get(0);
         logger.info("Membership one = {}", membershipOne);
         assertEquals(-3L, membershipOne.getId());
@@ -86,9 +89,14 @@ public class MembershipMapperTest extends SignupDbTest{
         assertEquals(-4L, membershipTwo.getUserId());
         assertEquals(-2L, membershipTwo.getGroupId());
 
+        Membership membership2_1 = dbResponse2.get(0);
+        logger.info("Membership 2_1 = {}", membership2_1);
+        assertEquals(-9L, membership2_1.getId());
+        assertEquals(-9L, membership2_1.getUserId());
+        assertEquals(-9L, membership2_1.getGroupId());
+
         List<Membership> nonExistingGroup = membershipMapper.findUsersByGroup(-2222222L);
         assertTrue(nonExistingGroup.isEmpty());
     }
-
 }
 

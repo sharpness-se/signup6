@@ -1,7 +1,6 @@
 package se.accelerateit.signup6.email.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import se.accelerateit.signup6.email.EmailSenderService;
@@ -53,6 +52,7 @@ public class EmailSenderServiceImpl implements EmailSenderService {
             message.setRecipients(Message.RecipientType.TO,user.getEmail());
             message.setText(messageBuilder.reminderMail(user, event));
             mailSender.send(message);
+            System.out.println("Tried to send mail to: " + user + "\n for event: " + event); //TODO remove sout
         }
     }
 }

@@ -41,6 +41,7 @@ public interface EventMapper {
   )
   void insertEvent(Event event);
 
+  @Result(property = "group", column = "groupx", one = @One(select = "se.accelerateit.signup6.dao.GroupMapper.findById"))
   @Select(
           "select * from events where last_signup_date >= #{dateToday}"
   )

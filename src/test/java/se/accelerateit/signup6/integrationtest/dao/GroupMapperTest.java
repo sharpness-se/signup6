@@ -8,7 +8,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import se.accelerateit.signup6.dao.GroupMapper;
-import se.accelerateit.signup6.dao.MembershipMapper;
 import se.accelerateit.signup6.integrationtest.SignupDbTest;
 import se.accelerateit.signup6.model.Group;
 
@@ -46,7 +45,7 @@ class GroupMapperTest extends SignupDbTest {
   }
 
   @Test
-  void insertMonsterGroupTest(){
+  void insertMonsterGroupTest() {
     Group monsterGroup = new Group();
     monsterGroup.setId(-99L);
     monsterGroup.setName("Monster Consumers");
@@ -73,7 +72,7 @@ class GroupMapperTest extends SignupDbTest {
   }
 
   @Test
-  void findAllGroupsTest(){
+  void findAllGroupsTest() {
     List<Group> groupList = groupMapper.findAllGroups();
     assertFalse(groupList.isEmpty());
     assertEquals(2, groupList.size());

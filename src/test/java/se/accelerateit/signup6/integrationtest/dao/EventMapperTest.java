@@ -59,20 +59,20 @@ class EventMapperTest extends SignupDbTest {
   }
 
   @Test
-  void findNoEventById(){
+  void findNoEventById() {
     Optional<Event> dbResponse = eventMapper.findById(-99L);
     assertTrue(dbResponse.isEmpty(), "Found an event that should not exist");
   }
 
   @Test
-  void findAllEventsTest(){
+  void findAllEventsTest() {
     List<Event> eventList = eventMapper.findAll();
     logger.info("eventList = {}", eventList);
     assertEquals(3, eventList.size());
   }
 
   @Test
-  void insertMonsterEvent(){
+  void insertMonsterEvent() {
     Group existingIdGroup = new Group();
     existingIdGroup.setId(-1L);
     existingIdGroup.setName("");
@@ -113,4 +113,12 @@ class EventMapperTest extends SignupDbTest {
     assertTrue(event.isAllowExtraFriends());
   }
 
+  @Test
+  void findAllUpcomingEvents() {
+    LocalDate testDate = LocalDate.of(2022, 1,1);
+    List<Event> eventList = eventMapper.findAllUpcomingEvents(testDate);
+    logger.info("eventList = {}", eventList);
+    assertEquals(1, eventList.size());
+    System.out.println(eventList);
+  }
 }
