@@ -30,14 +30,6 @@ public interface ParticipationMapper {
   )
   List<Participation> findByEventId(@Param("eventId") Long eventId);
 
-
-  @Result(property = "eventId", column = "event")
-  @Result(property = "status", column = "status")
-  @Select(
-    "select * from participations where event=#{eventId} and status=#{status}"
-  )
-  List<Participation> findByStatusAndEventId(@Param("eventId") Long eventId, @Param("status") ParticipationStatus status);
-
   @Insert("""
     insert into participations (status, comment, userx, event, number_of_participants, signup_time)
       values (#{status}, #{comment}, #{userId}, #{eventId}, #{numberOfParticipants}, #{signUpTime})

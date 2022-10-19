@@ -1,4 +1,4 @@
-package se.accelerateit.signup6.email.emailUtil;
+package se.accelerateit.signup6.integrationtest.email.emailUtil;
 
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -9,8 +9,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import se.accelerateit.signup6.dao.EventMapper;
 import se.accelerateit.signup6.dao.UserMapper;
+import se.accelerateit.signup6.email.emailUtil.EmailMessageBuilder;
 import se.accelerateit.signup6.integrationtest.SignupDbTest;
-import se.accelerateit.signup6.integrationtest.dao.MembershipMapperTest;
 import se.accelerateit.signup6.model.Event;
 import se.accelerateit.signup6.model.ParticipationStatus;
 import se.accelerateit.signup6.model.User;
@@ -30,7 +30,7 @@ class EmailMessageBuilderTest extends SignupDbTest{
 
     EmailMessageBuilder emailMessageBuilder = new EmailMessageBuilder();
 
-    static final Logger logger = LoggerFactory.getLogger(MembershipMapperTest.class);
+    static final Logger logger = LoggerFactory.getLogger(EmailMessageBuilderTest.class);
 
     @Autowired
     public EmailMessageBuilderTest(UserMapper userMapper, EventMapper eventMapper) {
@@ -41,7 +41,7 @@ class EmailMessageBuilderTest extends SignupDbTest{
 
 
     @Test
-    void reminderMail() {
+    void reminderMailTest() {
         Optional<User> userOneResponse = userMapper.findById(-9L);
         assertTrue(userOneResponse.isPresent(), "could not find the user in db");
         User userOne = userOneResponse.get();
@@ -72,7 +72,7 @@ class EmailMessageBuilderTest extends SignupDbTest{
     }
 
     @Test
-    void getLink() {
+    void getLinkTest() {
         Optional<User> databaseResponse = userMapper.findById(-10L);
         assertTrue(databaseResponse.isPresent(), "could not find the user in db");
         User user = databaseResponse.get();

@@ -27,11 +27,4 @@ public class UserController extends BaseApiController {
         throw new UserDoesNotExistException();
     }
   }
-
-  @GetMapping("/users/unregistered")
-  public List<User> findUnregisteredUsers(
-          @RequestParam(value = "eventId") Long eventId,
-          @RequestParam(value = "status") ParticipationStatus status){
-    return userMapper.findSpecificStatusForEvent(eventId, status);
-  }
 }

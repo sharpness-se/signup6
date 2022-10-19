@@ -10,9 +10,7 @@ import java.util.Optional;
 @Mapper
 public interface EventMapper {
 
-  @Results({
-    @Result(property = "group", column = "groupx", one = @One(select = "se.accelerateit.signup6.dao.GroupMapper.findById"))
-  })
+  @Result(property = "group", column = "groupx", one = @One(select = "se.accelerateit.signup6.dao.GroupMapper.findById"))
   @Select(
     "select * from events where id = #{id}"
   )

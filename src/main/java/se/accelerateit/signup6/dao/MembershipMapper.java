@@ -24,8 +24,6 @@ public interface MembershipMapper {
     @Select("select * from memberships where groupx=#{groupId}")
     List<Membership> findUsersByGroup(@Param("groupId") Long groupId);
 
-
-    /// TODO have to change all GroupMapper.findMembershipForEvent to MembershipMapper.findMembershipForEvent
     @Select("""
     select m.id from memberships m, events e where
       e.id = #{eventId}

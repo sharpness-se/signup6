@@ -68,7 +68,7 @@ class UserMapperTest extends SignupDbTest {
   }
 
   @Test
-  void findJohnUserById(){
+  void findUserById(){
     Optional<User> dbResponse = userMapper.findById(-5L);
     assertTrue(dbResponse.isPresent(), "Ya boi doesn't exist in db");
     User user = dbResponse.get();
@@ -94,7 +94,7 @@ class UserMapperTest extends SignupDbTest {
   }
 
   @Test
-  void insertGoblinUser(){
+  void insertUser(){
     User goblin = new User();
     goblin.setId(null);
     goblin.setFirstName("Goblin");

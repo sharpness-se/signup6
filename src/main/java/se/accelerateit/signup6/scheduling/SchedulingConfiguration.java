@@ -23,8 +23,12 @@ public class SchedulingConfiguration {
     }
 
     @Scheduled(cron = "*/10 * * * * *") //(* = Sec | * = Min | * = Hour | * = Day | * = Month| * = DayOfWeeek)
-    public void scheduledTrigger() throws MessagingException { //TODO Handle exception
+    public void scheduledTrigger() {
         System.out.println("10 seconds has passed " + new Date());
-        scheduledEvents.sendReminders();
+        try {
+            scheduledEvents.sendReminders();
+        } catch (MessagingException messagingException) {
+            messagingException.printStackTrace();
+        }
     }
 }

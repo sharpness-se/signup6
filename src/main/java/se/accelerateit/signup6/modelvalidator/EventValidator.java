@@ -1,20 +1,20 @@
 package se.accelerateit.signup6.modelvalidator;
 
 import org.springframework.stereotype.Service;
-import se.accelerateit.signup6.dao.GroupMapper;
+import se.accelerateit.signup6.dao.MembershipMapper;
 
 import java.util.Optional;
 
 @Service
 public class EventValidator {
-  private final GroupMapper groupMapper;
+  private final MembershipMapper membershipMapper;
 
-  public EventValidator(GroupMapper groupMapper) {
-    this.groupMapper = groupMapper;
+  public EventValidator(MembershipMapper membershipMapper) {
+    this.membershipMapper = membershipMapper;
   }
 
   public boolean isMemberOfGroupForEvent(Long userId, Long eventId) {
-    Optional<Long> result = groupMapper.findMembershipForEvent(userId, eventId);
+    Optional<Long> result = membershipMapper.findMembershipForEvent(userId, eventId);
     return result.isPresent();
   }
 }

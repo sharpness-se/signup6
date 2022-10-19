@@ -9,7 +9,7 @@ import se.accelerateit.signup6.dao.EventMapper;
 import se.accelerateit.signup6.dao.ParticipationMapper;
 import se.accelerateit.signup6.dao.UserMapper;
 import se.accelerateit.signup6.email.emailUtil.EmailMessageBuilder;
-import se.accelerateit.signup6.email.impl.EmailSenderServiceImpl;
+import se.accelerateit.signup6.email.EmailSenderService;
 import se.accelerateit.signup6.modelvalidator.EventValidator;
 
 @WebMvcTest
@@ -31,7 +31,7 @@ public abstract class SignupApiTest {
   protected EventMapper eventMapper;
 
   @MockBean
-  protected EmailSenderServiceImpl emailService;
+  protected EmailSenderService emailService;
 
   @MockBean
   EmailMessageBuilder emailMessageBuilder;
