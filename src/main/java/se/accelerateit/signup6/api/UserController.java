@@ -3,11 +3,8 @@ package se.accelerateit.signup6.api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import se.accelerateit.signup6.dao.UserMapper;
-import se.accelerateit.signup6.model.ParticipationStatus;
 import se.accelerateit.signup6.model.User;
 import se.accelerateit.signup6.modelvalidator.UserDoesNotExistException;
-
-import java.util.List;
 
 @RestController
 public class UserController extends BaseApiController {

@@ -8,8 +8,6 @@ import se.accelerateit.signup6.dao.EventMapper;
 import se.accelerateit.signup6.model.Event;
 import se.accelerateit.signup6.modelvalidator.EventDoesNotExistException;
 
-import java.time.LocalDate;
-import java.util.List;
 
 @RestController
 public class EventController extends BaseApiController {
@@ -28,10 +26,5 @@ public class EventController extends BaseApiController {
     } else {
         throw new EventDoesNotExistException();
     }
-  }
-
-  @GetMapping("/events/funky")
-  public List<Event> testLmao(){
-    return eventMapper.findAllUpcomingEvents(LocalDate.now().minusYears(2));
   }
 }

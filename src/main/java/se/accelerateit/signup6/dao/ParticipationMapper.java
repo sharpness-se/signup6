@@ -4,11 +4,9 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import se.accelerateit.signup6.model.Participation;
-import se.accelerateit.signup6.model.ParticipationStatus;
 
 import java.util.List;
 import java.util.Optional;
