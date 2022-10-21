@@ -9,7 +9,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class Signup6Application {
 
   public static void main(String[] args) {
-    log.info("HERE WE GO: Starting application!!!!!!!!!!!!");
     SpringApplication.run(Signup6Application.class, args);
   }
 

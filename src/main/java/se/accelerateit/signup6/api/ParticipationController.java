@@ -60,45 +60,15 @@ public class ParticipationController extends BaseApiController {
   @GetMapping("/participations/registration")
   public Participation registerToEvent(@RequestParam(value = "userId") Long userId,
                                        @RequestParam(value= "eventId") Long eventId,
-                                       @RequestParam(value= "pStatus") Long pStatus){
+                                       @RequestParam(value= "pStatus") ParticipationStatus pStatus){
 
-    final Optional<Participation> p = participationMapper.findByUserAndEvent(userId, eventId);
-    if(p.isPresent()){
-      Participation oldParticipation = p.get();
-      oldParticipation = setStatus(oldParticipation, pStatus);
-      participationMapper.update(oldParticipation);
+    Participation participation = new Participation();
+    participation.setUserId(userId);
+    participation.setEventId(eventId);
+    participation.setStatus(pStatus);
 
-      return oldParticipation;
-    }
-    else {
-      Participation newPart = new Participation();
-      newPart.setUserId(userId);
-      newPart.setEventId(eventId);
-      newPart = setStatus(newPart, pStatus);
+    updateOrCreate(participation);
 
-      participationMapper.create(newPart);
-      return newPart;
+    return participation;
     }
   }
-
-  // Janne: Don't use a Long, use ParticipationStatus enum instead
-  // Janne: Doesn't have to be public
-  public Participation setStatus(Participation part, Long pStatus){
-    switch (Math.toIntExact(pStatus)){
-      case 1 -> {
-        part.setStatus(ParticipationStatus.On);
-      }
-      case 2 -> {
-        part.setStatus(ParticipationStatus.Maybe);
-      }
-      case 3 -> {
-        part.setStatus(ParticipationStatus.Off);
-      }
-      default -> {
-        part.setStatus(ParticipationStatus.Unregistered);
-      }
-    }
-    return part;
-  }
-
-}

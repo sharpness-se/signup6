@@ -22,13 +22,14 @@ public interface GroupMapper {
 
   // Janne: """ instead of +
   // Janne: naming convention CRUD
-  @Insert(
-    "insert into groups(name, description, mail_from, mail_subject_prefix)" +
-            "values(" +
-            "#{name}," +
-            "#{description}," +
-            "#{mailFrom}," +
-            "#{mailSubjectPrefix})"
+  @Insert("""
+            insert into groups(name, description, mail_from, mail_subject_prefix)
+            values(
+            #{name},
+            #{description},
+            #{mailFrom},
+            #{mailSubjectPrefix})
+            """
   )
-  void insertGroup(Group group);
+  void createGroup(Group group);
 }

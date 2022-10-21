@@ -95,7 +95,7 @@ class EventMapperTest extends SignupDbTest {
     monster.setGroup(existingIdGroup);
 
     try{
-      eventMapper.insertEvent(monster);
+      eventMapper.createEvent(monster);
     }catch (Exception e){
       e.printStackTrace();
     }

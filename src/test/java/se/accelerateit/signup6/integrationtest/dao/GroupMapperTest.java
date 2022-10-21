@@ -54,7 +54,7 @@ class GroupMapperTest extends SignupDbTest {
     monsterGroup.setMailSubjectPrefix("CONSUME!!");
 
     try{
-      groupMapper.insertGroup(monsterGroup);
+      groupMapper.createGroup(monsterGroup);
     }catch (Exception e){
       e.printStackTrace();
     }

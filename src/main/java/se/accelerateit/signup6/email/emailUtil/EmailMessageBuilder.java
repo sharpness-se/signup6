@@ -21,11 +21,11 @@ public class EmailMessageBuilder {
                 getLink(user, event, ParticipationStatus.Off);
     }
 
-    //http://localhost:8080/api/participations/registration?userId=-5&eventId=-2&pStatus=1
+    //http://localhost:8080/api/participations/registration?userId=-5&eventId=-2&pStatus=On
     public String getLink(User user, Event event, ParticipationStatus status){
         String userPar = "userId=" + user.getId();
         String eventPar = "eventId=" + event.getId();
-        String statusPar = "pStatus=" + setStatus(status);
+        String statusPar = "pStatus=" + status.toString();
         String toAppend = "?" + userPar + "&" + eventPar + "&" + statusPar;
         String url = "http://localhost:8080/api/participations/registration" + toAppend;
         return "<a href=\""+ url + "\">" + setLinkText(status) + "</a>";
@@ -40,15 +40,5 @@ public class EmailMessageBuilder {
             return "Click here to say no";
         }
         return "Click here to say maybe";
-    }
-
-    private String setStatus(ParticipationStatus status){
-        if (status.equals(ParticipationStatus.On)){
-            return "1";
-        }
-        if (status.equals(ParticipationStatus.Off)){
-            return "3";
-        }
-        return "2";
     }
 }

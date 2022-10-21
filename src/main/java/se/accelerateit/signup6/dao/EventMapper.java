@@ -24,23 +24,24 @@ public interface EventMapper {
   // Janne: Use """ instead of +
   // Janne: naming convention CRUD
   // CRUD = Create, Read (Find...), Update, Delete
-  @Insert(
-          "insert into events(name, description, start_time, end_time, groupx, last_signup_date, " +
-                  "venue, allow_extra_friends, event_status, max_participants, cancellation_reason) " +
-                  "values(" +
-                  "#{name}," +
-                  "#{description}," +
-                  "#{startTime}," +
-                  "#{endTime}," +
-                  "#{group.id}," +
-                  "#{lastSignUpDate}," +
-                  "#{venue}," +
-                  "#{allowExtraFriends}," +
-                  "#{eventStatus}," +
-                  "#{maxParticipants}," +
-                  "#{cancellationReason})"
+  @Insert("""
+                  insert into events(name, description, start_time, end_time, groupx, last_signup_date,
+                  venue, allow_extra_friends, event_status, max_participants, cancellation_reason)
+                  values(
+                  #{name},
+                  #{description},
+                  #{startTime},
+                  #{endTime},
+                  #{group.id},
+                  #{lastSignUpDate},
+                  #{venue},
+                  #{allowExtraFriends},
+                  #{eventStatus},
+                  #{maxParticipants},
+                  #{cancellationReason})
+                  """
   )
-  void insertEvent(Event event);
+  void createEvent(Event event);
 
   @Result(property = "group", column = "groupx", one = @One(select = "se.accelerateit.signup6.dao.GroupMapper.findById"))
   @Select(

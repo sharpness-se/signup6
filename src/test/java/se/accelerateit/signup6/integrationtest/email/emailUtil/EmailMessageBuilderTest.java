@@ -58,14 +58,14 @@ class EmailMessageBuilderTest extends SignupDbTest{
         logger.info("user = {}", userTwo);
 
         String userOneString = "Hello <b>TestFName1</b>, don't forget responding to your invitation for <b> Test Name</b><br></br>" +
-                "<a href=\"http://localhost:8080/api/participations/registration?userId=-9&eventId=-9&pStatus=1\">Click here to say yes</a><br></br>" +
-                "<a href=\"http://localhost:8080/api/participations/registration?userId=-9&eventId=-9&pStatus=2\">Click here to say maybe</a><br></br>" +
-                "<a href=\"http://localhost:8080/api/participations/registration?userId=-9&eventId=-9&pStatus=3\">Click here to say no</a>";
+                "<a href=\"http://localhost:8080/api/participations/registration?userId=-9&eventId=-9&pStatus=On\">Click here to say yes</a><br></br>" +
+                "<a href=\"http://localhost:8080/api/participations/registration?userId=-9&eventId=-9&pStatus=Maybe\">Click here to say maybe</a><br></br>" +
+                "<a href=\"http://localhost:8080/api/participations/registration?userId=-9&eventId=-9&pStatus=Off\">Click here to say no</a>";
 
         String userTwoString = "Hello <b>TestFName2</b>, don't forget responding to your invitation for <b> Test Name</b><br></br>" +
-                "<a href=\"http://localhost:8080/api/participations/registration?userId=-10&eventId=-9&pStatus=1\">Click here to say yes</a><br></br>" +
-                "<a href=\"http://localhost:8080/api/participations/registration?userId=-10&eventId=-9&pStatus=2\">Click here to say maybe</a><br></br>" +
-                "<a href=\"http://localhost:8080/api/participations/registration?userId=-10&eventId=-9&pStatus=3\">Click here to say no</a>";
+                "<a href=\"http://localhost:8080/api/participations/registration?userId=-10&eventId=-9&pStatus=On\">Click here to say yes</a><br></br>" +
+                "<a href=\"http://localhost:8080/api/participations/registration?userId=-10&eventId=-9&pStatus=Maybe\">Click here to say maybe</a><br></br>" +
+                "<a href=\"http://localhost:8080/api/participations/registration?userId=-10&eventId=-9&pStatus=Off\">Click here to say no</a>";
 
         assertEquals(userOneString, emailMessageBuilder.reminderMail(userOne, event));
         assertEquals(userTwoString, emailMessageBuilder.reminderMail(userTwo, event));
@@ -83,10 +83,10 @@ class EmailMessageBuilderTest extends SignupDbTest{
         Event event = eventResponse.get();
         logger.info("event = {}", event);
 
-        assertEquals("<a href=\"http://localhost:8080/api/participations/registration?userId=-10&eventId=-9&pStatus=1\">Click here to say yes</a>", emailMessageBuilder.getLink(user, event, ParticipationStatus.On));
+        assertEquals("<a href=\"http://localhost:8080/api/participations/registration?userId=-10&eventId=-9&pStatus=On\">Click here to say yes</a>", emailMessageBuilder.getLink(user, event, ParticipationStatus.On));
 
-        assertEquals("<a href=\"http://localhost:8080/api/participations/registration?userId=-10&eventId=-9&pStatus=2\">Click here to say maybe</a>", emailMessageBuilder.getLink(user, event, ParticipationStatus.Maybe));
+        assertEquals("<a href=\"http://localhost:8080/api/participations/registration?userId=-10&eventId=-9&pStatus=Maybe\">Click here to say maybe</a>", emailMessageBuilder.getLink(user, event, ParticipationStatus.Maybe));
 
-        assertEquals("<a href=\"http://localhost:8080/api/participations/registration?userId=-10&eventId=-9&pStatus=3\">Click here to say no</a>", emailMessageBuilder.getLink(user, event, ParticipationStatus.Off));
+        assertEquals("<a href=\"http://localhost:8080/api/participations/registration?userId=-10&eventId=-9&pStatus=Off\">Click here to say no</a>", emailMessageBuilder.getLink(user, event, ParticipationStatus.Off));
     }
 }

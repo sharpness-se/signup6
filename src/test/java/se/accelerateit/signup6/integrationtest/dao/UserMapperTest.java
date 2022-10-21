@@ -110,7 +110,7 @@ class UserMapperTest extends SignupDbTest {
     goblin.setAuthInfo(null);
 
     try{
-      userMapper.insertUser(goblin);
+      userMapper.createUser(goblin);
     }catch (Exception e){
       e.printStackTrace();
     }
