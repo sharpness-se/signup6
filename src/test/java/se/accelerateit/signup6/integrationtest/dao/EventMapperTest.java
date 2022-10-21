@@ -119,6 +119,5 @@ class EventMapperTest extends SignupDbTest {
     List<Event> eventList = eventMapper.findAllUpcomingEvents(testDate);
     logger.info("eventList = {}", eventList);
     assertEquals(1, eventList.size());
-    System.out.println(eventList);
   }
 }
