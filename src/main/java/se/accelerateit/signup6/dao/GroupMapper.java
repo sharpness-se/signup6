@@ -20,6 +20,8 @@ public interface GroupMapper {
   @Select("select * from groups")
   List<Group> findAllGroups();
 
+  // Janne: """ instead of +
+  // Janne: naming convention CRUD
   @Insert(
     "insert into groups(name, description, mail_from, mail_subject_prefix)" +
             "values(" +

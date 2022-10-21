@@ -21,6 +21,9 @@ public interface EventMapper {
   )
   List<Event> findAll();
 
+  // Janne: Use """ instead of +
+  // Janne: naming convention CRUD
+  // CRUD = Create, Read (Find...), Update, Delete
   @Insert(
           "insert into events(name, description, start_time, end_time, groupx, last_signup_date, " +
                   "venue, allow_extra_friends, event_status, max_participants, cancellation_reason) " +

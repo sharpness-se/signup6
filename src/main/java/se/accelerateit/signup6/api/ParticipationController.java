@@ -55,6 +55,8 @@ public class ParticipationController extends BaseApiController {
     return participationMapper.findByUserAndEvent(participation.getUserId(), participation.getEventId()).orElseThrow(WtfException::new);
   }
 
+  // Janne: Why not call updateOrCreate?
+  // Janne: pStatus can be an enum
   @GetMapping("/participations/registration")
   public Participation registerToEvent(@RequestParam(value = "userId") Long userId,
                                        @RequestParam(value= "eventId") Long eventId,
@@ -79,6 +81,8 @@ public class ParticipationController extends BaseApiController {
     }
   }
 
+  // Janne: Don't use a Long, use ParticipationStatus enum instead
+  // Janne: Doesn't have to be public
   public Participation setStatus(Participation part, Long pStatus){
     switch (Math.toIntExact(pStatus)){
       case 1 -> {

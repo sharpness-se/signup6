@@ -27,6 +27,7 @@ public interface UserMapper {
   )
   List<User> findAll();
 
+  // Janne: naming convention CRUD
   @Insert(
           "insert into users(first_name, last_name, comment, email, phone, permission, " +
                   "pwd, image_provider, image_version, provider_key, auth_info) " +
