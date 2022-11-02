@@ -30,6 +30,8 @@ dependencies {
   implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2")
   implementation("org.springframework.boot:spring-boot-starter-mail")
 
+  implementation("com.google.cloud:spring-cloud-gcp-starter-sql-postgresql:3.4.0")
+
   compileOnly("org.projectlombok:lombok")
   annotationProcessor("org.projectlombok:lombok")
 
