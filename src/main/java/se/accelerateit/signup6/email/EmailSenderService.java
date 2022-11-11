@@ -1,9 +1,12 @@
 package se.accelerateit.signup6.email;
 
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import se.accelerateit.signup6.email.emailUtil.EmailMessageBuilder;
+import se.accelerateit.signup6.email.emailUtil.MockMailSender;
 import se.accelerateit.signup6.model.Event;
 import se.accelerateit.signup6.model.User;
 
@@ -15,15 +18,22 @@ import java.util.List;
 import java.util.Properties;
 
 @Service
+@Log4j2
 public class EmailSenderService {
     private final JavaMailSender mailSender;
     private final EmailMessageBuilder messageBuilder;
     private final String emailToSendFrom = "example@gmail.com";
 
+    private final MockMailSender mockMailSender;
+
+    @Value("${signup.activate.mock.email}")
+    private boolean mockEmailActivated;
+
     @Autowired
-    public EmailSenderService(JavaMailSender mailSender, EmailMessageBuilder messageBuilder) {
+    public EmailSenderService(JavaMailSender mailSender, EmailMessageBuilder messageBuilder, MockMailSender mockMailSender) {
         this.mailSender = mailSender;
         this.messageBuilder = messageBuilder;
+        this.mockMailSender = mockMailSender;
     }
 
     Properties properties=new Properties();
@@ -37,7 +47,13 @@ public class EmailSenderService {
         for (User user : users) {
             message.setRecipients(Message.RecipientType.TO, user.getEmail());
             message.setText(messageBuilder.reminderMail(user, event), "UTF-8", "html");
-            mailSender.send(message);
+            if (!mockEmailActivated) {
+                mailSender.send(message);
+            } else {
+                mockMailSender.send(message);
+            }
+
+
         }
     }
 }

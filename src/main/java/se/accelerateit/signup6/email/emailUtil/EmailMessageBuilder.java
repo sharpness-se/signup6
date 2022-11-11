@@ -8,6 +8,8 @@ import se.accelerateit.signup6.model.User;
 @Service
 public class EmailMessageBuilder {
 
+    String baseUrl = System.getenv("BASE_URL");
+
     public String reminderMail(User user, Event event){
         String newLine = "<br></br>";
         String body = "Hello <b>" + user.getFirstName() + "</b>, don't forget responding to your invitation for <b> " + event.getName() + "</b>";
@@ -27,7 +29,8 @@ public class EmailMessageBuilder {
         String eventPar = "eventId=" + event.getId();
         String statusPar = "pStatus=" + status.toString();
         String toAppend = "?" + userPar + "&" + eventPar + "&" + statusPar;
-        String url = "http://localhost:8080/api/participations/registration" + toAppend;
+        //String url = "http://localhost:8080/api/participations/registration" + toAppend;
+        String url = baseUrl + "/api/participations/registration" + toAppend;
         return "<a href=\""+ url + "\">" + setLinkText(status) + "</a>";
     }
     //<a href="url">link text</a>
