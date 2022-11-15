@@ -34,3 +34,8 @@ INSERT INTO public.participations VALUES (-2, 'On', 'Trevligt!', -1, -1, 1, '202
 INSERT INTO public.participations VALUES (-3, 'Maybe', 'Får se...', -4, -1, 1, '2021-05-01 13:00:00') ON CONFLICT DO NOTHING;
 INSERT INTO public.participations VALUES (-4, 'On', 'Nice!', -5, -1, 1, '2021-05-02 00:00:00') ON CONFLICT DO NOTHING;
 INSERT INTO public.participations VALUES (-9, 'Maybe', 'Nice!', -10, -9, 1, '2022-05-02 00:00:00') ON CONFLICT DO NOTHING;
+
+
+INSERT INTO public.reminders VALUES (-1, -9, '2022-11-15 01:00:00') ON CONFLICT DO NOTHING;
+INSERT INTO public.reminders VALUES (-1, -9, '2022-11-17 01:00:00') ON CONFLICT DO NOTHING;
+INSERT INTO public.reminders VALUES (-1, -9, '2022-11-16 01:00:00') ON CONFLICT DO NOTHING;
