@@ -14,5 +14,4 @@ public class Reminder {
   @JsonView(Public.class) private Long id;
   @JsonView(Public.class) private Long eventId;
   @JsonView(Public.class) private LocalDate dateToRemind;
-
 }

@@ -20,9 +20,9 @@ import static org.junit.jupiter.api.Assertions.*;
 @Testcontainers
 @SpringBootTest
 @ContextConfiguration(initializers = {SignupDbTest.Initializer.class})
-public class ReminderMapperTest extends SignupDbTest{
+public class ReminderMapperTest extends SignupDbTest {
 
-  static final Logger logger = LoggerFactory.getLogger(EventMapperTest.class);
+  static final Logger logger = LoggerFactory.getLogger(ReminderMapperTest.class);
 
   private final ReminderMapper reminderMapper;
 
@@ -33,31 +33,36 @@ public class ReminderMapperTest extends SignupDbTest{
 
   @Test
   void findByDate() {
-    List<Reminder> reminderList;
+    LocalDate date = LocalDate.parse("2022-11-15");
+
+    List <Reminder> dbResponse = reminderMapper.findByDate(date);
+    Reminder responseReminder = dbResponse.get(0);
+    logger.info("REMINDER FROM DB: " + responseReminder.toString());
+
+    assertEquals(-1, responseReminder.getId());
+    assertEquals(-9, responseReminder.getEventId());
+    assertEquals(date, responseReminder.getDateToRemind());
   }
 
   @Test
   void create() {
-    LocalDate testDate = LocalDate.now().plusDays(1);
+    LocalDate date = LocalDate.now();
     Reminder testReminder = new Reminder();
-    testReminder.setId(-1L);
-    testReminder.setEventId(-2L);
-    testReminder.setDateToRemind(testDate);
+    testReminder.setId(-10L);
+    testReminder.setEventId(-9L);
+    testReminder.setDateToRemind(date);
+    logger.info("REMINDER TO INSERT: " + testReminder);
 
-    int noOfRows = reminderMapper.create(testReminder);
-    logger.info("create = {}", noOfRows);
+    reminderMapper.create(testReminder);
 
-    List<Reminder> dbResponse = reminderMapper.findByDate(testDate);
-    logger.info("reminder = {}", dbResponse);
-    Reminder testResponse = dbResponse.get(0);
+    List <Reminder> dbResponse = reminderMapper.findByDate(date);
+    Reminder responseReminder = dbResponse.get(0);
+    logger.info("REMINDER FROM DB: " + responseReminder.toString());
 
-    assertEquals(-1L, testResponse.getId());
-    assertEquals(-2L, testResponse.getEventId());
-    assertEquals(testDate, testResponse.getDateToRemind());
-
+    assertEquals(-10, responseReminder.getId());
+    assertEquals(-9, responseReminder.getEventId());
+    assertEquals(date, responseReminder.getDateToRemind());
 
   }
-
-
 
 }

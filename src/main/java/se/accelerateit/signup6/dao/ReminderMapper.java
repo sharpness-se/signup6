@@ -12,16 +12,18 @@ public interface ReminderMapper {
 
 
   @Result(property = "eventId", column = "event")
+  @Result(property = "dateToRemind", column = "datex")
+  @Result(property = "id", column = "id")
   @Select(
     "select * from reminders where datex=#{dateToRemind}"
   )
-  List<Reminder> findByDate(@Param(("dateToRemind"))LocalDate dateToRemind);
+  List<Reminder> findByDate(@Param(("dateToRemind")) LocalDate dateToRemind);
 
 
   @Insert("""
-    insert into reminders (event, datex)
-    values (#{eventId}, #{dateToRemind})
+    insert into reminders (id, event, datex)
+    values (#{id}, #{eventId}, #{dateToRemind})
     """)
-  int create(Reminder reminder);
+  void create(Reminder reminder);
 
 }
