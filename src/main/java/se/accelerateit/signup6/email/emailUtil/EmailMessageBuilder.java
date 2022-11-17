@@ -1,5 +1,6 @@
 package se.accelerateit.signup6.email.emailUtil;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import se.accelerateit.signup6.model.Event;
 import se.accelerateit.signup6.model.ParticipationStatus;
@@ -8,7 +9,8 @@ import se.accelerateit.signup6.model.User;
 @Service
 public class EmailMessageBuilder {
 
-    String baseUrl = System.getenv("BASE_URL");
+    @Value("${website.base.url}")
+    private String baseUrl;
 
     public String reminderMail(User user, Event event){
         String newLine = "<br></br>";

@@ -27,12 +27,17 @@ public class ScheduledEvents {
     }
 
     public void sendReminders() throws MessagingException {
+        // TODO get all due reminders
+        // TODO extract all events that are due
+
         List<Event> upcomingEvents = getUpcomingEvents();
 
         for (Event event : upcomingEvents) {
             List<User> usersToRemind = userFilter.getUsersToRemind(event);
             senderService.sendReminders(usersToRemind, event);
         }
+
+        // TODO remove all used/due reminders
     }
 
     private List<Event> getUpcomingEvents(){

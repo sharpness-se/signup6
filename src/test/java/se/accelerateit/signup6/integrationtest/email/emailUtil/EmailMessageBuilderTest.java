@@ -27,15 +27,15 @@ class EmailMessageBuilderTest extends SignupDbTest{
 
     private final EventMapper eventMapper;
     private final UserMapper userMapper;
-
-    EmailMessageBuilder emailMessageBuilder = new EmailMessageBuilder();
+    EmailMessageBuilder emailMessageBuilder;
 
     static final Logger logger = LoggerFactory.getLogger(EmailMessageBuilderTest.class);
 
     @Autowired
-    public EmailMessageBuilderTest(UserMapper userMapper, EventMapper eventMapper) {
+    public EmailMessageBuilderTest(UserMapper userMapper, EventMapper eventMapper, EmailMessageBuilder emailMessageBuilder) {
         this.eventMapper = eventMapper;
         this.userMapper = userMapper;
+        this.emailMessageBuilder = emailMessageBuilder;
     }
 
 
