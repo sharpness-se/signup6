@@ -20,10 +20,29 @@ public interface ReminderMapper {
   List<Reminder> findByDate(@Param(("dateToRemind")) LocalDate dateToRemind);
 
 
+// select * from reminders where datex <= #{currentDate}
+
+  @Result(property = "eventId", column = "event")
+  @Result(property = "dateToRemind", column = "datex")
+  @Result(property = "id", column = "id")
+  @Select(
+    "select * from reminders where datex <= #{currentDate}"
+  )
+  List<Reminder> findDueReminders(@Param(("currentDate")) LocalDate currentDate);
+
+
+
   @Insert("""
     insert into reminders (id, event, datex)
     values (#{id}, #{eventId}, #{dateToRemind})
     """)
   void create(Reminder reminder);
+
+
+  //add delete
+  @Delete(
+    "delete from reminders where id=#{id}"
+  )
+  void delete(Reminder reminder);
 
 }
