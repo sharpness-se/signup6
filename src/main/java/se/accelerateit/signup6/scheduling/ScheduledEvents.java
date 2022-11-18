@@ -7,6 +7,7 @@ import se.accelerateit.signup6.dao.ReminderMapper;
 import se.accelerateit.signup6.email.emailUtil.UserFilter;
 import se.accelerateit.signup6.email.EmailSenderService;
 import se.accelerateit.signup6.model.Event;
+import se.accelerateit.signup6.model.Reminder;
 import se.accelerateit.signup6.model.User;
 
 import javax.mail.MessagingException;
@@ -23,10 +24,11 @@ public class ScheduledEvents {
     private final ReminderMapper reminderMapper;
 
     @Autowired
-    public ScheduledEvents(EventMapper eventMapper, UserFilter userFilter, EmailSenderService senderService) {
+    public ScheduledEvents(EventMapper eventMapper, UserFilter userFilter, EmailSenderService senderService, ReminderMapper reminderMapper) {
         this.eventMapper = eventMapper;
         this.senderService = senderService;
         this.userFilter = userFilter;
+        this.reminderMapper = reminderMapper;
     }
 
     public void sendReminders() throws MessagingException {
@@ -53,6 +55,8 @@ public class ScheduledEvents {
         return eventMapper.findAllUpcomingEvents(LocalDate.now());
     }
 
-    private List<Reminder> getDueReminders() {return reminderMapper.findDueReminders(LocalDate.now());}
+    private List<Reminder> getDueReminders() {
+        return reminderMapper.findDueReminders(LocalDate.now());
+    }
 
 }
