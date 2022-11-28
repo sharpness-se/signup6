@@ -27,7 +27,7 @@ dependencies {
   implementation("org.springframework.boot:spring-boot-starter-hateoas")
   implementation("org.springframework.boot:spring-boot-starter-web")
   implementation("org.flywaydb:flyway-core")
-  implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2")
+  implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.0")
   implementation("org.springframework.boot:spring-boot-starter-mail")
 
   implementation("com.google.cloud:spring-cloud-gcp-starter-sql-postgresql:3.4.0")
