@@ -24,6 +24,7 @@ repositories {
 
 
 dependencies {
+  implementation("org.springdoc:springdoc-openapi-ui:1.6.13")
   implementation("org.springframework.boot:spring-boot-starter-hateoas")
   implementation("org.springframework.boot:spring-boot-starter-web")
   implementation("org.flywaydb:flyway-core")
