@@ -21,10 +21,10 @@ public class EventController extends BaseApiController {
   @GetMapping("/events/{eventId}")
   public Event find(@PathVariable(value = "eventId") Long eventId) {
     final var result = eventMapper.findById(eventId);
-    if(result.isPresent()) {
+    if (result.isPresent()) {
       return result.get();
     } else {
-        throw new EventDoesNotExistException();
+      throw new EventDoesNotExistException();
     }
   }
 }

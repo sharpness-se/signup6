@@ -1,5 +1,6 @@
 package se.accelerateit.signup6.scheduling;
 
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import se.accelerateit.signup6.dao.EventMapper;
@@ -15,6 +16,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Component
+@Log4j2
 public class ScheduledEvents {
 
     private final EventMapper eventMapper;
@@ -32,31 +34,21 @@ public class ScheduledEvents {
     }
 
     public void sendReminders() throws MessagingException {
-        // TODO get all due reminders
-        // TODO extract all events that are due
 
         List<Reminder> dueReminders = getDueReminders();
-        System.out.println("Reminder list size: " + dueReminders.size());
+        log.info("Reminder list size: " + dueReminders.size());
         for (Reminder reminder : dueReminders) {
-            System.out.println("Current reminder ID: " + reminder.getId());
+            log.info("Current reminder ID: " + reminder.getId());
             Long eventId = reminder.getEventId();
-            Event event = eventMapper.findById(eventId).get(); // TODO isPresent ?
-            System.out.println("Current event: " + event.getId());
+            Event event = eventMapper.findById(eventId).get();
+            log.info("Current event: " + event.getId());
             List<User> usersToRemind = userFilter.getUsersToRemind(event);
-            System.out.println("Number of users to email: " + usersToRemind.size());
+            log.info("Number of users to email: " + usersToRemind.size());
             senderService.sendReminders(usersToRemind, event);
             reminderMapper.delete(reminder);
         }
-
-        // TODO remove all used/due reminders
     }
-
-    private List<Event> getUpcomingEvents(){
-        return eventMapper.findAllUpcomingEvents(LocalDate.now());
-    }
-
     private List<Reminder> getDueReminders() {
         return reminderMapper.findDueReminders(LocalDate.now());
     }
-
 }
