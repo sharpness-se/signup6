@@ -24,7 +24,7 @@ repositories {
 
 
 dependencies {
-  implementation("org.springdoc:springdoc-openapi-ui:1.6.13")
+  implementation("org.springdoc:springdoc-openapi-ui:1.6.14")
 
   // TODO: when we have Spring Security running, see https://springdoc.org/#spring-security-support
   //implementation("org.springdoc:springdoc-openapi-security:1.6.13")
