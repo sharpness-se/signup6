@@ -1,5 +1,6 @@
 -- a small test database for SignUp with some users, groups and events
 
+-- don't use use_id = 0, it's the admin user used for bootstrapping the system
 INSERT INTO public.users VALUES (-1, 'Fredrik', 'Unknown', 'En glad statsminister', 'fredrik.unknown@crisp.se', '', 'NormalUser', '*', 'Gravatar', NULL, NULL, NULL) ON CONFLICT DO NOTHING;
 INSERT INTO public.users VALUES (-2, 'Torbjörn', 'Fälldin', '', 'torbjörn.fälldin@crisp.se', '', 'NormalUser', '*', 'Gravatar', NULL, NULL, NULL) ON CONFLICT DO NOTHING;
 INSERT INTO public.users VALUES (-3, 'Göran', 'Persson', 'En f.d. statsminister', 'göran.persson@crisp.se', '', 'NormalUser', '*', 'Gravatar', NULL, NULL, NULL) ON CONFLICT DO NOTHING;
@@ -7,7 +8,6 @@ INSERT INTO public.users VALUES (-4, 'Frodo', 'Baggins', 'Ringbärare', 'frodo.b
 INSERT INTO public.users VALUES (-5, 'John', 'Doe', 'Okändis', 'john@doe.net', '', 'NormalUser', '*', 'Gravatar', NULL, NULL, NULL) ON CONFLICT DO NOTHING;
 INSERT INTO public.users VALUES (-9, 'TestFName1', 'TestLName1', 'Test Comment 1', 'miguel.h.ogren@gmail.com', '', 'NormalUser', '*', 'Gravatar', NULL, NULL, NULL) ON CONFLICT DO NOTHING;
 INSERT INTO public.users VALUES (-10, 'TestFName2', 'TestLName2', 'Test Comment 2', 'jacobjohanssn2001@gmail.com', '', 'NormalUser', '*', 'Gravatar', NULL, NULL, NULL) ON CONFLICT DO NOTHING;
--- don't use use_id = -6, it's the admin user used for bootstrapping the system
 
 
 INSERT INTO public.groups VALUES (-1, 'Crisp Rocket Days', 'För dej som vill lära dej mer', '', 'Crisp Rocket Days') ON CONFLICT DO NOTHING;
@@ -39,3 +39,12 @@ INSERT INTO public.participations VALUES (-9, 'Maybe', 'Nice!', -10, -9, 1, '202
 INSERT INTO public.reminders VALUES (-1, -9, '2022-11-15 01:00:00') ON CONFLICT DO NOTHING;
 INSERT INTO public.reminders VALUES (-2, -9, '2022-11-17 01:00:00') ON CONFLICT DO NOTHING;
 INSERT INTO public.reminders VALUES (-3, -9, '2022-11-16 01:00:00') ON CONFLICT DO NOTHING;
+
+
+UPDATE public.users SET email='fredrik.unknown@mailinator.com' WHERE id=-1;
+UPDATE public.users SET email='torbjorn.falldin@mailinator.com' WHERE id=-2;
+UPDATE public.users SET email='goran.persson@mailinator.com' WHERE id=-3;
+UPDATE public.users SET email='frodo.baggins@mailinator.com' WHERE id=-4;
+UPDATE public.users SET email='john.doe@mailinator.com' WHERE id=-5;
+UPDATE public.users SET email='miguel.h.ogren@mailinator.com' WHERE id=-9;
+UPDATE public.users SET email='jacobjohanssn2001@mailinator.com' WHERE id=-10;
