@@ -9,7 +9,7 @@ import se.accelerateit.signup6.model.User;
 @Service
 public class EmailMessageBuilder {
 
-    @Value("${website.base.url}")
+    @Value("${signup.base.url}")
     private String baseUrl;
 
     public String reminderMail(User user, Event event){

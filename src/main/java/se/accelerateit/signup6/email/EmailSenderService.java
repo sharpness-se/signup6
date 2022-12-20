@@ -22,7 +22,6 @@ import java.util.Properties;
 public class EmailSenderService {
     private final JavaMailSender mailSender;
     private final EmailMessageBuilder messageBuilder;
-    private final String emailToSendFrom = "example@gmail.com";
 
     private final MockMailSender mockMailSender;
 
@@ -41,10 +40,11 @@ public class EmailSenderService {
 
     public void sendReminders(List<User> users, Event event) throws MessagingException{
         MimeMessage message = new MimeMessage(session);
-        message.setFrom(emailToSendFrom);
+        message.setFrom(event.getGroup().getMailFrom());
         message.setSubject("Påminnelse " + event.getName());
 
         for (User user : users) {
+            log.info("Sending reminder to " + user.getEmail());
             message.setRecipients(Message.RecipientType.TO, user.getEmail());
             message.setText(messageBuilder.reminderMail(user, event), "UTF-8", "html");
             if (!mockEmailActivated) {

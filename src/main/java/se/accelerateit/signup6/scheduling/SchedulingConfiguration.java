@@ -22,14 +22,14 @@ public class SchedulingConfiguration {
     this.scheduledEvents = scheduledEvents;
   }
 
-  @Scheduled(cron = "${reminderDelay}")
+  @Scheduled(cron = "${signup.reminder.schedule}")
   public void scheduledTrigger() {
-    log.info("Time to send reminders!!");
+    log.info("Time to send reminders!");
     try {
       scheduledEvents.sendReminders();
       log.debug("Reminders completed.");
     } catch (MessagingException messagingException) {
-      log.error("WTF!!", messagingException);
+      log.error("Something went wrong when sending reminders", messagingException);
     }
   }
 }
