@@ -37,7 +37,7 @@ class UserControllerTest extends SignupDbTest {
     assertEquals(-4L, user.getId());
     assertEquals("Frodo", user.getFirstName());
     assertEquals("Baggins", user.getLastName());
-    assertEquals("frodo.baggins@crisp.se", user.getEmail());
+    assertEquals("frodo.baggins@mailinator.com", user.getEmail());
   }
 
   @Test

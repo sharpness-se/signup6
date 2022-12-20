@@ -52,7 +52,7 @@ class UserMapperTest extends SignupDbTest {
 
   @Test
   void findFrodoUserByEmail() {
-    Optional<User> dbResponse = userMapper.findByEmail("frodo.baggins@crisp.se");
+    Optional<User> dbResponse = userMapper.findByEmail("frodo.baggins@mailinator.com");
     assertTrue(dbResponse.isPresent(), "could not find the user in db");
     User user = dbResponse.get();
     logger.info("user = {}", user);
@@ -60,7 +60,7 @@ class UserMapperTest extends SignupDbTest {
     assertEquals("Frodo", user.getFirstName());
     assertEquals("Baggins", user.getLastName());
     assertEquals("Ringbärare", user.getComment());
-    assertEquals("frodo.baggins@crisp.se", user.getEmail());
+    assertEquals("frodo.baggins@mailinator.com", user.getEmail());
     assertEquals("", user.getPhone());
     assertEquals(Permission.NormalUser, user.getPermission());
     assertNotNull(user.getPwd());
@@ -76,7 +76,7 @@ class UserMapperTest extends SignupDbTest {
 
     assertEquals("John", user.getFirstName());
     assertEquals("Doe", user.getLastName());
-    assertEquals("john@doe.net", user.getEmail());
+    assertEquals("john.doe@mailinator.com", user.getEmail());
     assertEquals(Permission.NormalUser, user.getPermission());
     assertEquals(ImageProvider.Gravatar, user.getImageProvider());
   }
