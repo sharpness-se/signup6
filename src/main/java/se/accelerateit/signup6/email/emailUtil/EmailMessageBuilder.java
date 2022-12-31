@@ -9,6 +9,10 @@ import se.accelerateit.signup6.model.User;
 @Service
 public class EmailMessageBuilder {
 
+    void setBaseUrl(String baseUrl) {
+        this.baseUrl = baseUrl;
+    }
+
     @Value("${signup.base.url}")
     private String baseUrl;
 
@@ -26,7 +30,7 @@ public class EmailMessageBuilder {
     }
 
     //http://localhost:8080/api/participations/registration?userId=-5&eventId=-2&pStatus=On
-    public String getLink(User user, Event event, ParticipationStatus status){
+    String getLink(User user, Event event, ParticipationStatus status){
         String userPar = "userId=" + user.getId();
         String eventPar = "eventId=" + event.getId();
         String statusPar = "pStatus=" + status.toString();
