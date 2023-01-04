@@ -114,11 +114,7 @@ class UserMapperTest extends SignupDbTest {
     goblin.setProviderKey(null);
     goblin.setAuthInfo(null);
 
-    try{
-      userMapper.createUser(goblin);
-    }catch (Exception e){
-      e.printStackTrace();
-    }
+    userMapper.createUser(goblin);
 
 
     Optional<User> dbResponse = userMapper.findByEmail("Goblin@gob.com");

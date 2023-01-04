@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.mail.MailException;
 import org.springframework.stereotype.Service;
 
-import javax.mail.Address;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
@@ -36,7 +35,7 @@ public class MockMailSender {
       log.info("Message: " + mimeMessage.getContent().toString());
       log.info("------------------------------------");
     } catch (IOException | MessagingException e) {
-      e.printStackTrace();
+      log.error("Couldn't send/log message", e);
     }
   }
 }
