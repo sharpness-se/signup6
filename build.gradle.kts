@@ -31,6 +31,7 @@ dependencies {
 
   implementation("org.springframework.boot:spring-boot-starter-hateoas")
   implementation("org.springframework.boot:spring-boot-starter-web")
+  implementation("org.springframework.boot:spring-boot-starter-freemarker")
   implementation("org.flywaydb:flyway-core")
   implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2")
   implementation("org.springframework.boot:spring-boot-starter-mail")

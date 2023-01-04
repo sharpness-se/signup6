@@ -9,7 +9,6 @@ import se.accelerateit.signup6.api.SchedulerController;
 import se.accelerateit.signup6.dao.EventMapper;
 import se.accelerateit.signup6.dao.ParticipationMapper;
 import se.accelerateit.signup6.dao.UserMapper;
-import se.accelerateit.signup6.email.emailUtil.EmailMessageBuilder;
 import se.accelerateit.signup6.email.EmailSenderService;
 import se.accelerateit.signup6.modelvalidator.EventValidator;
 
@@ -33,9 +32,6 @@ public abstract class SignupApiTest {
 
   @MockBean
   protected EmailSenderService emailService;
-
-  @MockBean
-  EmailMessageBuilder emailMessageBuilder;
 
   @MockBean
   SchedulerController schedulerController;

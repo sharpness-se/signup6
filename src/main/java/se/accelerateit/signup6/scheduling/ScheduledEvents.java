@@ -1,5 +1,6 @@
 package se.accelerateit.signup6.scheduling;
 
+import freemarker.template.TemplateException;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -13,6 +14,7 @@ import se.accelerateit.signup6.model.User;
 import se.accelerateit.signup6.modelvalidator.EventDoesNotExistException;
 
 import javax.mail.MessagingException;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -34,22 +36,19 @@ public class ScheduledEvents {
         this.reminderMapper = reminderMapper;
     }
 
-    public void sendReminders() throws MessagingException {
+    public void sendReminders() throws MessagingException, TemplateException, IOException {
         List<Reminder> dueReminders = getDueReminders();
         log.debug("Found {} due reminders", dueReminders.size());
         for (Reminder reminder : dueReminders) {
             Long eventId = reminder.getEventId();
             Event event = eventMapper.findById(eventId).orElseThrow(EventDoesNotExistException::new);
-            log.debug("Sending reminder for event {}", event);
+            log.debug("Sending reminder for event '{}' (id={})", event.getName(), event.getId());
             List<User> usersToRemind = userFilter.getUsersToRemind(event);
             senderService.sendReminders(usersToRemind, event);
             reminderMapper.delete(reminder);
         }
     }
 
-    private List<Event> getUpcomingEvents(){
-        return eventMapper.findAllUpcomingEvents(LocalDate.now());
-    }
 
     private List<Reminder> getDueReminders() {
         return reminderMapper.findDueReminders(LocalDate.now());

@@ -28,8 +28,8 @@ public class SchedulingConfiguration {
     try {
       scheduledEvents.sendReminders();
       log.debug("Reminders completed.");
-    } catch (MessagingException messagingException) {
-      log.error("Something went wrong when sending reminders", messagingException);
+    } catch (Exception ex) {
+      log.error("Something went wrong when sending reminders", ex);
     }
   }
 }
