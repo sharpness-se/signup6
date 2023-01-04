@@ -18,7 +18,6 @@ import se.accelerateit.signup6.model.ParticipationStatus;
 import se.accelerateit.signup6.model.User;
 
 import javax.mail.MessagingException;
-import javax.mail.Session;
 import javax.mail.internet.MimeMessage;
 import java.io.IOException;
 import java.net.URI;
@@ -26,7 +25,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 
 @Service
 @Log4j2
@@ -53,8 +51,6 @@ public class EmailSenderService {
     this.freemarkerConfigurer = freeMarkerConfigurer;
   }
 
-  Properties properties = new Properties();
-  Session session = Session.getInstance(properties, null);
 
   private MimeMessage createReminderMessage(String to, String subject, Map<String, Object> templateModel)
     throws IOException, TemplateException, MessagingException {
@@ -115,7 +111,7 @@ public class EmailSenderService {
   }
 
   public void sendReminders(List<User> users, Event event) throws MessagingException, TemplateException, IOException {
-    log.debug("Have {} reminders to send for this event", users.size());
+    log.debug("Have {} users to remind about the event '{}'", users.size(), event.getName());
     for (User user : users) {
       log.info("Sending reminder to " + user.getEmail());
       if (!mockEmailActivated) {

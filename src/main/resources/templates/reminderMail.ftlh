@@ -1,5 +1,16 @@
+<#-- @ftlvariable name="group" type="se.accelerateit.signup6.model.Group" -->
+<#-- @ftlvariable name="event" type="se.accelerateit.signup6.model.Event" -->
+<#-- @ftlvariable name="user" type="se.accelerateit.signup6.model.User" -->
+<#-- @ftlvariable name="applicationName" type="java.lang.String" -->  
+<#-- @ftlvariable name="formattedEventStartDate" type="java.lang.String" -->  
+<#-- @ftlvariable name="formattedEventStartTime" type="java.lang.String" -->  
+<#-- @ftlvariable name="formattedEventEndTime" type="java.lang.String" -->  
+<#-- @ftlvariable name="formattedLastSignUpDate" type="java.lang.String" -->  
+<#-- @ftlvariable name="onHref" type="java.lang.String" -->  
+<#-- @ftlvariable name="maybeHref" type="java.lang.String" -->  
+<#-- @ftlvariable name="offHref" type="java.lang.String" -->  
 <!DOCTYPE html>
-<html>
+<html lang="sv">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">

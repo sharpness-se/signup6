@@ -7,9 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.testcontainers.junit.jupiter.Testcontainers;
+import se.accelerateit.signup6.dao.EventMapper;
 import se.accelerateit.signup6.dao.UserMapper;
 import se.accelerateit.signup6.integrationtest.SignupDbTest;
+import se.accelerateit.signup6.model.Event;
 import se.accelerateit.signup6.model.ImageProvider;
+import se.accelerateit.signup6.model.ParticipationStatus;
 import se.accelerateit.signup6.model.Permission;
 import se.accelerateit.signup6.model.User;
 
@@ -26,10 +29,12 @@ class UserMapperTest extends SignupDbTest {
   static final Logger logger = LoggerFactory.getLogger(UserMapperTest.class);
 
   private final UserMapper userMapper;
+  private final EventMapper eventMapper;
 
   @Autowired
-  UserMapperTest(UserMapper userMapper) {
+  UserMapperTest(UserMapper userMapper, EventMapper eventMapper) {
     this.userMapper = userMapper;
+    this.eventMapper = eventMapper;
   }
 
 
@@ -135,4 +140,20 @@ class UserMapperTest extends SignupDbTest {
     assertEquals(8, userList.size());
   }
 
+  @Test
+  void findUnregisteredMembersTest() {
+    Optional<Event> event = eventMapper.findById(-9L);
+    List<User> userList = userMapper.findUnregisteredMembers(event.orElseThrow());
+    assertFalse(userList.isEmpty());
+    assertEquals(1, userList.size());
+  }
+
+  @Test
+  void findMembersByStatus2Test(){
+    Optional<Event> event = eventMapper.findById(-9L);
+
+    List<User> userList = userMapper.findMembersByStatus(ParticipationStatus.Maybe, event.orElseThrow());
+    assertFalse(userList.isEmpty());
+    assertEquals(1, userList.size());
+  }
 }
