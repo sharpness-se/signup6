@@ -7,9 +7,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import se.accelerateit.signup6.dao.EventMapper;
+import se.accelerateit.signup6.dao.LogEntryMapper;
 import se.accelerateit.signup6.dao.ReminderMapper;
 import se.accelerateit.signup6.dao.UserMapper;
 import se.accelerateit.signup6.model.Event;
+import se.accelerateit.signup6.model.LogEntry;
 import se.accelerateit.signup6.model.ParticipationStatus;
 import se.accelerateit.signup6.model.Reminder;
 import se.accelerateit.signup6.model.User;
@@ -30,6 +32,8 @@ public class ReminderSenderService {
     private final EventMapper eventMapper;
     private final ReminderMapper reminderMapper;
     private final UserMapper userMapper;
+
+    private final LogEntryMapper logEntryMapper;
     private final JavaMailSender mailSender;
     private final MockMailSender mockMailSender;
     private final MessageBuilder messageBuilder;
@@ -38,10 +42,11 @@ public class ReminderSenderService {
     private boolean mockEmailActivated;
 
     @Autowired
-    public ReminderSenderService(EventMapper eventMapper, UserMapper userMapper, ReminderMapper reminderMapper, JavaMailSender mailSender, MockMailSender mockMailSender, MessageBuilder messageBuilder) {
+    public ReminderSenderService(EventMapper eventMapper, UserMapper userMapper, ReminderMapper reminderMapper, LogEntryMapper logEntryMapper, JavaMailSender mailSender, MockMailSender mockMailSender, MessageBuilder messageBuilder) {
         this.eventMapper = eventMapper;
         this.userMapper = userMapper;
         this.reminderMapper = reminderMapper;
+        this.logEntryMapper = logEntryMapper;
         this.mailSender = mailSender;
         this.mockMailSender = mockMailSender;
         this.messageBuilder = messageBuilder;
@@ -74,6 +79,7 @@ public class ReminderSenderService {
             log.debug("Sending reminder for event '{}' (id={})", event.getName(), event.getId());
             List<User> usersToRemind = findUsersToRemind(event);
             sendReminderMails(usersToRemind, event);
+            logEntryMapper.create(new LogEntry(event, "Skickat påminnelse/inbjudan till " + usersToRemind.size() + " medlemmar."));
             reminderMapper.delete(reminder);
         }
         return dueReminders;
