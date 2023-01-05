@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import se.accelerateit.signup6.modelvalidator.EventDoesNotExistException;
+import se.accelerateit.signup6.modelvalidator.FailedToSendRemindersException;
 import se.accelerateit.signup6.modelvalidator.NotMemberOfGroupException;
 import se.accelerateit.signup6.modelvalidator.UserDoesNotExistException;
 import se.accelerateit.signup6.modelvalidator.WtfException;
@@ -37,6 +38,13 @@ public class ExceptionAdvice {
   @ExceptionHandler(WtfException.class)
   @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
   String wtfHandler(WtfException ex) {
+    return ex.getMessage();
+  }
+
+  @ResponseBody
+  @ExceptionHandler(FailedToSendRemindersException.class)
+  @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+  String failedToSendRemindersHandler(FailedToSendRemindersException ex) {
     return ex.getMessage();
   }
 }

@@ -6,8 +6,10 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
+import se.accelerateit.signup6.model.Reminder;
+import se.accelerateit.signup6.reminder.ReminderSenderService;
 
-import javax.mail.MessagingException;
+import java.util.List;
 
 @Configuration
 @EnableScheduling
@@ -15,19 +17,19 @@ import javax.mail.MessagingException;
 @Log4j2
 public class SchedulingConfiguration {
 
-  private final ScheduledEvents scheduledEvents;
+  private final ReminderSenderService reminderSenderService;
 
   @Autowired
-  public SchedulingConfiguration(ScheduledEvents scheduledEvents) {
-    this.scheduledEvents = scheduledEvents;
+  public SchedulingConfiguration(ReminderSenderService reminderSenderService) {
+    this.reminderSenderService = reminderSenderService;
   }
 
   @Scheduled(cron = "${signup.reminder.schedule}")
-  public void scheduledTrigger() {
+  public void scheduledRemindersTrigger() {
     log.info("Time to send reminders!");
     try {
-      scheduledEvents.sendReminders();
-      log.debug("Reminders completed.");
+      List<Reminder> reminiders = reminderSenderService.sendReminders();
+      log.debug("Processed {} reminders", reminiders.size());
     } catch (Exception ex) {
       log.error("Something went wrong when sending reminders", ex);
     }

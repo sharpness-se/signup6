@@ -5,12 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
-import se.accelerateit.signup6.api.SchedulerController;
+import se.accelerateit.signup6.api.ReminderController;
 import se.accelerateit.signup6.dao.EventMapper;
 import se.accelerateit.signup6.dao.ParticipationMapper;
 import se.accelerateit.signup6.dao.UserMapper;
-import se.accelerateit.signup6.email.EmailSenderService;
 import se.accelerateit.signup6.modelvalidator.EventValidator;
+import se.accelerateit.signup6.reminder.ReminderSenderService;
 
 @WebMvcTest
 public abstract class SignupApiTest {
@@ -31,10 +31,10 @@ public abstract class SignupApiTest {
   protected EventMapper eventMapper;
 
   @MockBean
-  protected EmailSenderService emailService;
+  protected ReminderSenderService reminderSenderService;
 
   @MockBean
-  SchedulerController schedulerController;
+  ReminderController reminderController;
 
   protected final ObjectMapper jsonMapper;
 
