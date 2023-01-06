@@ -34,8 +34,8 @@ public class MessageBuilder {
   @Value("${signup.application.name}")
   private String applicationName;
 
-  @Value("${signup.base.url}")
-  private String baseUrl;
+  @Value("${signup.backend.base.url}")
+  private String backendBaseUrl;
 
   @Autowired
   public MessageBuilder(JavaMailSender mailSender, FreeMarkerConfigurer freeMarkerConfigurer) {
@@ -59,7 +59,7 @@ public class MessageBuilder {
     URI uri = WebMvcLinkBuilder
       .linkTo(WebMvcLinkBuilder.methodOn(ParticipationController.class).registerToEvent(user.getId(), event.getId(), participationStatus))
       .toUri();
-    return baseUrl + uri.getPath() + "?" + uri.getQuery();
+    return backendBaseUrl + uri.getPath() + "?" + uri.getQuery();
   }
 
   Map<String, Object> createTemplateModel(User user, Event event) {
