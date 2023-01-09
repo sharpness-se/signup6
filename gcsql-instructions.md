@@ -18,7 +18,6 @@ and commands are case-sensitive.
 Accept the authorization prompt and wait for the command shell to connect, and when the connection is established enter
 the password associated with [DB Username] *(ask devs)*. You now have access and can communicate with the DB with SQL commands.
 
-
 ### Some common commands
 
 *Notes:*  
