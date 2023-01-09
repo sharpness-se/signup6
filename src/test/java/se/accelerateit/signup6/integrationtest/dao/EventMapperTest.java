@@ -94,11 +94,7 @@ class EventMapperTest extends SignupDbTest {
     monster.setCancellationReason(null);
     monster.setGroup(existingIdGroup);
 
-    try{
-      eventMapper.createEvent(monster);
-    }catch (Exception e){
-      e.printStackTrace();
-    }
+    eventMapper.createEvent(monster);
 
 
     Optional<Event> dbResponse = eventMapper.findById(1L);

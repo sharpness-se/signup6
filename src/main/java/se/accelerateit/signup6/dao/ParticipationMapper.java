@@ -23,6 +23,7 @@ public interface ParticipationMapper {
 
 
   @Result(property = "userId", column = "userx")
+  @Result(property = "eventId", column = "event")
   @Select(
           "select * from participations where event=#{eventId}"
   )

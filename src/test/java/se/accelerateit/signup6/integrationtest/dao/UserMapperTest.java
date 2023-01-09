@@ -7,9 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.testcontainers.junit.jupiter.Testcontainers;
+import se.accelerateit.signup6.dao.EventMapper;
 import se.accelerateit.signup6.dao.UserMapper;
 import se.accelerateit.signup6.integrationtest.SignupDbTest;
+import se.accelerateit.signup6.model.Event;
 import se.accelerateit.signup6.model.ImageProvider;
+import se.accelerateit.signup6.model.ParticipationStatus;
 import se.accelerateit.signup6.model.Permission;
 import se.accelerateit.signup6.model.User;
 
@@ -26,10 +29,12 @@ class UserMapperTest extends SignupDbTest {
   static final Logger logger = LoggerFactory.getLogger(UserMapperTest.class);
 
   private final UserMapper userMapper;
+  private final EventMapper eventMapper;
 
   @Autowired
-  UserMapperTest(UserMapper userMapper) {
+  UserMapperTest(UserMapper userMapper, EventMapper eventMapper) {
     this.userMapper = userMapper;
+    this.eventMapper = eventMapper;
   }
 
 
@@ -52,7 +57,7 @@ class UserMapperTest extends SignupDbTest {
 
   @Test
   void findFrodoUserByEmail() {
-    Optional<User> dbResponse = userMapper.findByEmail("frodo.baggins@crisp.se");
+    Optional<User> dbResponse = userMapper.findByEmail("frodo.baggins@mailinator.com");
     assertTrue(dbResponse.isPresent(), "could not find the user in db");
     User user = dbResponse.get();
     logger.info("user = {}", user);
@@ -60,7 +65,7 @@ class UserMapperTest extends SignupDbTest {
     assertEquals("Frodo", user.getFirstName());
     assertEquals("Baggins", user.getLastName());
     assertEquals("Ringbärare", user.getComment());
-    assertEquals("frodo.baggins@crisp.se", user.getEmail());
+    assertEquals("frodo.baggins@mailinator.com", user.getEmail());
     assertEquals("", user.getPhone());
     assertEquals(Permission.NormalUser, user.getPermission());
     assertNotNull(user.getPwd());
@@ -76,7 +81,7 @@ class UserMapperTest extends SignupDbTest {
 
     assertEquals("John", user.getFirstName());
     assertEquals("Doe", user.getLastName());
-    assertEquals("john@doe.net", user.getEmail());
+    assertEquals("john.doe@mailinator.com", user.getEmail());
     assertEquals(Permission.NormalUser, user.getPermission());
     assertEquals(ImageProvider.Gravatar, user.getImageProvider());
   }
@@ -109,11 +114,7 @@ class UserMapperTest extends SignupDbTest {
     goblin.setProviderKey(null);
     goblin.setAuthInfo(null);
 
-    try{
-      userMapper.createUser(goblin);
-    }catch (Exception e){
-      e.printStackTrace();
-    }
+    userMapper.createUser(goblin);
 
 
     Optional<User> dbResponse = userMapper.findByEmail("Goblin@gob.com");
@@ -135,4 +136,20 @@ class UserMapperTest extends SignupDbTest {
     assertEquals(8, userList.size());
   }
 
+  @Test
+  void findUnregisteredMembersTest() {
+    Optional<Event> event = eventMapper.findById(-9L);
+    List<User> userList = userMapper.findUnregisteredMembers(event.orElseThrow());
+    assertFalse(userList.isEmpty());
+    assertEquals(1, userList.size());
+  }
+
+  @Test
+  void findMembersByStatus2Test(){
+    Optional<Event> event = eventMapper.findById(-9L);
+
+    List<User> userList = userMapper.findMembersByStatus(ParticipationStatus.Maybe, event.orElseThrow());
+    assertFalse(userList.isEmpty());
+    assertEquals(1, userList.size());
+  }
 }

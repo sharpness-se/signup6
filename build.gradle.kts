@@ -25,8 +25,13 @@ repositories {
 
 dependencies {
   implementation("org.springdoc:springdoc-openapi-ui:1.6.13")
+
+  // TODO: when we have Spring Security running, see https://springdoc.org/#spring-security-support
+  //implementation("org.springdoc:springdoc-openapi-security:1.6.13")
+
   implementation("org.springframework.boot:spring-boot-starter-hateoas")
   implementation("org.springframework.boot:spring-boot-starter-web")
+  implementation("org.springframework.boot:spring-boot-starter-freemarker")
   implementation("org.flywaydb:flyway-core")
   implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2")
   implementation("org.springframework.boot:spring-boot-starter-mail")

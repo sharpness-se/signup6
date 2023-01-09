@@ -53,12 +53,8 @@ class GroupMapperTest extends SignupDbTest {
     monsterGroup.setMailFrom("monstergroup@monster.com");
     monsterGroup.setMailSubjectPrefix("CONSUME!!");
 
-    try{
-      groupMapper.createGroup(monsterGroup);
-    }catch (Exception e){
-      e.printStackTrace();
-    }
-    
+    groupMapper.createGroup(monsterGroup);
+
     Optional<Group> dbResponse = groupMapper.findById(1L);
     assertTrue(dbResponse.isPresent(), "Could not find specified group");
     Group group = dbResponse.get();
