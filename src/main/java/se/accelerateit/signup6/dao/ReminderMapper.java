@@ -20,6 +20,18 @@ public interface ReminderMapper {
   List<Reminder> findByDate(@Param(("dateToRemind")) LocalDate dateToRemind);
 
 
+  @Result(property = "eventId", column = "event")
+  @Result(property = "dateToRemind", column = "datex")
+  @Result(property = "id", column = "id")
+  @Select(
+    "select * from reminders where event=#{eventId}"
+  )
+  List<Reminder> findByEventId(@Param(("eventId")) Long eventId);
+
+
+
+
+
 // select * from reminders where datex <= #{currentDate}
 
   @Result(property = "eventId", column = "event")
