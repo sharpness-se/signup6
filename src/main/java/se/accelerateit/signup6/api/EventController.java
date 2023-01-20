@@ -8,6 +8,9 @@ import se.accelerateit.signup6.dao.EventMapper;
 import se.accelerateit.signup6.model.Event;
 import se.accelerateit.signup6.modelvalidator.EventDoesNotExistException;
 
+import java.time.LocalDate;
+import java.util.List;
+
 
 @RestController
 public class EventController extends BaseApiController {
@@ -21,10 +24,31 @@ public class EventController extends BaseApiController {
   @GetMapping("/events/{eventId}")
   public Event find(@PathVariable(value = "eventId") Long eventId) {
     final var result = eventMapper.findById(eventId);
-    if (result.isPresent()) {
+    if(result.isPresent()) {
       return result.get();
+    } else {
+        throw new EventDoesNotExistException();
+    }
+  }
+
+  @GetMapping("/events/findAllEventsByGroupId/{groupId}")
+  public List<Event> findAllByGroup(@PathVariable(value = "groupId") Long groupId) {
+    final var result = eventMapper.findAllEventsByGroup(groupId);
+    if(!result.isEmpty()) {
+      return result;
     } else {
       throw new EventDoesNotExistException();
     }
   }
+
+  @GetMapping("/events/findAllUpcomingEventsByGroupId/{groupId}")
+  public List<Event> findAllUpComingEventsByGroup(@PathVariable(value = "groupId") Long groupId) {
+    final var result = eventMapper.findAllUpcomingEventsByGroup(LocalDate.now(), groupId);
+    if(!result.isEmpty()) {
+      return result;
+    } else {
+      throw new EventDoesNotExistException();
+    }
+  }
+
 }
