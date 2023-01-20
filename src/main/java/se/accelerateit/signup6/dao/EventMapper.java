@@ -45,4 +45,20 @@ public interface EventMapper {
           "select * from events where last_signup_date >= #{dateToday}"
   )
   List<Event> findAllUpcomingEvents(@Param("dateToday") LocalDate dateToday);
+
+
+  @Result(property = "group", column = "groupx", one = @One(select = "se.accelerateit.signup6.dao.GroupMapper.findById"))
+  @Select(
+    "select * from events where groupx = #{groupId}"
+  )
+  List<Event> findAllEventsByGroup(@Param("groupId") long groupId);
+
+  @Result(property = "group", column = "groupx", one = @One(select = "se.accelerateit.signup6.dao.GroupMapper.findById"))
+  @Select(
+    "select * from events where last_signup_date >= #{dateToday} and groupx = #{groupId}"
+  )
+  List<Event> findAllUpcomingEventsByGroup(@Param("dateToday") LocalDate dateToday, @Param("groupId") long Long);
+
+
+
 }

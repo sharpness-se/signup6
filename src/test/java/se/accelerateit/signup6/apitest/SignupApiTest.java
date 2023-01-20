@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
+import se.accelerateit.signup6.api.GroupController;
 import se.accelerateit.signup6.api.ReminderController;
 import se.accelerateit.signup6.dao.EventMapper;
 import se.accelerateit.signup6.dao.ParticipationMapper;
@@ -29,6 +30,9 @@ public abstract class SignupApiTest {
 
   @MockBean
   protected EventMapper eventMapper;
+
+  @MockBean
+  protected GroupController groupController;
 
   @MockBean
   protected ReminderSenderService reminderSenderService;
