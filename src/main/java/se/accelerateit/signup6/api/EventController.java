@@ -51,4 +51,14 @@ public class EventController extends BaseApiController {
     }
   }
 
+  @GetMapping("/events/findUpcomingEventsByUser/{userId}")
+  public List<Event> findUpcomingEventsByUser(@PathVariable(value = "userId") Long userId) {
+    final var result = eventMapper.findUpcomingEventsByUser(LocalDate.now(), userId);
+    if(!result.isEmpty()) {
+      return result;
+    } else {
+      throw new EventDoesNotExistException();
+    }
+  }
+
 }
