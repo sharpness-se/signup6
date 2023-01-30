@@ -34,8 +34,17 @@ public class MessageBuilder {
   @Value("${signup.application.name}")
   private String applicationName;
 
+
   @Value("${signup.backend.base.url}")
   private String backendBaseUrl;
+
+  public void setApplicationName(String applicationName) {
+    this.applicationName = applicationName;
+  }
+
+  public void setBackendBaseUrl(String backendBaseUrl) {
+    this.backendBaseUrl = backendBaseUrl;
+  }
 
   @Autowired
   public MessageBuilder(JavaMailSender mailSender, FreeMarkerConfigurer freeMarkerConfigurer) {
@@ -55,7 +64,7 @@ public class MessageBuilder {
   }
 
 
-  private String toHref(User user, Event event, ParticipationStatus participationStatus) {
+   String toHref(User user, Event event, ParticipationStatus participationStatus) {
     URI uri = WebMvcLinkBuilder
       .linkTo(WebMvcLinkBuilder.methodOn(ParticipationController.class).registerToEvent(user.getId(), event.getId(), participationStatus))
       .toUri();
