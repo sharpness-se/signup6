@@ -32,19 +32,6 @@ public class ReminderMapperTest extends SignupDbTest {
   }
 
   @Test
-  void findByDate() {
-    LocalDate date = LocalDate.parse("2022-11-15");
-
-    List <Reminder> dbResponse = reminderMapper.findByDate(date);
-    Reminder responseReminder = dbResponse.get(0);
-    logger.info("REMINDER FROM DB: " + responseReminder.toString());
-
-    assertEquals(-1, responseReminder.getId());
-    assertEquals(-9, responseReminder.getEventId());
-    assertEquals(date, responseReminder.getDateToRemind());
-  }
-
-  @Test
   void create() {
     LocalDate date = LocalDate.now();
     Reminder testReminder = new Reminder();
@@ -63,6 +50,19 @@ public class ReminderMapperTest extends SignupDbTest {
     assertEquals(-9, responseReminder.getEventId());
     assertEquals(date, responseReminder.getDateToRemind());
 
+  }
+
+  @Test
+  void findByDate() {
+    LocalDate date = LocalDate.parse("2022-11-15");
+
+    List <Reminder> dbResponse = reminderMapper.findByDate(date);
+    Reminder responseReminder = dbResponse.get(0);
+    logger.info("REMINDER FROM DB: " + responseReminder.toString());
+
+    assertEquals(-1, responseReminder.getId());
+    assertEquals(-9, responseReminder.getEventId());
+    assertEquals(date, responseReminder.getDateToRemind());
   }
 
   @Test
@@ -114,6 +114,13 @@ public class ReminderMapperTest extends SignupDbTest {
     assertEquals(dueReminderList.get(1), testReminder2);
     logger.info("due 1" + dueReminderList.get(0));
     logger.info("due 2" + dueReminderList.get(1));
+  }
+
+  @Test
+  void findByEventId() {
+    List<Reminder> reminderList = reminderMapper.findByEventId(-9L);
+    logger.info("reminders = {}", reminderList);
+    assertEquals(4, reminderList.size());
   }
 
 
