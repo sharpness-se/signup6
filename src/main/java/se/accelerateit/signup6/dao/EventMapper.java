@@ -75,6 +75,4 @@ public interface EventMapper {
     """)
   List<Event> findUpcomingEventsByUser(@Param("dateToday") LocalDate today, @Param("userId") Long user);
 
-  List<Event> findNoEvents();
-
 }
