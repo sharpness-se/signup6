@@ -60,5 +60,18 @@ public interface EventMapper {
   List<Event> findAllUpcomingEventsByGroup(@Param("dateToday") LocalDate dateToday, @Param("groupId") long Long);
 
 
+  @Result(property = "group", column = "groupx", one = @One(select = "se.accelerateit.signup6.dao.GroupMapper.findById"))
+  @Select("""
+      SELECT e.*
+      FROM events e, memberships m
+      WHERE e.groupx = m.groupx AND m.userx = #{userId} AND e.start_time >= #{dateToday} AND e.event_status != 'Cancelled'
+      UNION
+      SELECT e.*
+      FROM events e, participations p
+      WHERE p.event=e.id AND p.userx=#{userId} AND e.start_time >= #{dateToday} AND e.event_status != 'Cancelled'
+      ORDER BY last_signup_date ASC
+    """)
+  List<Event> findUpcomingEventsByUser(@Param("dateToday") LocalDate today, @Param("userId") Long user);
+
 
 }
