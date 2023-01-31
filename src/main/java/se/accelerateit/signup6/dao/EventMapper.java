@@ -46,6 +46,8 @@ public interface EventMapper {
   )
   List<Event> findAllUpcomingEvents(@Param("dateToday") LocalDate dateToday);
 
+  //abc
+
 
   @Result(property = "group", column = "groupx", one = @One(select = "se.accelerateit.signup6.dao.GroupMapper.findById"))
   @Select(
@@ -73,5 +75,6 @@ public interface EventMapper {
     """)
   List<Event> findUpcomingEventsByUser(@Param("dateToday") LocalDate today, @Param("userId") Long user);
 
+  List<Event> findNoEvents();
 
 }
