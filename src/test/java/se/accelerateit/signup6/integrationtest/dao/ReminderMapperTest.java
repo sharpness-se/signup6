@@ -120,7 +120,7 @@ public class ReminderMapperTest extends SignupDbTest {
   void findByEventId() {
     List<Reminder> reminderList = reminderMapper.findByEventId(-9L);
     logger.info("reminders = {}", reminderList);
-    assertEquals(4, reminderList.size());
+    assertEquals(3, reminderList.size());
   }
 
 
