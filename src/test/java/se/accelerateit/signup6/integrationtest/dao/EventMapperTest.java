@@ -142,9 +142,15 @@ class EventMapperTest extends SignupDbTest {
   @Test
   void findAllUpcomingEventsByGroup() {
     LocalDate testDate = LocalDate.of(2028, 1,1);
-    List<Event> eventList = eventMapper.findAllUpcomingEventsByGroup(testDate, -1);
+    List<Event> eventList = eventMapper.findAllUpcomingEventsByGroup(testDate, -59);
+    Event futureEvent = eventList.get(0);
     logger.info("eventList = {}", eventList);
+
     assertEquals(1, eventList.size());
+    assertNotEquals(2, eventList.size());
+    assertEquals(-67, futureEvent.getId());
+    assertEquals("Venue testing Unit", futureEvent.getVenue());
+    assertEquals(LocalDateTime.of(2030, 9, 9, 9, 9, 0), futureEvent.getEndTime());
   }
 
   @Test
