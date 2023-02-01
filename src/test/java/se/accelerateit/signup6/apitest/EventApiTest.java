@@ -8,6 +8,8 @@ import se.accelerateit.signup6.model.Group;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -17,10 +19,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static se.accelerateit.signup6.model.EventStatus.Created;
 
 
-public class EventApiTest extends SignupApiTest {
+class EventApiTest extends SignupApiTest {
 
   @Test
-  public void getExistingEvent() throws Exception {
+  void getExistingEvent() throws Exception {
     Long eventId = 99L;
     Long groupId = 9999L;
 
@@ -71,7 +73,7 @@ public class EventApiTest extends SignupApiTest {
   }
 
   @Test
-  public void getNonExistingEvent() throws Exception {
+  void getNonExistingEvent() throws Exception {
     Long userId = 88L;
 
     Mockito.when(userMapper.findById(userId)).thenReturn(Optional.empty());
@@ -79,5 +81,119 @@ public class EventApiTest extends SignupApiTest {
     mockMvc.perform(get("/api/events/" + userId))
       .andExpect(status().isNotFound())
       .andExpect(content().string("Event does not exist"));
+  }
+
+
+  @Test
+  void getAllEventsByGroup()  throws Exception {
+    Long groupId = 99L;
+
+    Group group = new Group();
+    group.setId(groupId);
+    group.setName("Familjen");
+    group.setDescription("Våra aktiviteter");
+    group.setMailFrom("familjen@family.name");
+    group.setMailSubjectPrefix("OBS!");
+
+    Long eventId = 99L;
+    Event eventOne = new Event();
+    eventOne.setId(eventId);
+    eventOne.setName("eventOne");
+    eventOne.setDescription("WAN");
+    eventOne.setStartTime(LocalDateTime.parse("2050-12-24T14:15:01"));
+    eventOne.setEndTime(LocalDateTime.parse("2050-12-24T23:00:01"));
+    eventOne.setLastSignUpDate(LocalDate.parse("2050-12-13"));
+    eventOne.setVenue("Hemma");
+    eventOne.setAllowExtraFriends(true);
+    eventOne.setEventStatus(Created);
+    eventOne.setMaxParticipants(null);
+    eventOne.setCancellationReason(null);
+    eventOne.setGroup(group);
+
+    Event eventTwo = new Event();
+    eventTwo.setName("eventTwo");
+    eventTwo.setDescription("TÅ");
+
+    Event eventThree = new Event();
+    eventThree.setName("eventThree");
+    eventThree.setDescription("TRI");
+
+    List<Event> eventList = new ArrayList<>();
+    eventList.add(eventOne);
+    eventList.add(eventTwo);
+    eventList.add(eventThree);
+
+    for (Event event: eventList) {
+      System.out.println(event.getName());
+      System.out.println(event.getDescription());
+    }
+
+    Mockito.when(eventMapper.findAllEventsByGroup(groupId))
+      .thenReturn(eventList);
+
+    var result = mockMvc.perform(get("/api/events/findAllEventsByGroupId/" + groupId))
+      .andExpect(status().isOk());
+
+    result
+      .andExpect(jsonPath("$", Matchers.hasSize(3)))
+      .andExpect(jsonPath("$.[1].name", Matchers.equalTo(eventTwo.getName())))
+      .andExpect(jsonPath("$.[2].name", Matchers.equalTo(eventThree.getName())))
+      .andExpect(jsonPath("$.[0].description", Matchers.equalTo(eventOne.getDescription())))
+      .andExpect(jsonPath("$.[1].description", Matchers.equalTo(eventTwo.getDescription())))
+      .andExpect(jsonPath("$.[2].description", Matchers.equalTo(eventThree.getDescription())))
+      .andExpect(jsonPath("$.[2].description", Matchers.not(eventTwo.getDescription())));
+  }
+
+
+  @Test
+  void getAllUpcomingEventsByGroup() throws Exception {
+    Long eventId = 99L;
+    Long groupId = 9999L;
+
+    Group group = new Group();
+    group.setId(groupId);
+    group.setName("Familjen");
+    group.setDescription("Våra aktiviteter");
+    group.setMailFrom("familjen@family.name");
+    group.setMailSubjectPrefix("OBS!");
+
+    Event upcomingEvent = new Event();
+    upcomingEvent.setId(eventId);
+    upcomingEvent.setName("upcomingInnit");
+    upcomingEvent.setDescription("Familjefest");
+    upcomingEvent.setStartTime(LocalDateTime.parse("2050-12-24T14:15:01"));
+    upcomingEvent.setEndTime(LocalDateTime.parse("2050-12-24T23:00:01"));
+    upcomingEvent.setLastSignUpDate(LocalDate.parse("2050-12-13"));
+    upcomingEvent.setVenue("Hemma");
+    upcomingEvent.setAllowExtraFriends(true);
+    upcomingEvent.setEventStatus(Created);
+    upcomingEvent.setMaxParticipants(null);
+    upcomingEvent.setCancellationReason(null);
+    upcomingEvent.setGroup(group);
+
+    Event upcomingEvent2 = new Event();
+    upcomingEvent2.setStartTime(LocalDateTime.parse("2045-12-24T14:15:01"));
+    upcomingEvent2.setEndTime(LocalDateTime.parse("2045-12-24T23:00:01"));
+
+    List<Event> upcomingEventList = new ArrayList<>();
+    upcomingEventList.add(upcomingEvent);
+    upcomingEventList.add(upcomingEvent2);
+
+    Mockito.when(eventMapper.findAllUpcomingEventsByGroup(LocalDate
+      .parse("2023-02-01"), groupId)).thenReturn(upcomingEventList);
+
+    var result = mockMvc.perform(get("/api/events/findAllUpcomingEventsByGroupId/" + groupId))
+        .andExpect(status().isOk());
+
+    result
+      .andExpect(jsonPath("$", Matchers.hasSize(2)))
+      .andExpect(jsonPath("$.[0].id", Matchers.equalTo(eventId.intValue())))
+      .andExpect(jsonPath("$.[0].name", Matchers.equalTo(upcomingEvent.getName())))
+      .andExpect(jsonPath("$.[0].allowExtraFriends", Matchers.equalTo(upcomingEvent.isAllowExtraFriends())))
+      .andExpect(jsonPath("$.[0].startTime", Matchers.equalTo(upcomingEvent.getStartTime().toString())))
+      .andExpect(jsonPath("$.[1].startTime", Matchers.equalTo(upcomingEvent2.getStartTime().toString())))
+      .andExpect(jsonPath("$.[0].endTime", Matchers.equalTo(upcomingEvent.getEndTime().toString())))
+      .andExpect(jsonPath("$.[1].endTime", Matchers.equalTo(upcomingEvent2.getEndTime().toString())));
+
   }
 }

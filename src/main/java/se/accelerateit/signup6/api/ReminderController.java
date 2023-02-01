@@ -9,7 +9,6 @@ import se.accelerateit.signup6.dao.ReminderMapper;
 import se.accelerateit.signup6.model.Reminder;
 import se.accelerateit.signup6.modelvalidator.EventDoesNotExistException;
 import se.accelerateit.signup6.modelvalidator.FailedToSendRemindersException;
-import se.accelerateit.signup6.modelvalidator.WtfException;
 import se.accelerateit.signup6.reminder.ReminderSenderService;
 
 import java.util.List;

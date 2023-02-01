@@ -8,9 +8,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import se.accelerateit.signup6.api.GroupController;
 import se.accelerateit.signup6.api.LogEntryController;
 import se.accelerateit.signup6.api.ReminderController;
-import se.accelerateit.signup6.dao.EventMapper;
-import se.accelerateit.signup6.dao.ParticipationMapper;
-import se.accelerateit.signup6.dao.UserMapper;
+import se.accelerateit.signup6.dao.*;
 import se.accelerateit.signup6.modelvalidator.EventValidator;
 import se.accelerateit.signup6.reminder.ReminderSenderService;
 
@@ -33,7 +31,13 @@ public abstract class SignupApiTest {
   protected EventMapper eventMapper;
 
   @MockBean
-  protected GroupController groupController;
+  protected GroupMapper groupMapper;
+
+  @MockBean
+  protected MembershipMapper membershipMapper;
+
+  @MockBean
+  protected ReminderMapper reminderMapper;
 
   @MockBean
   protected ReminderSenderService reminderSenderService;
@@ -42,7 +46,7 @@ public abstract class SignupApiTest {
   protected LogEntryController logEntryController;
 
   @MockBean
-  ReminderController reminderController;
+  protected ReminderController reminderController;
 
   protected final ObjectMapper jsonMapper;
 
