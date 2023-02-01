@@ -155,12 +155,16 @@ class EventMapperTest extends SignupDbTest {
 
   @Test
   void findUpcomingEventsByUser() {
-    LocalDate testDate = LocalDate.of(2014, 1,1);
-    Long userId = -9L;
+    LocalDate testDate = LocalDate.of(2023, 1,1);
+    Long userId = -69L;
     List<Event> eventList = eventMapper.findUpcomingEventsByUser(testDate, userId);
+    Event futureEvent = eventList.get(0);
+
     logger.info("eventList = {}", eventList);
     assertEquals(1, eventList.size());
-
+    assertEquals("EventUnitTest2", futureEvent.getName());
+    assertEquals(LocalDateTime.of(2030,9, 9,  9, 0, 0), futureEvent.getStartTime());
+    assertEquals("Used Unit for Testing Only", futureEvent.getDescription());
   }
 
 
