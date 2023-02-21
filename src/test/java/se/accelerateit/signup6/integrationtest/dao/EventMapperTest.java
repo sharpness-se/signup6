@@ -68,7 +68,7 @@ class EventMapperTest extends SignupDbTest {
   void findAllEventsTest() {
     List<Event> eventList = eventMapper.findAll();
     logger.info("eventList = {}", eventList);
-    assertEquals(4, eventList.size());
+    assertEquals(6, eventList.size());
   }
 
   @Test
@@ -111,35 +111,63 @@ class EventMapperTest extends SignupDbTest {
 
   @Test
   void findAllUpcomingEvents() {
-    LocalDate testDate = LocalDate.of(2022, 1,1);
+    LocalDate testDate = LocalDate.of(2028, 1,1);
     List<Event> eventList = eventMapper.findAllUpcomingEvents(testDate);
+    Event futureEvent = eventList.get(0);
     logger.info("eventList = {}", eventList);
+
     assertEquals(1, eventList.size());
+    assertEquals(-67, futureEvent.getId());
+    assertEquals("EventUnitTest2", futureEvent.getName());
   }
 
   @Test
   void findAllEventsByGroup() {
-    List<Event> eventList = eventMapper.findAllEventsByGroup(-1);
+    List<Event> eventList = eventMapper.findAllEventsByGroup(-59);
+    Event pastEvent = eventList.get(0);
+    Event futureEvent = eventList.get(1);
     logger.info("eventList = {}", eventList);
+
     assertEquals(2, eventList.size());
+    assertNotEquals(1, eventList.size());
+
+    assertEquals("UnitTestEvent1", pastEvent.getName());
+    assertEquals("Unit Venue", pastEvent.getVenue());
+    assertEquals(LocalDateTime.of(2022, 11, 11, 11, 0, 0), pastEvent.getStartTime());
+
+    assertEquals(-67, futureEvent.getId());
+    assertEquals("EventUnitTest2", futureEvent.getName());
+    assertEquals("Used Unit for Testing Only", futureEvent.getDescription());
+
+
   }
 
   @Test
   void findAllUpcomingEventsByGroup() {
-    LocalDate testDate = LocalDate.of(2014, 1,1);
-    List<Event> eventList = eventMapper.findAllUpcomingEventsByGroup(testDate, -1);
+    LocalDate testDate = LocalDate.of(2028, 1,1);
+    List<Event> eventList = eventMapper.findAllUpcomingEventsByGroup(testDate, -59);
+    Event futureEvent = eventList.get(0);
     logger.info("eventList = {}", eventList);
+
     assertEquals(1, eventList.size());
+    assertNotEquals(2, eventList.size());
+    assertEquals(-67, futureEvent.getId());
+    assertEquals("Venue testing Unit", futureEvent.getVenue());
+    assertEquals(LocalDateTime.of(2030, 9, 9, 9, 9, 0), futureEvent.getEndTime());
   }
 
   @Test
   void findUpcomingEventsByUser() {
-    LocalDate testDate = LocalDate.of(2014, 1,1);
-    Long userId = -9L;
+    LocalDate testDate = LocalDate.of(2023, 1,1);
+    Long userId = -69L;
     List<Event> eventList = eventMapper.findUpcomingEventsByUser(testDate, userId);
+    Event futureEvent = eventList.get(0);
+
     logger.info("eventList = {}", eventList);
     assertEquals(1, eventList.size());
-
+    assertEquals("EventUnitTest2", futureEvent.getName());
+    assertEquals(LocalDateTime.of(2030,9, 9,  9, 0, 0), futureEvent.getStartTime());
+    assertEquals("Used Unit for Testing Only", futureEvent.getDescription());
   }
 
 

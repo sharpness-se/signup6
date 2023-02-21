@@ -71,7 +71,7 @@ class GroupMapperTest extends SignupDbTest {
   void findAllGroupsTest() {
     List<Group> groupList = groupMapper.findAllGroups();
     assertFalse(groupList.isEmpty());
-    assertEquals(3, groupList.size());
+    assertEquals(4, groupList.size());
 
   }
 }

@@ -133,7 +133,7 @@ class UserMapperTest extends SignupDbTest {
   void findAllUsersTest() {
     List<User> userList = userMapper.findAll();
     assertFalse(userList.isEmpty());
-    assertEquals(8, userList.size());
+    assertEquals(9, userList.size());
   }
 
   @Test
