@@ -7,30 +7,25 @@ on:
 jobs:
   run:
     runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-      steps:
-        - name: Checkout repository
-          uses: actions/checkout@v3
+      - name: Setup Java JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '17'
 
-        - name: Setup Java JDK
-          uses: actions/setup-java@v3
-          with:
-            distribution: 'zulu'
-            java-version: '17'
+      - name: Run database container
+        run: |
+          docker run --name signup6db -e POSTGRES_USER=signup4 -e POSTGRES_PASSWORD=s7p2+ -e POSTGRES_DB=signup -p 5432:5432 -d postgres:latest
 
-        - name: Run database container
-          run: |
-            docker run --name signup6db -e POSTGRES_USER=signup4 -e POSTGRES_PASSWORD=s7p2+ -e POSTGRES_DB=signup -p 5432:5432 -d postgres:latest
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
 
-        - name: Grant execute permission for gradlew
-          run: chmod +x gradlew
-
-        - name: Run with Gradle
-          run: ./gradlew bootRun
-
-
-
-
+      - name: Run with Gradle
+        run: ./gradlew bootRun
   automated-api-tests:
     runs-on: ubuntu-latest
     steps:
