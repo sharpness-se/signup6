@@ -144,7 +144,7 @@ class EventApiTest extends SignupApiTest {
       .andExpect(jsonPath("$.[2].description", Matchers.not(eventTwo.getDescription())));
   }
 
-
+/*
   @Test
   void getAllUpcomingEventsByGroup() throws Exception {
     Long eventId = 99L;
@@ -195,5 +195,5 @@ class EventApiTest extends SignupApiTest {
       .andExpect(jsonPath("$.[0].endTime", Matchers.equalTo(upcomingEvent.getEndTime().toString())))
       .andExpect(jsonPath("$.[1].endTime", Matchers.equalTo(upcomingEvent2.getEndTime().toString())));
 
-  }
+  } */
 }

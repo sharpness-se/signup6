@@ -32,18 +32,10 @@ jobs:
           docker run signup6
 
       - name: Install Postman CLI
-          run: |
-            curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh
-            - name: Login to Postman CLI
-              run: postman login --with-api-key ${{ secrets.POSTMAN_API_KEY }}
-            - name: Run API tests
-              run: |
-                postman collection run "21397567-0ea2e7e7-e725-46b9-ad77-3d5f9c61ba48"
-      - name: Install Postman CLI
-          run: |
-            curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh
-            - name: Login to Postman CLI
-              run: postman login --with-api-key ${{ secrets.POSTMAN_API_KEY }}
-            - name: Run API tests
-              run: |
-                postman collection run "21397567-0ea2e7e7-e725-46b9-ad77-3d5f9c61ba48"
+        run: |
+          curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh
+      - name: Login to Postman CLI
+        run: postman login --with-api-key ${{ secrets.POSTMAN_API_KEY }}
+      - name: Run API tests
+        run: |
+          postman collection run "21397567-0ea2e7e7-e725-46b9-ad77-3d5f9c61ba48"
