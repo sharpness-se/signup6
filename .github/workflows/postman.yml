@@ -14,6 +14,7 @@ jobs:
                   with:
                     distribution: 'zulu'
                     java-version: '17'
+
         - name: Run database container
           run: |
             docker run --name signup6db -e POSTGRES_USER=signup4 -e POSTGRES_PASSWORD=s7p2+ -e POSTGRES_DB=signup -p 5432:5432 -d postgres:latest
