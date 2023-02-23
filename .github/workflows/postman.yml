@@ -5,46 +5,33 @@ on:
   push:
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@v2
+        - name: Setup Java JDK
+                uses: actions/setup-java@v3
+                  with:
+                    distribution: 'zulu'
+                    java-version: '17'
+        - name: Run database container
+          run: |
+            docker run --name signup6db -e POSTGRES_USER=signup4 -e POSTGRES_PASSWORD=s7p2+ -e POSTGRES_DB=signup -p 5432:5432 -d postgres:latest
+          - name: Grant execute permission for gradlew
+              run: chmod +x gradlew
+          - name: Build with Gradle
+              run: ./gradlew build
+          - name: Start Spring Boot application
+              run: java -jar build/signup6-0.0.1-SNAPSHOT.jar
   run:
     runs-on: ubuntu-latest
+    needs: build
     steps:
-      - name: Checkout repository
-        parallel: false
-        uses: actions/checkout@v3
-
-      - name: Setup Java JDK
-        parallel: false
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'zulu'
-          java-version: '17'
-
-      - name: Run database container
-        parallel: false
-        run: |
-          docker run --name signup6db -e POSTGRES_USER=signup4 -e POSTGRES_PASSWORD=s7p2+ -e POSTGRES_DB=signup -p 5432:5432 -d postgres:latest
-
-      - name: Grant execute permission for gradlew
-        parallel: false
-        run: chmod +x gradlew
-
-      - name: Build & run docker image
-        parallel: true
-        run: ./gradlew bootRun
-
-      - name: Sleep for 30 seconds
-        uses: jakejarvis/wait-action@master
-        with:
-          time: '30s'
-
       - name: Install Postman CLI
-        parallel: true
         run: |
           curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh
       - name: Login to Postman CLI
-        parallel: true
         run: postman login --with-api-key ${{ secrets.POSTMAN_API_KEY }}
       - name: Run API tests
-        parallel: true
         run: |
           postman collection run "21397567-0ea2e7e7-e725-46b9-ad77-3d5f9c61ba48"
