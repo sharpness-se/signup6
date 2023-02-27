@@ -1,0 +1,837 @@
+{
+	"info": {
+		"_postman_id": "0ea2e7e7-e725-46b9-ad77-3d5f9c61ba48",
+		"name": "Goblin Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Gets",
+			"item": [
+				{
+					"name": "Event Tests",
+					"item": [
+						{
+							"name": "eventById",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "66e78012-1c0c-4e2e-9699-d4743465d83b",
+										"exec": [
+											"pm.test(\"Status test\", function (){\r",
+											"    pm.response.to.have.status(200);\r",
+											"})\r",
+											"\r",
+											"pm.test(\"Valid with body\", function(){\r",
+											"    pm.response.to.be.ok;\r",
+											"    pm.response.to.be.have.jsonBody;\r",
+											"})\r",
+											"\r",
+											"pm.test(\"OK to process\", function () {\r",
+											"    pm.response.to.not.be.error;\r",
+											"    pm.response.to.have.jsonBody();\r",
+											"    pm.response.to.not.have.jsonBody(\"error\");\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Body content test\", function (){\r",
+											"    const responseJson = pm.response.json();\r",
+											"    pm.expect(responseJson).to.eql({\r",
+											"    \"id\": -1,\r",
+											"    \"group\": {\r",
+											"        \"id\": -1,\r",
+											"        \"name\": \"Crisp Rocket Days\",\r",
+											"        \"description\": \"För dej som vill lära dej mer\"\r",
+											"    },\r",
+											"    \"name\": \"Crisp RD\",\r",
+											"    \"description\": \"Vad jag lärde mig av BigFamilyTrip\",\r",
+											"    \"startTime\": \"2021-05-03T18:00:00\",\r",
+											"    \"endTime\": \"2021-05-03T19:00:00\",\r",
+											"    \"lastSignUpDate\": \"2021-05-02\",\r",
+											"    \"venue\": \"Crisp Office\",\r",
+											"    \"allowExtraFriends\": false,\r",
+											"    \"eventStatus\": \"Created\",\r",
+											"    \"maxParticipants\": null,\r",
+											"    \"cancellationReason\": null\r",
+											"});\r",
+											"})\r",
+											"\r",
+											"pm.test(\"Not empty body\", function(){\r",
+											"    pm.response.to.not.have.jsonBody(\"\");\r",
+											"})\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"id": "523d5cfe-11c0-4399-b346-a4baa83f9975",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:8080/api/events/-1"
+							},
+							"response": []
+						},
+						{
+							"name": "eventsByGroupId",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "2ab4e135-97d0-488e-a258-7f22080d9f37",
+										"exec": [
+											"pm.test(\"Status test\", function (){\r",
+											"    pm.response.to.have.status(200);\r",
+											"})\r",
+											"\r",
+											"pm.test(\"Valid with body\", function(){\r",
+											"    pm.response.to.be.ok;\r",
+											"    pm.response.to.be.have.jsonBody;\r",
+											"})\r",
+											"\r",
+											"pm.test(\"OK to process\", function () {\r",
+											"    pm.response.to.not.be.error;\r",
+											"    pm.response.to.have.jsonBody();\r",
+											"    pm.response.to.not.have.jsonBody(\"error\");\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Body content test\", function (){\r",
+											"    const responseJson = pm.response.json();\r",
+											"    pm.expect(responseJson).to.eql([\r",
+											"        {\r",
+											"            \"id\": -1,\r",
+											"            \"group\": {\r",
+											"                \"id\": -1,\r",
+											"                \"name\": \"Crisp Rocket Days\",\r",
+											"                \"description\": \"För dej som vill lära dej mer\"\r",
+											"            },\r",
+											"            \"name\": \"Crisp RD\",\r",
+											"            \"description\": \"Vad jag lärde mig av BigFamilyTrip\",\r",
+											"            \"startTime\": \"2021-05-03T18:00:00\",\r",
+											"            \"endTime\": \"2021-05-03T19:00:00\",\r",
+											"            \"lastSignUpDate\": \"2021-05-02\",\r",
+											"            \"venue\": \"Crisp Office\",\r",
+											"            \"allowExtraFriends\": false,\r",
+											"            \"eventStatus\": \"Created\",\r",
+											"            \"maxParticipants\": null,\r",
+											"            \"cancellationReason\": null\r",
+											"        },\r",
+											"        {\r",
+											"        \"id\":-2,\r",
+											"        \"group\": {\r",
+											"            \"id\":-1,\r",
+											"            \"name\":\"Crisp Rocket Days\",\r",
+											"            \"description\":\"För dej som vill lära dej mer\"\r",
+											"        },\r",
+											"        \"name\":\"Crisp RD\",\r",
+											"        \"description\":\"Scala 3.0 och Play 3.0\",\r",
+											"        \"startTime\":\"2013-05-03T18:00:00\",\r",
+											"        \"endTime\":\"2013-05-03T18:00:00\",\r",
+											"        \"lastSignUpDate\":\"2013-05-03\",\r",
+											"        \"venue\":\"Crisp Office\",\r",
+											"        \"allowExtraFriends\":false,\r",
+											"        \"eventStatus\":\"Created\",\r",
+											"        \"maxParticipants\":null,\r",
+											"        \"cancellationReason\":null\r",
+											"        }\r",
+											"    ]);\r",
+											"})\r",
+											"\r",
+											"pm.test(\"Not empty body\", function(){\r",
+											"    pm.response.to.not.have.jsonBody(\"\");\r",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"id": "b8a78e20-55a3-4c75-bf10-f6a2617c5d07",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:8080/api/events/findAllEventsByGroupId/-1"
+							},
+							"response": []
+						},
+						{
+							"name": "upcomingEventsByGroupId",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "98e01bf8-fec9-44ae-b82b-967a006883e1",
+										"exec": [
+											"pm.test(\"Status test\", function (){\r",
+											"    pm.response.to.have.status(200);\r",
+											"})\r",
+											"\r",
+											"pm.test(\"Valid with body\", function(){\r",
+											"    pm.response.to.be.ok;\r",
+											"    pm.response.to.be.have.jsonBody;\r",
+											"})\r",
+											"\r",
+											"pm.test(\"OK to process\", function () {\r",
+											"    pm.response.to.not.be.error;\r",
+											"    pm.response.to.have.jsonBody();\r",
+											"    pm.response.to.not.have.jsonBody(\"error\");\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Body content test\", function (){\r",
+											"    const responseJson = pm.response.json();\r",
+											"    pm.expect(responseJson).to.eql([\r",
+											"    {\r",
+											"        \"id\": -67,\r",
+											"        \"group\": {\r",
+											"            \"id\": -59,\r",
+											"            \"name\": \"GroupOnlyForUnitTest\",\r",
+											"            \"description\": \"Gör inget med denna grupp tack\"\r",
+											"        },\r",
+											"        \"name\": \"EventUnitTest2\",\r",
+											"        \"description\": \"Used Unit for Testing Only\",\r",
+											"        \"startTime\": \"2030-09-09T09:00:00\",\r",
+											"        \"endTime\": \"2030-09-09T09:09:00\",\r",
+											"        \"lastSignUpDate\": \"2030-09-19\",\r",
+											"        \"venue\": \"Venue testing Unit\",\r",
+											"        \"allowExtraFriends\": false,\r",
+											"        \"eventStatus\": \"Created\",\r",
+											"        \"maxParticipants\": null,\r",
+											"        \"cancellationReason\": null\r",
+											"    }\r",
+											"    ]);\r",
+											"})\r",
+											"pm.test(\"Not empty body\", function(){\r",
+											"    pm.response.to.not.have.jsonBody(\"\");\r",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"id": "89a56cf9-06a9-41c5-aeaa-8b3e1d0f11cf",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:8080/api/events/findAllUpcomingEventsByGroupId/-59"
+							},
+							"response": []
+						},
+						{
+							"name": "upcomingEventsByUserId",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "0c57cdfc-482b-4fa1-8a9e-449add3218e2",
+										"exec": [
+											"pm.test(\"Status test\", function (){\r",
+											"    pm.response.to.have.status(200);\r",
+											"})\r",
+											"\r",
+											"pm.test(\"Valid with body\", function(){\r",
+											"    pm.response.to.be.ok;\r",
+											"    pm.response.to.be.have.jsonBody;\r",
+											"})\r",
+											"\r",
+											"pm.test(\"OK to process\", function () {\r",
+											"    pm.response.to.not.be.error;\r",
+											"    pm.response.to.have.jsonBody();\r",
+											"    pm.response.to.not.have.jsonBody(\"error\");\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Body content test\", function (){\r",
+											"    const responseJson = pm.response.json();\r",
+											"    pm.expect(responseJson).to.eql([\r",
+											"    {\r",
+											"        \"id\": -67,\r",
+											"        \"group\": {\r",
+											"            \"id\": -59,\r",
+											"            \"name\": \"GroupOnlyForUnitTest\",\r",
+											"            \"description\": \"Gör inget med denna grupp tack\"\r",
+											"        },\r",
+											"        \"name\": \"EventUnitTest2\",\r",
+											"        \"description\": \"Used Unit for Testing Only\",\r",
+											"        \"startTime\": \"2030-09-09T09:00:00\",\r",
+											"        \"endTime\": \"2030-09-09T09:09:00\",\r",
+											"        \"lastSignUpDate\": \"2030-09-19\",\r",
+											"        \"venue\": \"Venue testing Unit\",\r",
+											"        \"allowExtraFriends\": false,\r",
+											"        \"eventStatus\": \"Created\",\r",
+											"        \"maxParticipants\": null,\r",
+											"        \"cancellationReason\": null\r",
+											"    }\r",
+											"    ]);\r",
+											"})\r",
+											"pm.test(\"Not empty body\", function(){\r",
+											"    pm.response.to.not.have.jsonBody(\"\");\r",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"id": "8485a0dd-82c5-4585-8992-0b654700932c",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:8080/api/events/findUpcomingEventsByUser/-69"
+							},
+							"response": []
+						}
+					],
+					"id": "b704fd74-856b-4113-bf2a-3bb3e9c2fd97"
+				},
+				{
+					"name": "User Tests",
+					"item": [
+						{
+							"name": "userById",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f73c1ffe-3c4f-4a51-9ee9-2c8698498120",
+										"exec": [
+											"pm.test(\"Status test\", function (){\r",
+											"    pm.response.to.have.status(200);\r",
+											"})\r",
+											"\r",
+											"pm.test(\"Valid with body\", function(){\r",
+											"    pm.response.to.be.ok;\r",
+											"    pm.response.to.be.have.jsonBody;\r",
+											"})\r",
+											"\r",
+											"pm.test(\"OK to process\", function () {\r",
+											"    pm.response.to.not.be.error;\r",
+											"    pm.response.to.have.jsonBody();\r",
+											"    pm.response.to.not.have.jsonBody(\"error\");\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Body content test\", function (){\r",
+											"    const responseJson = pm.response.json();\r",
+											"    pm.expect(responseJson).to.eql({\r",
+											"    \"id\": -1,\r",
+											"    \"firstName\": \"Fredrik\",\r",
+											"    \"lastName\": \"Unknown\",\r",
+											"    \"comment\": \"En glad statsminister\",\r",
+											"    \"imageProvider\": \"Gravatar\",\r",
+											"    \"imageVersion\": null,\r",
+											"    \"providerKey\": null\r",
+											"    });\r",
+											"})\r",
+											"\r",
+											"pm.test(\"Not empty body\", function(){\r",
+											"    pm.response.to.not.have.jsonBody(\"\");\r",
+											"})\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"id": "6592ae64-740f-4618-90de-858c97275791",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "localhost:8080/api/users/-1"
+							},
+							"response": []
+						}
+					],
+					"id": "970eb862-f134-4740-ade1-8f760ba740de"
+				},
+				{
+					"name": "Participations Tests",
+					"item": [
+						{
+							"name": "participations",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "d5c33e13-da0c-451e-a0d0-af0a83763f70",
+										"exec": [
+											"pm.test(\"Status test\", function (){\r",
+											"    pm.response.to.have.status(200);\r",
+											"})\r",
+											"\r",
+											"pm.test(\"Valid with body\", function(){\r",
+											"    pm.response.to.be.ok;\r",
+											"    pm.response.to.be.have.jsonBody;\r",
+											"})\r",
+											"\r",
+											"pm.test(\"OK to process\", function () {\r",
+											"    pm.response.to.not.be.error;\r",
+											"    pm.response.to.have.jsonBody();\r",
+											"    pm.response.to.not.have.jsonBody(\"error\");\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Body content test\", function (){\r",
+											"    const responseJson = pm.response.json();\r",
+											"    pm.expect(responseJson).to.eql({\r",
+											"    \"id\": -2,\r",
+											"    \"status\": \"On\",\r",
+											"    \"numberOfParticipants\": 1,\r",
+											"    \"comment\": \"Trevligt!\",\r",
+											"    \"userId\": -1,\r",
+											"    \"eventId\": -1,\r",
+											"    \"signUpTime\": \"2021-04-02T21:15:00\"\r",
+											"});\r",
+											"})\r",
+											"\r",
+											"pm.test(\"Not empty body\", function(){\r",
+											"    pm.response.to.not.have.jsonBody(\"\");\r",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"id": "d27d9b60-97b4-4678-b8a2-2da90ce80694",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/participations?userId=-1&eventId=-1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"participations"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "-1"
+										},
+										{
+											"key": "eventId",
+											"value": "-1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "eb3756fe-b65b-4919-b000-509eca848eac"
+				},
+				{
+					"name": "Reminders Tests",
+					"item": [
+						{
+							"name": "allRemindersByEventId",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "db4a3240-e90f-448f-b31e-2db7c1eddcca",
+										"exec": [
+											"pm.test(\"Status test\", function (){\r",
+											"    pm.response.to.have.status(200);\r",
+											"})\r",
+											"\r",
+											"pm.test(\"Valid with body\", function(){\r",
+											"    pm.response.to.be.ok;\r",
+											"    pm.response.to.be.have.jsonBody;\r",
+											"})\r",
+											"\r",
+											"pm.test(\"OK to process\", function () {\r",
+											"    pm.response.to.not.be.error;\r",
+											"    pm.response.to.have.jsonBody();\r",
+											"    pm.response.to.not.have.jsonBody(\"error\");\r",
+											"});\r",
+											"\r",
+											"\r",
+											"\r",
+											"pm.test(\"Body content test\", function (){\r",
+											"    const responseJson = pm.response.json();\r",
+											"    pm.expect(responseJson).to.eql([\r",
+											"    {\r",
+											"        \"id\": -1,\r",
+											"        \"eventId\": -9,\r",
+											"        \"dateToRemind\": \"2022-11-15\"\r",
+											"    },\r",
+											"    {\r",
+											"        \"id\": -2,\r",
+											"        \"eventId\": -9,\r",
+											"        \"dateToRemind\": \"2022-11-17\"\r",
+											"    },\r",
+											"    {\r",
+											"        \"id\": -3,\r",
+											"        \"eventId\": -9,\r",
+											"        \"dateToRemind\": \"2022-11-16\"\r",
+											"    }\r",
+											"]);\r",
+											"})\r",
+											"\r",
+											"pm.test(\"Not empty body\", function(){\r",
+											"    pm.response.to.not.have.jsonBody(\"\");\r",
+											"})\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"id": "7d451205-f328-4cd4-b705-d4546bf40235",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:8080/api/reminders/findAllRemindersByEventId/-9"
+							},
+							"response": []
+						}
+					],
+					"id": "ed33486f-b3bc-4759-85cd-111773d3f2f6"
+				}
+			],
+			"id": "bfce48cb-f931-4a11-acea-d665769f2ac6"
+		},
+		{
+			"name": "Posts",
+			"item": [
+				{
+					"name": "Post participations request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d5c33e13-da0c-451e-a0d0-af0a83763f70",
+								"exec": [
+									"pm.test(\"Status test\", function (){\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Valid with body\", function(){\r",
+									"    pm.response.to.be.ok;\r",
+									"    pm.response.to.be.have.jsonBody;\r",
+									"})\r",
+									"\r",
+									"pm.test(\"OK to process\", function () {\r",
+									"    pm.response.to.not.be.error;\r",
+									"    pm.response.to.have.jsonBody();\r",
+									"    pm.response.to.not.have.jsonBody(\"error\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Not empty body\", function(){\r",
+									"    pm.response.to.not.have.jsonBody(\"\");\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "fa752b3f-28be-4b11-8027-d09e237129be",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"Maybe\",\r\n    \"numberOfParticipants\": 1,\r\n    \"comment\": \"Test post\",\r\n    \"userId\": -2,\r\n    \"eventId\": -2,\r\n    \"signUpTime\": \"2022-04-02T21:15:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/participations?userId=-1&eventId=-1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"participations"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "-1"
+								},
+								{
+									"key": "eventId",
+									"value": "-1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "e7a86d8a-e698-4b8b-86ff-fc5fa31f0821"
+		},
+		{
+			"name": "Errors",
+			"item": [
+				{
+					"name": "Error: Get User request User does not exist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f73c1ffe-3c4f-4a51-9ee9-2c8698498120",
+								"exec": [
+									"pm.test(\"Status test\", function (){\r",
+									"    pm.response.to.have.status(404);\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(\"User does not exist\");\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "6d4a15f5-71f6-4cd3-87f4-e263c9854920",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:8080/api/users/-1000"
+					},
+					"response": []
+				},
+				{
+					"name": "Error: Get event request Event does not exist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "66e78012-1c0c-4e2e-9699-d4743465d83b",
+								"exec": [
+									"pm.test(\"Status test\", function (){\r",
+									"    pm.response.to.have.status(404);\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(\"Event does not exist\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "e3e873f5-e257-412f-9ec5-3db393a86208",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/api/events/-10000"
+					},
+					"response": []
+				},
+				{
+					"name": "Error: Get participations request Non existing user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d5c33e13-da0c-451e-a0d0-af0a83763f70",
+								"exec": [
+									"pm.test(\"Status test\", function (){\r",
+									"    pm.response.to.have.status(404);\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(\"User is not member of required group\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "419e00c8-6551-4114-8401-3bb3782440d3",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/participations?userId=-100000&eventId=-1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"participations"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "-100000"
+								},
+								{
+									"key": "eventId",
+									"value": "-1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Error: Get participations request Non existing event",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d5c33e13-da0c-451e-a0d0-af0a83763f70",
+								"exec": [
+									"pm.test(\"Status test\", function (){\r",
+									"    pm.response.to.have.status(404);\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(\"User is not member of required group\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "303e830a-08bc-4919-bc06-d14c7122beaa",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/participations?userId=-1&eventId=-10000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"participations"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "-1"
+								},
+								{
+									"key": "eventId",
+									"value": "-10000"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Error: Post participations request User not in group",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d5c33e13-da0c-451e-a0d0-af0a83763f70",
+								"exec": [
+									"pm.test(\"Status test\", function (){\r",
+									"    pm.response.to.have.status(404);\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Not empty body\", function(){\r",
+									"    pm.response.to.not.have.jsonBody(\"\");\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(\"User is not member of required group\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "b64f9682-9e99-4c60-9eca-3f6361c229d0",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"On\",\r\n    \"numberOfParticipants\": 1,\r\n    \"comment\": \"User not member of group\",\r\n    \"userId\": -1,\r\n    \"eventId\": -3,\r\n    \"signUpTime\": \"2022-04-02T21:15:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/participations?userId=-1&eventId=-1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"participations"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "-1"
+								},
+								{
+									"key": "eventId",
+									"value": "-1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "77126bff-6b2f-4e1b-8801-5e83c7fa8e04"
+		}
+	]
+}
