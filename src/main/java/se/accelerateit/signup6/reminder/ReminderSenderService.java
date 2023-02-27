@@ -17,8 +17,8 @@ import se.accelerateit.signup6.model.Reminder;
 import se.accelerateit.signup6.model.User;
 import se.accelerateit.signup6.modelvalidator.EventDoesNotExistException;
 
-import javax.mail.MessagingException;
-import javax.mail.internet.MimeMessage;
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;

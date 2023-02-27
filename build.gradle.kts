@@ -1,8 +1,10 @@
 plugins {
-  id("org.springframework.boot") version "2.7.5"
+  id("org.springframework.boot") version "3.0.3"
   id("io.spring.dependency-management") version "1.1.0"
   java
 }
+
+
 
 group = "se.accelerateit"
 version = "0.0.1-SNAPSHOT"
@@ -33,7 +35,7 @@ dependencies {
   implementation("org.springframework.boot:spring-boot-starter-web")
   implementation("org.springframework.boot:spring-boot-starter-freemarker")
   implementation("org.flywaydb:flyway-core")
-  implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2")
+  implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.1")
   implementation("org.springframework.boot:spring-boot-starter-mail")
 
   implementation("com.google.cloud:spring-cloud-gcp-starter-sql-postgresql:3.4.0")

@@ -44,6 +44,7 @@ INSERT INTO public.participations VALUES (-9, 'Maybe', 'Nice!', -10, -9, 1, '202
 INSERT INTO public.reminders VALUES (-1, -9, '2022-11-15 01:00:00') ON CONFLICT DO NOTHING;
 INSERT INTO public.reminders VALUES (-2, -9, '2022-11-17 01:00:00') ON CONFLICT DO NOTHING;
 INSERT INTO public.reminders VALUES (-3, -9, '2022-11-16 01:00:00') ON CONFLICT DO NOTHING;
+INSERT INTO public.reminders VALUES (-69, -67, '2030-01-01 00:01:00') ON CONFLICT DO NOTHING;
 
 
 UPDATE public.users SET email='fredrik.unknown@mailinator.com' WHERE id=-1;

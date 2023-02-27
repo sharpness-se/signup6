@@ -16,8 +16,8 @@ import se.accelerateit.signup6.model.Event;
 import se.accelerateit.signup6.model.ParticipationStatus;
 import se.accelerateit.signup6.model.User;
 
-import javax.mail.MessagingException;
-import javax.mail.internet.MimeMessage;
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
 import java.io.IOException;
 import java.net.URI;
 import java.time.format.DateTimeFormatter;
