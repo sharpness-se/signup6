@@ -59,4 +59,5 @@ tasks.withType<Test> {
   testLogging {
     events("passed", "skipped", "failed")
   }
+  systemProperty("spring.profiles.active", "dev")
 }
