@@ -1,8 +1,7 @@
 package se.accelerateit.signup6.integrationtest.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
@@ -19,12 +18,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
+@Slf4j
 @Testcontainers
 @SpringBootTest
 @ContextConfiguration(initializers = {SignupDbTest.Initializer.class})
 class ParticipationControllerTest extends SignupDbTest {
-  static final Logger logger = LoggerFactory.getLogger(ParticipationControllerTest.class);
-
   private final ParticipationController participationController;
 
   @Autowired
@@ -36,7 +34,7 @@ class ParticipationControllerTest extends SignupDbTest {
   @Test
   void getExistingParticipation() {
     final var participation = participationController.find(-4L, -1L);
-    logger.info("participation = {}", participation);
+    log.info("participation = {}", participation);
 
     assertEquals(ParticipationStatus.Maybe, participation.getStatus());
     assertEquals(1, participation.getNumberOfParticipants());
@@ -60,7 +58,7 @@ class ParticipationControllerTest extends SignupDbTest {
     // should create a participation
     participation = participationController.updateOrCreate(participation);
     final var participationId = participation.getId();
-    logger.info("participation = {}", participation);
+    log.info("participation = {}", participation);
 
     assertEquals(ParticipationStatus.Off, participation.getStatus());
     assertEquals(1, participation.getNumberOfParticipants());
@@ -76,7 +74,7 @@ class ParticipationControllerTest extends SignupDbTest {
 
     // should update the now exiting participation
     participation = participationController.updateOrCreate(participation);
-    logger.info("participation = {}", participation);
+    log.info("participation = {}", participation);
 
     assertEquals(participationId, participation.getId());
     assertEquals(ParticipationStatus.On, participation.getStatus());

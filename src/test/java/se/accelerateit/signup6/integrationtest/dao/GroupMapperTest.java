@@ -1,8 +1,7 @@
 package se.accelerateit.signup6.integrationtest.dao;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
@@ -19,12 +18,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
+@Slf4j
 @Testcontainers
 @SpringBootTest
 @ContextConfiguration(initializers = {SignupDbTest.Initializer.class})
 class GroupMapperTest extends SignupDbTest {
-  static final Logger logger = LoggerFactory.getLogger(GroupMapperTest.class);
-
   private final GroupMapper groupMapper;
 
   @Autowired
@@ -38,7 +36,7 @@ class GroupMapperTest extends SignupDbTest {
     Optional<Group> dbResponse = groupMapper.findById(-1L);
     assertTrue(dbResponse.isPresent(), "could not find the group in db");
     Group group = dbResponse.get();
-    logger.info("group = {}", group);
+    log.info("group = {}", group);
 
     assertEquals("Crisp Rocket Days", group.getName());
     assertEquals("För dej som vill lära dej mer", group.getDescription());
@@ -60,7 +58,7 @@ class GroupMapperTest extends SignupDbTest {
     Optional<Group> dbResponse = groupMapper.findById(1L);
     assertTrue(dbResponse.isPresent(), "Could not find specified group");
     Group group = dbResponse.get();
-    logger.info("group = {}", group);
+    log.info("group = {}", group);
 
     assertEquals("Monster Consumers", group.getName());
     assertEquals("Excessive amounts of caffeine consumption", group.getDescription());

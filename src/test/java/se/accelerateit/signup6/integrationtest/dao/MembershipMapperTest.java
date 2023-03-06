@@ -1,9 +1,8 @@
 package se.accelerateit.signup6.integrationtest.dao;
 
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
@@ -19,12 +18,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@Slf4j
 @Testcontainers
 @SpringBootTest
 @ContextConfiguration(initializers = {SignupDbTest.Initializer.class})
 public class MembershipMapperTest extends SignupDbTest{
 
-    static final Logger logger = LoggerFactory.getLogger(MembershipMapperTest.class);
 
     private final MembershipMapper membershipMapper;
 
@@ -51,7 +50,7 @@ public class MembershipMapperTest extends SignupDbTest{
     void findByUserAndGroup() {
         Optional<Membership> dbResponse = membershipMapper.findByUserAndGroup(-1L, -1L);
         assertTrue(dbResponse.isPresent());
-        logger.info("Existing user and group = {}", dbResponse);
+        log.info("Existing user and group = {}", dbResponse);
         Membership membership = dbResponse.get();
 
         assertEquals(-1L,membership.getId());
@@ -60,15 +59,15 @@ public class MembershipMapperTest extends SignupDbTest{
 
         Optional<Membership> nonExistingGroup = membershipMapper.findByUserAndGroup(-1L, -5000000L);
         assertFalse(nonExistingGroup.isPresent());
-        logger.info("Non existing group = {}", nonExistingGroup);
+        log.info("Non existing group = {}", nonExistingGroup);
 
         Optional<Membership> nonExistingUser = membershipMapper.findByUserAndGroup(-1000000000L, -1L);
         assertFalse(nonExistingUser.isPresent());
-        logger.info("Non existing user = {}", nonExistingUser);
+        log.info("Non existing user = {}", nonExistingUser);
 
         Optional<Membership> nonExistingUserAndGroup = membershipMapper.findByUserAndGroup(-1000000000L, -1000000000L);
         assertFalse(nonExistingUserAndGroup.isPresent());
-        logger.info("Non existing user and group = {}", nonExistingUserAndGroup);
+        log.info("Non existing user and group = {}", nonExistingUserAndGroup);
     }
 
     @Test
@@ -80,19 +79,19 @@ public class MembershipMapperTest extends SignupDbTest{
         assertFalse(dbResponse2.isEmpty());
 
         Membership membershipOne = dbResponse.get(0);
-        logger.info("Membership one = {}", membershipOne);
+        log.info("Membership one = {}", membershipOne);
         assertEquals(-3L, membershipOne.getId());
         assertEquals(-3L, membershipOne.getUserId());
         assertEquals(-2L, membershipOne.getGroupId());
 
         Membership membershipTwo = dbResponse.get(1);
-        logger.info("Membership two = {}", membershipTwo);
+        log.info("Membership two = {}", membershipTwo);
         assertEquals(-4L, membershipTwo.getId());
         assertEquals(-4L, membershipTwo.getUserId());
         assertEquals(-2L, membershipTwo.getGroupId());
 
         Membership membership2_1 = dbResponse2.get(0);
-        logger.info("Membership 2_1 = {}", membership2_1);
+        log.info("Membership 2_1 = {}", membership2_1);
         assertEquals(-9L, membership2_1.getId());
         assertEquals(-9L, membership2_1.getUserId());
         assertEquals(-9L, membership2_1.getGroupId());

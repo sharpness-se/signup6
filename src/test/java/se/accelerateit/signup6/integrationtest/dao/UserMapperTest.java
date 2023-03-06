@@ -1,8 +1,7 @@
 package se.accelerateit.signup6.integrationtest.dao;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
@@ -25,12 +24,11 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
+@Slf4j
 @Testcontainers
 @SpringBootTest
 @ContextConfiguration(initializers = {SignupDbTest.Initializer.class})
 class UserMapperTest extends SignupDbTest {
-  static final Logger logger = LoggerFactory.getLogger(UserMapperTest.class);
-
   private final UserMapper userMapper;
   private final EventMapper eventMapper;
 
@@ -46,7 +44,7 @@ class UserMapperTest extends SignupDbTest {
     Optional<User> dbResponse = userMapper.findByEmail("admin@crisp.se");
     assertTrue(dbResponse.isPresent(), "could not find the user in db");
     User user = dbResponse.get();
-    logger.info("user = {}", user);
+    log.info("user = {}", user);
 
     assertEquals("Admin", user.getFirstName());
     assertEquals("Istratör", user.getLastName());
@@ -63,7 +61,7 @@ class UserMapperTest extends SignupDbTest {
     Optional<User> dbResponse = userMapper.findByEmail("frodo.baggins@mailinator.com");
     assertTrue(dbResponse.isPresent(), "could not find the user in db");
     User user = dbResponse.get();
-    logger.info("user = {}", user);
+    log.info("user = {}", user);
 
     assertEquals("Frodo", user.getFirstName());
     assertEquals("Baggins", user.getLastName());
@@ -80,7 +78,7 @@ class UserMapperTest extends SignupDbTest {
     Optional<User> dbResponse = userMapper.findById(-5L);
     assertTrue(dbResponse.isPresent(), "Ya boi doesn't exist in db");
     User user = dbResponse.get();
-    logger.info("user = {}", user);
+    log.info("user = {}", user);
 
     assertEquals("John", user.getFirstName());
     assertEquals("Doe", user.getLastName());
@@ -123,7 +121,7 @@ class UserMapperTest extends SignupDbTest {
     Optional<User> dbResponse = userMapper.findByEmail("Goblin@gob.com");
     assertTrue(dbResponse.isPresent(), "could not find the user in db");
     User user = dbResponse.get();
-    logger.info("user = {}", user);
+    log.info("user = {}", user);
 
     assertEquals("Goblin", user.getFirstName());
     assertEquals("Boblin", user.getLastName());
