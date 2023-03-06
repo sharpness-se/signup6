@@ -1,6 +1,6 @@
 package se.accelerateit.signup6.scheduling;
 
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Configuration;
@@ -14,7 +14,7 @@ import java.util.List;
 @Configuration
 @EnableScheduling
 @ConditionalOnProperty(name = "scheduling.enabled", matchIfMissing = true)
-@Log4j2
+@Slf4j
 public class SchedulingConfiguration {
 
   private final ReminderSenderService reminderSenderService;
