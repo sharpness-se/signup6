@@ -5,10 +5,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
-import se.accelerateit.signup6.api.GroupController;
 import se.accelerateit.signup6.api.LogEntryController;
 import se.accelerateit.signup6.api.ReminderController;
-import se.accelerateit.signup6.dao.*;
+import se.accelerateit.signup6.dao.EventMapper;
+import se.accelerateit.signup6.dao.GroupMapper;
+import se.accelerateit.signup6.dao.MembershipMapper;
+import se.accelerateit.signup6.dao.ParticipationMapper;
+import se.accelerateit.signup6.dao.ReminderMapper;
+import se.accelerateit.signup6.dao.UserMapper;
 import se.accelerateit.signup6.modelvalidator.EventValidator;
 import se.accelerateit.signup6.reminder.ReminderSenderService;
 

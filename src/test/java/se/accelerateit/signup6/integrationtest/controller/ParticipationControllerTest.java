@@ -7,11 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.testcontainers.junit.jupiter.Testcontainers;
+import se.accelerateit.signup6.api.ParticipationController;
 import se.accelerateit.signup6.integrationtest.SignupDbTest;
 import se.accelerateit.signup6.model.Participation;
 import se.accelerateit.signup6.model.ParticipationStatus;
 import se.accelerateit.signup6.modelvalidator.NotMemberOfGroupException;
-import se.accelerateit.signup6.api.ParticipationController;
 
 import java.time.LocalDateTime;
 

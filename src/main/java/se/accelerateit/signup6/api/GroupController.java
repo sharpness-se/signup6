@@ -56,8 +56,8 @@ public class GroupController extends BaseApiController {
     final var result = membershipMapper.findUsersByGroup(groupId);
     List<Optional<User>> userList = new ArrayList<>();
     if(!result.isEmpty()) {
-      for (int i = 0; i < result.size(); i++) {
-        userList.add(userMapper.findById(result.get(i).getUserId()));
+      for (se.accelerateit.signup6.model.Membership membership : result) {
+        userList.add(userMapper.findById(membership.getUserId()));
       }
       return userList;
     } else {

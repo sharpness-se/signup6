@@ -1,7 +1,5 @@
 package se.accelerateit.signup6.integrationtest;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -13,6 +11,8 @@ import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.transaction.annotation.Transactional;
 import org.testcontainers.junit.jupiter.Container;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Transactional
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)

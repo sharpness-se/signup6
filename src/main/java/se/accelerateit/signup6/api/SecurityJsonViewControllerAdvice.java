@@ -11,7 +11,7 @@ import org.springframework.web.servlet.mvc.method.annotation.AbstractMappingJack
 import se.accelerateit.signup6.model.Visibility;
 
 /**
- * Check out https://www.baeldung.com/spring-security-role-filter-json
+ * Check out <a href="https://www.baeldung.com/spring-security-role-filter-json">Filtering Jackson JSON Output Based on Spring Security Role</a>
  */
 @RestControllerAdvice
 class SecurityJsonViewControllerAdvice extends AbstractMappingJacksonResponseBodyAdvice {

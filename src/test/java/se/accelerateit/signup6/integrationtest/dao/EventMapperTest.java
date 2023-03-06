@@ -9,14 +9,20 @@ import org.springframework.test.context.ContextConfiguration;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import se.accelerateit.signup6.dao.EventMapper;
 import se.accelerateit.signup6.integrationtest.SignupDbTest;
-import se.accelerateit.signup6.model.*;
+import se.accelerateit.signup6.model.Event;
+import se.accelerateit.signup6.model.EventStatus;
+import se.accelerateit.signup6.model.Group;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 @Testcontainers
