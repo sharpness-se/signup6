@@ -1,6 +1,8 @@
 # SignUp 6
 6th version of SignUp
 
+![Build and CI](https://github.com/sharpness-se/signup6/.github/workflows/gradle.yml/badge.svg)
+
 ## Swagger and SpringDoc
 The URL to the API description is http://localhost:8080/api/swagger.html when the server is running locally.
 Check https://springdoc.org/
