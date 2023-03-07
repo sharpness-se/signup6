@@ -1,30 +1,34 @@
 package se.accelerateit.signup6.integrationtest.dao;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import se.accelerateit.signup6.dao.EventMapper;
 import se.accelerateit.signup6.integrationtest.SignupDbTest;
-import se.accelerateit.signup6.model.*;
+import se.accelerateit.signup6.model.Event;
+import se.accelerateit.signup6.model.EventStatus;
+import se.accelerateit.signup6.model.Group;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
+@Slf4j
 @Testcontainers
 @SpringBootTest
 @ContextConfiguration(initializers = {SignupDbTest.Initializer.class})
 class EventMapperTest extends SignupDbTest {
-  static final Logger logger = LoggerFactory.getLogger(EventMapperTest.class);
-
   private final EventMapper eventMapper;
 
   @Autowired
@@ -38,7 +42,7 @@ class EventMapperTest extends SignupDbTest {
     Optional<Event> dbResponse = eventMapper.findById(-1L);
     assertTrue(dbResponse.isPresent(), "could not find the event in db");
     Event event = dbResponse.get();
-    logger.info("event = {}", event);
+    log.info("event = {}", event);
 
     assertEquals("Crisp RD", event.getName());
     assertEquals("Vad jag lärde mig av BigFamilyTrip", event.getDescription());
@@ -67,7 +71,7 @@ class EventMapperTest extends SignupDbTest {
   @Test
   void findAllEventsTest() {
     List<Event> eventList = eventMapper.findAll();
-    logger.info("eventList = {}", eventList);
+    log.info("eventList = {}", eventList);
     assertEquals(6, eventList.size());
   }
 
@@ -100,7 +104,7 @@ class EventMapperTest extends SignupDbTest {
     Optional<Event> dbResponse = eventMapper.findById(1L);
     assertTrue(dbResponse.isPresent(), "could not find the user in db");
     Event event = dbResponse.get();
-    logger.info("event = {}", event);
+    log.info("event = {}", event);
 
     assertEquals("Monster consumption", event.getName());
     assertEquals("Monster drinkin innit", event.getDescription());
@@ -114,7 +118,7 @@ class EventMapperTest extends SignupDbTest {
     LocalDate testDate = LocalDate.of(2028, 1,1);
     List<Event> eventList = eventMapper.findAllUpcomingEvents(testDate);
     Event futureEvent = eventList.get(0);
-    logger.info("eventList = {}", eventList);
+    log.info("eventList = {}", eventList);
 
     assertEquals(1, eventList.size());
     assertEquals(-67, futureEvent.getId());
@@ -126,7 +130,7 @@ class EventMapperTest extends SignupDbTest {
     List<Event> eventList = eventMapper.findAllEventsByGroup(-59);
     Event pastEvent = eventList.get(0);
     Event futureEvent = eventList.get(1);
-    logger.info("eventList = {}", eventList);
+    log.info("eventList = {}", eventList);
 
     assertEquals(2, eventList.size());
     assertNotEquals(1, eventList.size());
@@ -147,7 +151,7 @@ class EventMapperTest extends SignupDbTest {
     LocalDate testDate = LocalDate.of(2028, 1,1);
     List<Event> eventList = eventMapper.findAllUpcomingEventsByGroup(testDate, -59);
     Event futureEvent = eventList.get(0);
-    logger.info("eventList = {}", eventList);
+    log.info("eventList = {}", eventList);
 
     assertEquals(1, eventList.size());
     assertNotEquals(2, eventList.size());
@@ -163,7 +167,7 @@ class EventMapperTest extends SignupDbTest {
     List<Event> eventList = eventMapper.findUpcomingEventsByUser(testDate, userId);
     Event futureEvent = eventList.get(0);
 
-    logger.info("eventList = {}", eventList);
+    log.info("eventList = {}", eventList);
     assertEquals(1, eventList.size());
     assertEquals("EventUnitTest2", futureEvent.getName());
     assertEquals(LocalDateTime.of(2030,9, 9,  9, 0, 0), futureEvent.getStartTime());

@@ -2,7 +2,9 @@ package se.accelerateit.signup6.reminder;
 
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
-import lombok.extern.log4j.Log4j2;
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
@@ -16,8 +18,6 @@ import se.accelerateit.signup6.model.Event;
 import se.accelerateit.signup6.model.ParticipationStatus;
 import se.accelerateit.signup6.model.User;
 
-import jakarta.mail.MessagingException;
-import jakarta.mail.internet.MimeMessage;
 import java.io.IOException;
 import java.net.URI;
 import java.time.format.DateTimeFormatter;
@@ -25,7 +25,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-@Log4j2
+@Slf4j
 public class MessageBuilder {
   private final JavaMailSender mailSender;
 

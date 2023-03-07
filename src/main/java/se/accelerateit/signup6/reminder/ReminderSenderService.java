@@ -1,7 +1,9 @@
 package se.accelerateit.signup6.reminder;
 
 import freemarker.template.TemplateException;
-import lombok.extern.log4j.Log4j2;
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -17,8 +19,6 @@ import se.accelerateit.signup6.model.Reminder;
 import se.accelerateit.signup6.model.User;
 import se.accelerateit.signup6.modelvalidator.EventDoesNotExistException;
 
-import jakarta.mail.MessagingException;
-import jakarta.mail.internet.MimeMessage;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Service
-@Log4j2
+@Slf4j
 public class ReminderSenderService {
 
     private final EventMapper eventMapper;

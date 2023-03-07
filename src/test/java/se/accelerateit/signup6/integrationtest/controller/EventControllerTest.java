@@ -1,8 +1,7 @@
 package se.accelerateit.signup6.integrationtest.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
@@ -15,12 +14,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
+@Slf4j
 @Testcontainers
 @SpringBootTest
 @ContextConfiguration(initializers = {SignupDbTest.Initializer.class})
 class EventControllerTest extends SignupDbTest {
-  static final Logger logger = LoggerFactory.getLogger(EventControllerTest.class);
-
   private final EventController eventController;
 
   @Autowired
@@ -32,7 +30,7 @@ class EventControllerTest extends SignupDbTest {
   @Test
   void getExistingEvent() {
     final var event = eventController.find(-2L);
-    logger.info("event = {}", event);
+    log.info("event = {}", event);
 
     assertEquals(-2L, event.getId());
     assertEquals("Crisp RD", event.getName());

@@ -144,6 +144,7 @@ class EventApiTest extends SignupApiTest {
       .andExpect(jsonPath("$.[2].description", Matchers.not(eventTwo.getDescription())));
   }
 
+  // Janne: Why is this commented out?
 /*
   @Test
   void getAllUpcomingEventsByGroup() throws Exception {

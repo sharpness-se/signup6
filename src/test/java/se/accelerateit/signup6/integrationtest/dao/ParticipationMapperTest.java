@@ -1,8 +1,7 @@
 package se.accelerateit.signup6.integrationtest.dao;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
@@ -21,12 +20,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
+@Slf4j
 @Testcontainers
 @SpringBootTest
 @ContextConfiguration(initializers = {SignupDbTest.Initializer.class})
 class ParticipationMapperTest extends SignupDbTest {
-  static final Logger logger = LoggerFactory.getLogger(ParticipationMapperTest.class);
-
   private final ParticipationMapper participationMapper;
 
   @Autowired
@@ -40,7 +38,7 @@ class ParticipationMapperTest extends SignupDbTest {
     Optional<Participation> dbResponse = participationMapper.findByUserAndEvent(-4L, -1L);
     assertTrue(dbResponse.isPresent(), "could not find the participation in db");
     Participation participation = dbResponse.get();
-    logger.info("participation = {}", participation);
+    log.info("participation = {}", participation);
 
     assertEquals(ParticipationStatus.Maybe, participation.getStatus());
     assertEquals(1, participation.getNumberOfParticipants());
@@ -62,12 +60,12 @@ class ParticipationMapperTest extends SignupDbTest {
     participation.setComment("Yes!!");
 
     int noOfRows = participationMapper.create(participation);
-    logger.info("create = {}", noOfRows);
+    log.info("create = {}", noOfRows);
 
     Optional<Participation> dbResponse = participationMapper.findByUserAndEvent(-1L, -2L);
     assertTrue(dbResponse.isPresent(), "could not find the participation in db");
     participation = dbResponse.get();
-    logger.info("participation = {}", participation);
+    log.info("participation = {}", participation);
 
     assertEquals(ParticipationStatus.On, participation.getStatus());
     assertEquals(1, participation.getNumberOfParticipants());
@@ -83,12 +81,12 @@ class ParticipationMapperTest extends SignupDbTest {
     participation.setComment("No.");
 
     int noOfRows = participationMapper.create(participation);
-    logger.info("create = {}", noOfRows);
+    log.info("create = {}", noOfRows);
 
     Optional<Participation> dbResponse = participationMapper.findByUserAndEvent(-2L, -2L);
     assertTrue(dbResponse.isPresent(), "could not find the participation in db");
     participation = dbResponse.get();
-    logger.info("participation = {}", participation);
+    log.info("participation = {}", participation);
 
     assertEquals(ParticipationStatus.Off, participation.getStatus());
     assertEquals(1, participation.getNumberOfParticipants());
@@ -100,12 +98,12 @@ class ParticipationMapperTest extends SignupDbTest {
     participation.setComment("OK!!");
     participation.stampTimeNow();
     noOfRows = participationMapper.update(participation);
-    logger.info("update = {}", noOfRows);
+    log.info("update = {}", noOfRows);
 
     dbResponse = participationMapper.findByUserAndEvent(-2L, -2L);
     assertTrue(dbResponse.isPresent(), "could not find the participation in db");
     participation = dbResponse.get();
-    logger.info("participation = {}", participation);
+    log.info("participation = {}", participation);
 
     assertEquals(ParticipationStatus.On, participation.getStatus());
     assertEquals(1, participation.getNumberOfParticipants());

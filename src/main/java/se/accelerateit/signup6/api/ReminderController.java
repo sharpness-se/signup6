@@ -1,6 +1,6 @@
 package se.accelerateit.signup6.api;
 
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,7 +14,7 @@ import se.accelerateit.signup6.reminder.ReminderSenderService;
 import java.util.List;
 
 @RestController
-@Log4j2
+@Slf4j
 public class ReminderController extends BaseApiController {
 
   private final ReminderSenderService reminderSenderService;
