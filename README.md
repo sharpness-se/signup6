@@ -1,8 +1,8 @@
 # SignUp 6
 6th version of SignUp
 
-[![Java CI with Gradle](https://github.com/sharpness-se/signup6/actions/workflows/gradle.yml/badge.svg)](https://github.com/sharpness-se/signup6/actions/workflows/gradle.yml)
-[![Automated API tests using Postman CLI](https://github.com/sharpness-se/signup6/actions/workflows/postman.yml/badge.svg)](https://github.com/sharpness-se/signup6/actions/workflows/postman.yml)
+[![Java CI with Gradle](https://github.com/sharpness-se/signup6/actions/workflows/gradle.yml/badge.svg)](https://github.com/sharpness-se/signup6/actions/workflows/gradle.yml)\
+[![Automated API tests using Postman CLI](https://github.com/sharpness-se/signup6/actions/workflows/postman.yml/badge.svg)](https://github.com/sharpness-se/signup6/actions/workflows/postman.yml)\
 [![CodeQL](https://github.com/sharpness-se/signup6/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/sharpness-se/signup6/actions/workflows/codeql-analysis.yml)
 
 ## Swagger and SpringDoc
