@@ -23,7 +23,7 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
       - name: Start Spring Boot application
-        run: java -jar build/libs/signup6-0.0.1-SNAPSHOT.jar &
+        run: java -jar build/libs/signup6-0.0.1-SNAPSHOT.jar -Dspring.profiles.active=dev &
       - name: Install Postman CLI
         run: |
           curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh
