@@ -145,7 +145,7 @@ class EventApiTest extends SignupApiTest {
   }
 
   // Janne: Why is this commented out?
-/*
+
   @Test
   void getAllUpcomingEventsByGroup() throws Exception {
     Long eventId = 99L;
@@ -180,8 +180,8 @@ class EventApiTest extends SignupApiTest {
     upcomingEventList.add(upcomingEvent);
     upcomingEventList.add(upcomingEvent2);
 
-    Mockito.when(eventMapper.findAllUpcomingEventsByGroup(LocalDate
-      .parse("2023-02-01"), groupId)).thenReturn(upcomingEventList);
+    Mockito.when(eventMapper.findAllUpcomingEventsByGroup(
+      LocalDate.now(), groupId)).thenReturn(upcomingEventList);
 
     var result = mockMvc.perform(get("/api/events/findAllUpcomingEventsByGroupId/" + groupId))
         .andExpect(status().isOk());
@@ -195,6 +195,5 @@ class EventApiTest extends SignupApiTest {
       .andExpect(jsonPath("$.[1].startTime", Matchers.equalTo(upcomingEvent2.getStartTime().toString())))
       .andExpect(jsonPath("$.[0].endTime", Matchers.equalTo(upcomingEvent.getEndTime().toString())))
       .andExpect(jsonPath("$.[1].endTime", Matchers.equalTo(upcomingEvent2.getEndTime().toString())));
-
-  } */
+  }
 }
