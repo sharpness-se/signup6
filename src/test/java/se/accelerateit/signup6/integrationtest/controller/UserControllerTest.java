@@ -8,6 +8,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import se.accelerateit.signup6.api.UserController;
 import se.accelerateit.signup6.integrationtest.SignupDbTest;
+import se.accelerateit.signup6.model.ImageProvider;
 import se.accelerateit.signup6.modelvalidator.UserDoesNotExistException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -36,6 +37,16 @@ class UserControllerTest extends SignupDbTest {
     assertEquals("Frodo", user.getFirstName());
     assertEquals("Baggins", user.getLastName());
     assertEquals("frodo.baggins@mailinator.com", user.getEmail());
+  }
+
+  @Test
+  void getGravatarUser() {
+    final var user = userController.find(-1L);
+    log.info("user = {}", user);
+
+    assertEquals(-1L, user.getId());
+    assertEquals(ImageProvider.Gravatar, user.getImageProvider());
+    assertEquals("567928b4d76658f761e0a5ee58135ec5", user.getImageVersion());
   }
 
   @Test
