@@ -41,7 +41,7 @@ dependencies {
   implementation("org.flywaydb:flyway-core")
   implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.1")
 
-  implementation("com.google.cloud:spring-cloud-gcp-starter-sql-postgresql:4.1.1")
+  implementation("com.google.cloud:spring-cloud-gcp-starter-sql-postgresql:4.1.2")
 
   compileOnly("org.projectlombok:lombok")
   annotationProcessor("org.projectlombok:lombok")
