@@ -54,7 +54,7 @@ CREATE TABLE public.events (
 );
 
 
-ALTER TABLE public.events OWNER TO signup4;
+-- ALTER TABLE public.events OWNER TO signup4;
 
 --
 -- Name: events_id_seq; Type: SEQUENCE; Schema: public; Owner: signup4
@@ -68,7 +68,7 @@ CREATE SEQUENCE public.events_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.events_id_seq OWNER TO signup4;
+-- ALTER TABLE public.events_id_seq OWNER TO signup4;
 
 --
 -- Name: events_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: signup4
@@ -90,7 +90,7 @@ CREATE TABLE public.groups (
 );
 
 
-ALTER TABLE public.groups OWNER TO signup4;
+-- ALTER TABLE public.groups OWNER TO signup4;
 
 --
 -- Name: groups_id_seq; Type: SEQUENCE; Schema: public; Owner: signup4
@@ -104,7 +104,7 @@ CREATE SEQUENCE public.groups_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.groups_id_seq OWNER TO signup4;
+-- ALTER TABLE public.groups_id_seq OWNER TO signup4;
 
 --
 -- Name: groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: signup4
@@ -125,7 +125,7 @@ CREATE TABLE public.log_entries (
 );
 
 
-ALTER TABLE public.log_entries OWNER TO signup4;
+-- ALTER TABLE public.log_entries OWNER TO signup4;
 
 --
 -- Name: log_entries_id_seq; Type: SEQUENCE; Schema: public; Owner: signup4
@@ -139,7 +139,7 @@ CREATE SEQUENCE public.log_entries_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.log_entries_id_seq OWNER TO signup4;
+-- ALTER TABLE public.log_entries_id_seq OWNER TO signup4;
 
 --
 -- Name: log_entries_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: signup4
@@ -159,7 +159,7 @@ CREATE TABLE public.memberships (
 );
 
 
-ALTER TABLE public.memberships OWNER TO signup4;
+-- ALTER TABLE public.memberships OWNER TO signup4;
 
 --
 -- Name: memberships_id_seq; Type: SEQUENCE; Schema: public; Owner: signup4
@@ -173,7 +173,7 @@ CREATE SEQUENCE public.memberships_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.memberships_id_seq OWNER TO signup4;
+-- ALTER TABLE public.memberships_id_seq OWNER TO signup4;
 
 --
 -- Name: memberships_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: signup4
@@ -197,7 +197,7 @@ CREATE TABLE public.participations (
 );
 
 
-ALTER TABLE public.participations OWNER TO signup4;
+-- ALTER TABLE public.participations OWNER TO signup4;
 
 --
 -- Name: participations_id_seq; Type: SEQUENCE; Schema: public; Owner: signup4
@@ -211,7 +211,7 @@ CREATE SEQUENCE public.participations_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.participations_id_seq OWNER TO signup4;
+-- ALTER TABLE public.participations_id_seq OWNER TO signup4;
 
 --
 -- Name: participations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: signup4
@@ -235,7 +235,7 @@ CREATE TABLE public.play_evolutions (
 );
 
 
-ALTER TABLE public.play_evolutions OWNER TO signup4;
+-- ALTER TABLE public.play_evolutions OWNER TO signup4;
 
 --
 -- Name: reminders; Type: TABLE; Schema: public; Owner: signup4
@@ -248,7 +248,7 @@ CREATE TABLE public.reminders (
 );
 
 
-ALTER TABLE public.reminders OWNER TO signup4;
+-- ALTER TABLE public.reminders OWNER TO signup4;
 
 --
 -- Name: reminders_id_seq; Type: SEQUENCE; Schema: public; Owner: signup4
@@ -262,7 +262,7 @@ CREATE SEQUENCE public.reminders_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.reminders_id_seq OWNER TO signup4;
+-- ALTER TABLE public.reminders_id_seq OWNER TO signup4;
 
 --
 -- Name: reminders_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: signup4
@@ -291,7 +291,7 @@ CREATE TABLE public.users (
 );
 
 
-ALTER TABLE public.users OWNER TO signup4;
+-- ALTER TABLE public.users OWNER TO signup4;
 
 --
 -- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: signup4
@@ -305,7 +305,7 @@ CREATE SEQUENCE public.users_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.users_id_seq OWNER TO signup4;
+-- ALTER TABLE public.users_id_seq OWNER TO signup4;
 
 --
 -- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: signup4
