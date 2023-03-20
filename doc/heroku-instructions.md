@@ -12,9 +12,10 @@ heroku login
 ## Create the Heroku app/instance
 This only has to be done _once_ for all team members. You should probably skip this step if someone else already has done this ini your team.
 
-The app is created in the Heorku cloud with three addons (PostgreSQL database, a log viewer app and a scheduler to run commands att different times):
+The app is created in the Heorku cloud in EU with the timezone for Stockholm and with three addons (PostgreSQL database, a log viewer app and a scheduler to run commands att different times):
 ```
 heroku apps:create --region eu signup6
+heroku config:add TZ="Europe/Stockholm"
 heroku addons:create heroku-postgresql:mini
 heroku addons:create papertrail:choklad
 heroku addons:create scheduler:standard
@@ -37,3 +38,11 @@ git push heroku master
 ```
 
 View the exposed API at https://signup6.herokuapp.com/api/swagger.html
+
+## Run Singup6 locally Heroku-style
+```
+gradle clean build
+heroku local -f Procfile.dev
+```
+The command `heroku local` will launch the app locally in a similar way that the Heroku cloud service will.
+When Heroku launches the app after building it, the default [Procfile](../Procfile) is used to know what command to execute. Since we want to use a local database and not the one on the Heroku cloud, we have [Procfile.dev](../Procfile.dev) for local use that wil launch using the dev profile in Spring Boot.
