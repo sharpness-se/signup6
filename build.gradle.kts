@@ -44,7 +44,7 @@ dependencies {
   implementation("commons-codec:commons-codec")
 
 
-  implementation("com.google.cloud:spring-cloud-gcp-starter-sql-postgresql:4.1.3")
+  implementation("com.google.cloud:spring-cloud-gcp-starter-sql-postgresql:4.1.4")
 
   compileOnly("org.projectlombok:lombok")
   annotationProcessor("org.projectlombok:lombok")
