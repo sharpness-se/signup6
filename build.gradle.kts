@@ -1,5 +1,5 @@
 plugins {
-  id("org.springframework.boot") version "3.0.4"
+  id("org.springframework.boot") version "3.0.5"
   id("io.spring.dependency-management") version "1.1.0"
   java
 }
@@ -32,7 +32,7 @@ dependencies {
   implementation("org.springframework.boot:spring-boot-starter-web")
   implementation("org.springframework.boot:spring-boot-starter-hateoas")
   implementation("org.springframework.boot:spring-boot-starter-actuator")
-  implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.4")
+  implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0")
 
   implementation("org.springframework.boot:spring-boot-starter-mail")
   implementation("org.springframework.boot:spring-boot-starter-freemarker")
@@ -44,7 +44,7 @@ dependencies {
   implementation("commons-codec:commons-codec")
 
 
-  implementation("com.google.cloud:spring-cloud-gcp-starter-sql-postgresql:4.1.2")
+  implementation("com.google.cloud:spring-cloud-gcp-starter-sql-postgresql:4.1.4")
 
   compileOnly("org.projectlombok:lombok")
   annotationProcessor("org.projectlombok:lombok")
@@ -53,7 +53,7 @@ dependencies {
 
   testImplementation("org.springframework.boot:spring-boot-starter-test")
 
-  implementation(platform("org.testcontainers:testcontainers-bom:1.17.6")) //import bill of materials (BOM)
+  implementation(platform("org.testcontainers:testcontainers-bom:1.18.0")) //import bill of materials (BOM)
   testImplementation("org.testcontainers:junit-jupiter")
   testImplementation("org.testcontainers:postgresql")
 }

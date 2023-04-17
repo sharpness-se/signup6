@@ -12,13 +12,22 @@ heroku login
 ## Create the Heroku app/instance
 This only has to be done _once_ for all team members. You should probably skip this step if someone else already has done this ini your team.
 
-The app is created in the Heorku cloud in EU with the timezone for Stockholm and with three addons (PostgreSQL database, a log viewer app and a scheduler to run commands att different times):
+The app is created in the Heorku cloud in EU with three addons (PostgreSQL database, a log viewer app and a scheduler to run commands att different times):
 ```
 heroku apps:create --region eu signup6
-heroku config:add TZ="Europe/Stockholm"
 heroku addons:create heroku-postgresql:mini
 heroku addons:create papertrail:choklad
 heroku addons:create scheduler:standard
+```
+
+Set some environment variables on Heroku:
+```
+heroku config:add TZ="Europe/Stockholm"
+heroku config:add SIGNUP_SMTP_HOST=smtp.gmail.com
+heroku config:add SIGNUP_SMTP_PORT=587
+heroku config:add SIGNUP_SMTP_USERNAME=signup-noreply@sharpness.se
+heroku config:add SIGNUP_SMTP_PASSWORD=<password>
+heroku config:add SIGNUP_ACTIVATE_MOCK_EMAIL=false
 ```
 
 ## Prepare your local GIT repository
