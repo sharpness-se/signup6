@@ -128,8 +128,8 @@ class EventMapperTest extends SignupDbTest {
   @Test
   void findAllEventsByGroup() {
     List<Event> eventList = eventMapper.findAllEventsByGroup(-59);
-    Event pastEvent = eventList.get(0);
-    Event futureEvent = eventList.get(1);
+    Event futureEvent = eventList.get(0);
+    Event pastEvent = eventList.get(1);
     log.info("eventList = {}", eventList);
 
     assertEquals(2, eventList.size());
