@@ -56,13 +56,13 @@ public interface EventMapper {
 
   @Result(property = "group", column = "groupx", one = @One(select = "se.accelerateit.signup6.dao.GroupMapper.findById"))
   @Select(
-    "select * from events where groupx = #{groupId}"
+    "SELECT * FROM events WHERE groupx = #{groupId} ORDER BY last_signup_date DESC"
   )
   List<Event> findAllEventsByGroup(@Param("groupId") long groupId);
 
   @Result(property = "group", column = "groupx", one = @One(select = "se.accelerateit.signup6.dao.GroupMapper.findById"))
   @Select(
-    "select * from events where last_signup_date >= #{dateToday} and groupx = #{groupId}"
+    "SELECT * FROM events WHERE last_signup_date >= #{dateToday} AND groupx = #{groupId} ORDER BY last_signup_date DESC"
   )
   List<Event> findAllUpcomingEventsByGroup(@Param("dateToday") LocalDate dateToday, @Param("groupId") long Long);
 
@@ -76,7 +76,7 @@ public interface EventMapper {
       SELECT e.*
       FROM events e, participations p
       WHERE p.event=e.id AND p.userx=#{userId} AND e.start_time >= #{dateToday} AND e.event_status != 'Cancelled'
-      ORDER BY last_signup_date ASC
+      ORDER BY last_signup_date DESC
     """)
   List<Event> findUpcomingEventsByUser(@Param("dateToday") LocalDate today, @Param("userId") Long user);
 
