@@ -33,13 +33,20 @@ INSERT INTO public.events VALUES (-9, 'Test Name', 'Test Description', 'Test Ven
 INSERT INTO public.events VALUES (-66, 'UnitTestEvent1', 'Only used for Unit Testing', 'Unit Venue', '2022-11-11 11:00:00', '2022-11-11 11:11:00', -59, '2022-11-20 00:00:00', false, 'Created', NULL, NULL) ON CONFLICT DO NOTHING;
 INSERT INTO public.events VALUES (-67, 'EventUnitTest2', 'Used Unit for Testing Only', 'Venue testing Unit', '2030-09-09 09:00:00', '2030-09-09 09:09:00', -59, '2030-09-19 00:00:00', false, 'Created', NULL, NULL) ON CONFLICT DO NOTHING;
 
+INSERT INTO public.events VALUES (-10, 'Crisp RD #3', 'BigFamilyTrip', 'Crisp Office', '2028-05-03 18:00:00', '2028-05-03 19:00:00', -1, '2028-05-02 00:00:00', false, 'Created', NULL, NULL) ON CONFLICT DO NOTHING;
+INSERT INTO public.events VALUES (-11, 'Crisp RD #4', 'BigFamilyTrip', 'Crisp Office', '2028-05-03 18:00:00', '2028-05-03 19:00:00', -1, '2028-05-02 00:00:00', false, 'Created', NULL, NULL) ON CONFLICT DO NOTHING;
+
+
 
 INSERT INTO public.participations VALUES (-1, 'Off', 'Måste till svärmor', -3, -1, 1, '2021-05-03 10:00:00') ON CONFLICT DO NOTHING;
 INSERT INTO public.participations VALUES (-2, 'On', 'Trevligt!', -1, -1, 1, '2021-04-02 21:15:00') ON CONFLICT DO NOTHING;
 INSERT INTO public.participations VALUES (-3, 'Maybe', 'Får se...', -4, -1, 1, '2021-05-01 13:00:00') ON CONFLICT DO NOTHING;
 INSERT INTO public.participations VALUES (-4, 'On', 'Nice!', -5, -1, 1, '2021-05-02 00:00:00') ON CONFLICT DO NOTHING;
 INSERT INTO public.participations VALUES (-9, 'Maybe', 'Nice!', -10, -9, 1, '2022-05-02 00:00:00') ON CONFLICT DO NOTHING;
+INSERT INTO public.participations VALUES (-69, 'On', 'Yeeeees!', -69, -67, 1, '2023-05-02 00:00:00') ON CONFLICT DO NOTHING;
 
+INSERT INTO public.participations VALUES (-10, 'On', 'Yeeeees!', -1, -10, 1, '2023-05-02 00:00:00') ON CONFLICT DO NOTHING;
+INSERT INTO public.participations VALUES (-11, 'Off', 'Noooo!', -1, -11, 1, '2023-05-02 00:00:00') ON CONFLICT DO NOTHING;
 
 INSERT INTO public.reminders VALUES (-1, -9, '2022-11-15 01:00:00') ON CONFLICT DO NOTHING;
 INSERT INTO public.reminders VALUES (-2, -9, '2022-11-17 01:00:00') ON CONFLICT DO NOTHING;
