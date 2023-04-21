@@ -14,7 +14,6 @@ import se.accelerateit.signup6.modelvalidator.WtfException;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 
 @RestController
@@ -51,13 +50,15 @@ public class GroupController extends BaseApiController {
   }
 
   @GetMapping("/groups/findUsersByGroup/{groupId}")
-  public List<Optional<User>> findUsersByGroup(@PathVariable(value = "groupId") Long groupId) {
-
+  public List<User> findUsersByGroup(@PathVariable(value = "groupId") Long groupId) {
     final var result = membershipMapper.findUsersByGroup(groupId);
-    List<Optional<User>> userList = new ArrayList<>();
     if(!result.isEmpty()) {
+      List<User> userList = new ArrayList<>();
+      // TODO: replace with SQL query to get all user objects instead of just the ids
       for (se.accelerateit.signup6.model.Membership membership : result) {
-        userList.add(userMapper.findById(membership.getUserId()));
+        User user = userMapper.findById(membership.getUserId()).orElseGet(null);
+        user.setImageVersion(UserController.adjustedImageVersion(user));
+        userList.add(user);
       }
       return userList;
     } else {

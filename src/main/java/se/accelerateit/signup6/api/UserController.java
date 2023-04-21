@@ -22,18 +22,24 @@ public class UserController extends BaseApiController {
   @GetMapping("/users/{userId}")
   public User find(@PathVariable(value = "userId") Long userId) {
     final var result = userMapper.findById(userId);
-    if(result.isPresent()) {
+    if (result.isPresent()) {
       User user = result.get();
-      if(user.getImageProvider() == ImageProvider.Gravatar) {
-        user.setImageVersion(gravatarHash(user.getEmail()));
-      }
-      return result.get();
+      user.setImageVersion(adjustedImageVersion(user));
+      return user;
     } else {
-        throw new UserDoesNotExistException();
+      throw new UserDoesNotExistException();
     }
   }
 
-  String gravatarHash(String email) {
+  public static String adjustedImageVersion(User user) {
+    if (user.getImageProvider() == ImageProvider.Gravatar) {
+      return gravatarHash(user.getEmail());
+    } else {
+      return user.getImageVersion();
+    }
+  }
+
+  static String gravatarHash(String email) {
     return DigestUtils.md5Hex(email.trim().toLowerCase());
   }
 }
