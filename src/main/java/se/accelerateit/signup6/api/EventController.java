@@ -33,32 +33,17 @@ public class EventController extends BaseApiController {
 
   @GetMapping("/events/findAllEventsByGroupId/{groupId}")
   public List<Event> findAllByGroup(@PathVariable(value = "groupId") Long groupId) {
-    final var result = eventMapper.findAllEventsByGroup(groupId);
-    if(!result.isEmpty()) {
-      return result;
-    } else {
-      throw new EventDoesNotExistException();
-    }
+    return eventMapper.findAllEventsByGroup(groupId);
   }
 
   @GetMapping("/events/findAllUpcomingEventsByGroupId/{groupId}")
   public List<Event> findAllUpComingEventsByGroup(@PathVariable(value = "groupId") Long groupId) {
-    final var result = eventMapper.findAllUpcomingEventsByGroup(LocalDate.now(), groupId);
-    if(!result.isEmpty()) {
-      return result;
-    } else {
-      throw new EventDoesNotExistException();
-    }
+    return eventMapper.findAllUpcomingEventsByGroup(LocalDate.now(), groupId);
   }
 
   @GetMapping("/events/findUpcomingEventsByUser/{userId}")
   public List<Event> findUpcomingEventsByUser(@PathVariable(value = "userId") Long userId) {
-    final var result = eventMapper.findUpcomingEventsByUser(LocalDate.now(), userId);
-    if(!result.isEmpty()) {
-      return result;
-    } else {
-      throw new EventDoesNotExistException();
-    }
+    return eventMapper.findUpcomingEventsByUser(LocalDate.now(), userId);
   }
 
 }
