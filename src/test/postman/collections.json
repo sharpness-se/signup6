@@ -179,7 +179,8 @@
 											"\r",
 											"pm.test(\"Not empty body\", function(){\r",
 											"    pm.response.to.not.have.jsonBody(\"\");\r",
-											"})"
+											"})\r",
+											""
 										],
 										"type": "text/javascript"
 									}
