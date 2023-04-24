@@ -10,6 +10,7 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 import se.accelerateit.signup6.dao.MembershipMapper;
 import se.accelerateit.signup6.integrationtest.SignupDbTest;
 import se.accelerateit.signup6.model.Membership;
+import se.accelerateit.signup6.model.User;
 
 import java.util.List;
 import java.util.Optional;
@@ -72,31 +73,25 @@ public class MembershipMapperTest extends SignupDbTest{
 
     @Test
     void findUsersByGroup() {
-        List<Membership> dbResponse = membershipMapper.findUsersByGroup(-2L);
+        List<User> dbResponse = membershipMapper.findUsersByGroup(-2L);
         assertFalse(dbResponse.isEmpty());
 
-        List<Membership> dbResponse2 = membershipMapper.findUsersByGroup(-9L);
+        List<User> dbResponse2 = membershipMapper.findUsersByGroup(-9L);
         assertFalse(dbResponse2.isEmpty());
 
-        Membership membershipOne = dbResponse.get(0);
-        log.info("Membership one = {}", membershipOne);
-        assertEquals(-3L, membershipOne.getId());
-        assertEquals(-3L, membershipOne.getUserId());
-        assertEquals(-2L, membershipOne.getGroupId());
+        User userOne = dbResponse.get(0);
+        log.info("User one = {}", userOne);
+        assertEquals(-3L, userOne.getId());
 
-        Membership membershipTwo = dbResponse.get(1);
-        log.info("Membership two = {}", membershipTwo);
-        assertEquals(-4L, membershipTwo.getId());
-        assertEquals(-4L, membershipTwo.getUserId());
-        assertEquals(-2L, membershipTwo.getGroupId());
+        User userTwo = dbResponse.get(1);
+        log.info("User two = {}", userTwo);
+        assertEquals(-4L, userTwo.getId());
 
-        Membership membership2_1 = dbResponse2.get(0);
-        log.info("Membership 2_1 = {}", membership2_1);
-        assertEquals(-9L, membership2_1.getId());
-        assertEquals(-9L, membership2_1.getUserId());
-        assertEquals(-9L, membership2_1.getGroupId());
+        User user2_1 = dbResponse2.get(0);
+        log.info("User 2_1 = {}", user2_1);
+        assertEquals(-9L, user2_1.getId());
 
-        List<Membership> nonExistingGroup = membershipMapper.findUsersByGroup(-2222222L);
+        List<User> nonExistingGroup = membershipMapper.findUsersByGroup(-2222222L);
         assertTrue(nonExistingGroup.isEmpty());
     }
 }

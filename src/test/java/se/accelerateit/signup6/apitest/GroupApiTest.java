@@ -115,9 +115,9 @@ class GroupApiTest extends SignupApiTest{
     memberTwo.setGroupId(groupId);
     memberTwo.setUserId(userTwo.getId());
 
-    List<Membership> memberList = new ArrayList<>();
-    memberList.add(memberOne);
-    memberList.add(memberTwo);
+    List<User> memberList = new ArrayList<>();
+    memberList.add(userOne);
+    memberList.add(userTwo);
 
     Mockito.when(membershipMapper.findUsersByGroup(groupId))
       .thenReturn(memberList);
