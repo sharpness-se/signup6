@@ -30,11 +30,12 @@ public class LogEntryMapperTest extends SignupDbTest {
 
   @Test
   void createAndFindALogEntry() {
-    Event event = eventMapper.findById(-1L).orElseThrow();
-    List<LogEntry> initialLogEntries = logEntryMapper.findByEvent(event);
+    long eventId = -1L;
+    Event event = eventMapper.findById(eventId).orElseThrow();
+    List<LogEntry> initialLogEntries = logEntryMapper.findByEvent(eventId);
 
     logEntryMapper.create(new LogEntry(event, "This is  a log message"));
-    List<LogEntry> currentLogEntries = logEntryMapper.findByEvent(event);
+    List<LogEntry> currentLogEntries = logEntryMapper.findByEvent(eventId);
 
     assertEquals(1, currentLogEntries.size()-initialLogEntries.size(), "Missing a log entry");
 

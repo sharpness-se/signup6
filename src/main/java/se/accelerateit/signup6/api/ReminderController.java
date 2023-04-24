@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import se.accelerateit.signup6.dao.ReminderMapper;
 import se.accelerateit.signup6.model.Reminder;
-import se.accelerateit.signup6.modelvalidator.EventDoesNotExistException;
 import se.accelerateit.signup6.modelvalidator.FailedToSendRemindersException;
 import se.accelerateit.signup6.reminder.ReminderSenderService;
 
@@ -41,12 +40,7 @@ public class ReminderController extends BaseApiController {
 
   @GetMapping("/reminders/findAllRemindersByEventId/{eventId}")
   public List<Reminder> findAllRemindersByEventId(@PathVariable(value = "eventId") Long eventId) {
-    final var result = reminderMapper.findByEventId(eventId);
-    if(!result.isEmpty()) {
-      return result;
-    } else {
-      throw new EventDoesNotExistException();
-    }
+    return reminderMapper.findByEventId(eventId);
   }
 
 }

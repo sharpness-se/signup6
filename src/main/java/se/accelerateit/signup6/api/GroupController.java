@@ -10,7 +10,6 @@ import se.accelerateit.signup6.dao.UserMapper;
 import se.accelerateit.signup6.model.Group;
 import se.accelerateit.signup6.model.User;
 import se.accelerateit.signup6.modelvalidator.GroupDoesNotExistException;
-import se.accelerateit.signup6.modelvalidator.WtfException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,12 +40,7 @@ public class GroupController extends BaseApiController {
 
   @GetMapping("/groups/all")
   public List<Group> findAllGroups() {
-    final var result = groupMapper.findAllGroups();
-    if(!result.isEmpty()) {
-      return result;
-    } else {
-      throw new WtfException();
-    }
+    return groupMapper.findAllGroups();
   }
 
   @GetMapping("/groups/findUsersByGroup/{groupId}")
@@ -56,12 +50,14 @@ public class GroupController extends BaseApiController {
       List<User> userList = new ArrayList<>();
       // TODO: replace with SQL query to get all user objects instead of just the ids
       for (se.accelerateit.signup6.model.Membership membership : result) {
-        User user = userMapper.findById(membership.getUserId()).orElseGet(null);
+        //noinspection OptionalGetWithoutIsPresent
+        User user = userMapper.findById(membership.getUserId()).get();
         user.setImageVersion(UserController.adjustedImageVersion(user));
         userList.add(user);
       }
       return userList;
     } else {
+      // TODO: return empty list instead of throwing exception
       throw new GroupDoesNotExistException();
     }
   }

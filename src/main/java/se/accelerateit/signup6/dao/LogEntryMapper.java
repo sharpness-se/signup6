@@ -2,8 +2,8 @@ package se.accelerateit.signup6.dao;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
-import se.accelerateit.signup6.model.Event;
 import se.accelerateit.signup6.model.LogEntry;
 
 import java.util.List;
@@ -13,6 +13,6 @@ public interface LogEntryMapper {
   @Insert("INSERT INTO log_entries (event, message, whenx) VALUES (#{eventId}, #{message}, #{when})")
   void create(LogEntry logEntry);
 
-  @Select("SELECT * FROM log_entries l WHERE l.event=#{id} ORDER BY l.id DESC")
-  List<LogEntry> findByEvent(Event event);
+  @Select("SELECT * FROM log_entries l WHERE l.event=#{eventId} ORDER BY l.id DESC")
+  List<LogEntry> findByEvent(@Param("eventId") long eventId);
 }
