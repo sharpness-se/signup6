@@ -24,7 +24,7 @@
 <p>Nu är det dags att anmäla sig till nästa sammankomst.</p>
 <div style="background-color: #EFEAE5; padding: 1em; border-radius: 0.3em;">
   <h3 style="font-family: expressway, arial, verdana, sans-serif;">${event.name}</h3>
-  <p>${event.description}</p>
+  <p>${event.description?no_esc}</p>
   <ul>
     <li><strong>Tid: </strong> ${formattedEventStartDate}, kl ${formattedEventStartTime} - ${formattedEventEndTime}</li>
     <li><strong>Plats: </strong> ${event.venue}</li>
