@@ -23,3 +23,11 @@ The production environment depends on the following environment variables
 | SIGNUP_SMTP_USERNAME       | <username>                       | The username to access the SMTP server                                         |
 | SIGNUP_SMTP_PASSWORD       | <password>                       | The password to access the SMTP server                                         |
 
+## Docker
+In the development environment, docker needs to be installed.
+
+### On MacOS
+Install using `brew install docker` or `brew install docker --cask`. The latter installs the Docker Desktop UI.
+Known issues:
+* If you install Docker Desktop, you are supposed to get access to the docker CLI, but if you can't do Docker commands from the terminal prompt, you might have to run `brew link --overwrite docker`
+* If testcases fail with Testcontainer complaining about _"Could not find a valid Docker environment"_, you can try running `sudo ln -s $HOME/.docker/run/docker.sock /var/run/docker.sock`

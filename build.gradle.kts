@@ -43,9 +43,6 @@ dependencies {
 
   implementation("commons-codec:commons-codec")
 
-
-  implementation("com.google.cloud:spring-cloud-gcp-starter-sql-postgresql:4.1.4")
-
   compileOnly("org.projectlombok:lombok")
   annotationProcessor("org.projectlombok:lombok")
   testCompileOnly("org.projectlombok:lombok")
@@ -53,7 +50,7 @@ dependencies {
 
   testImplementation("org.springframework.boot:spring-boot-starter-test")
 
-  implementation(platform("org.testcontainers:testcontainers-bom:1.18.0")) //import bill of materials (BOM)
+  implementation(platform("org.testcontainers:testcontainers-bom:1.18.1")) //import bill of materials (BOM)
   testImplementation("org.testcontainers:junit-jupiter")
   testImplementation("org.testcontainers:postgresql")
 }
