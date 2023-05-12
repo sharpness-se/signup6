@@ -2,31 +2,48 @@ package se.accelerateit.signup6.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
+import se.accelerateit.signup6.dao.EventMapper;
 import se.accelerateit.signup6.dao.ParticipationMapper;
-import se.accelerateit.signup6.model.Participation;
-import se.accelerateit.signup6.model.ParticipationStatus;
+import se.accelerateit.signup6.dao.UserMapper;
+import se.accelerateit.signup6.model.*;
+import se.accelerateit.signup6.modelvalidator.EventDoesNotExistException;
 import se.accelerateit.signup6.modelvalidator.EventValidator;
 import se.accelerateit.signup6.modelvalidator.NotMemberOfGroupException;
 import se.accelerateit.signup6.modelvalidator.WtfException;
 
+import java.util.List;
+
 @RestController
 public class ParticipationController extends BaseApiController {
   private final ParticipationMapper participationMapper;
+  private final UserMapper userMapper;
+  private final EventMapper eventMapper;
   private final EventValidator eventValidator;
 
   @Value("${signup.frontend.base.url}")
   private String frontendBaseUrl;
 
   @Autowired
-  ParticipationController(ParticipationMapper participationMapper, EventValidator eventValidator) {
+  ParticipationController(ParticipationMapper participationMapper, UserMapper userMapper, EventMapper eventMapper, EventValidator eventValidator) {
     this.participationMapper = participationMapper;
+    this.userMapper = userMapper;
+    this.eventMapper = eventMapper;
     this.eventValidator = eventValidator;
+  }
+
+  @GetMapping("/participations/findParticipationByEvent/{eventId}")
+  public RegistrationStatus findParticipationStatusByEvent(@PathVariable(value = "eventId") Long eventId) {
+    Event event = eventMapper.findById(eventId).orElseThrow(EventDoesNotExistException::new);
+    RegistrationStatus registrationStatus = new RegistrationStatus();
+    registrationStatus.unregisteredCounter = userMapper.findUnregisteredMembers(eventId).size();
+    registrationStatus.onCounter = userMapper.findMembersByStatus(ParticipationStatus.On, event).size();
+    registrationStatus.offCounter = userMapper.findMembersByStatus(ParticipationStatus.Off, event).size();
+    registrationStatus.maybeCounter = userMapper.findMembersByStatus(ParticipationStatus.Maybe, event).size();
+
+    return registrationStatus;
+
   }
 
 

@@ -33,12 +33,12 @@ public interface UserMapper {
     SELECT u.*
     FROM users u, memberships m
     WHERE m.userx = u.id
-      AND m.groupx = #{event.group.id}
-      AND u.id NOT IN (SELECT p.userx FROM participations p WHERE p.event = #{event.id})
+      AND m.groupx = (SELECT e.groupx FROM events e WHERE e.id = #{eventId})
+      AND u.id NOT IN (SELECT p.userx FROM participations p WHERE p.event = #{eventId})
     ORDER BY u.first_name, u.last_name
-        """
+    """
   )
-  List<User> findUnregisteredMembers(@Param("event") Event event);
+  List<User> findUnregisteredMembers(@Param("eventId") Long eventId);
 
   @Select("""
     SELECT u.*

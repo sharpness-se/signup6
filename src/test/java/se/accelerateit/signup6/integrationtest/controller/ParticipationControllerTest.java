@@ -10,6 +10,8 @@ import se.accelerateit.signup6.api.ParticipationController;
 import se.accelerateit.signup6.integrationtest.SignupDbTest;
 import se.accelerateit.signup6.model.Participation;
 import se.accelerateit.signup6.model.ParticipationStatus;
+import se.accelerateit.signup6.model.RegistrationStatus;
+import se.accelerateit.signup6.modelvalidator.EventDoesNotExistException;
 import se.accelerateit.signup6.modelvalidator.NotMemberOfGroupException;
 
 import java.time.LocalDateTime;
@@ -30,6 +32,19 @@ class ParticipationControllerTest extends SignupDbTest {
     this.participationController = participationController;
   }
 
+  @Test
+  void findParticipationStatusByEvent() {
+    RegistrationStatus registrationStatus = participationController.findParticipationStatusByEvent(-1L);
+    assertEquals(registrationStatus.onCounter, 1);
+    assertEquals(registrationStatus.maybeCounter, 0);
+    assertEquals(registrationStatus.offCounter, 0);
+    assertEquals(registrationStatus.unregisteredCounter, 1);
+
+  }
+  @Test
+  void findNonExistingParticipationStatusByEvent() {
+    assertThrows(EventDoesNotExistException.class, () -> participationController.findParticipationStatusByEvent(-1000L));
+  }
 
   @Test
   void getExistingParticipation() {

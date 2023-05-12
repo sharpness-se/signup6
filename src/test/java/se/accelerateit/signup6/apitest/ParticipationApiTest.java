@@ -4,9 +4,10 @@ import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.http.MediaType;
-import se.accelerateit.signup6.model.Participation;
-import se.accelerateit.signup6.model.ParticipationStatus;
+import se.accelerateit.signup6.model.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -18,6 +19,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 public class ParticipationApiTest extends SignupApiTest {
+
+
 
   @Test
   public void getExistingParticipation() throws Exception {
@@ -39,7 +42,34 @@ public class ParticipationApiTest extends SignupApiTest {
       .andExpect(jsonPath("$.userId", Matchers.equalTo(userId.intValue())))
       .andExpect(jsonPath("$.eventId", Matchers.equalTo(eventId.intValue())));
   }
+  @Test
+  public void findParticipationStatusByEvent() throws Exception {
+    final Long eventId = -1L;
 
+    Event event = new Event();
+    event.setId(-1L);
+    Group group = new Group();
+    group.setId(-1L);
+    event.setGroup(group);
+    Mockito.when(eventMapper.findById(eventId)).thenReturn(Optional.of(event));
+
+    List<User> users = new ArrayList<>();
+    User user = new User();
+    users.add(user);
+    List<User> emptyUsers = new ArrayList<>();
+    Mockito.when(userMapper.findUnregisteredMembers(eventId)).thenReturn(users);
+    Mockito.when(userMapper.findMembersByStatus(ParticipationStatus.On, event)).thenReturn(users);
+    Mockito.when(userMapper.findMembersByStatus(ParticipationStatus.Maybe, event)).thenReturn(emptyUsers);
+    Mockito.when(userMapper.findMembersByStatus(ParticipationStatus.Off, event)).thenReturn(emptyUsers);
+
+    mockMvc.perform(get("/api/participations/findParticipationByEvent/" + eventId))
+      .andExpect(status().isOk())
+      .andExpect(jsonPath("$.onCounter", Matchers.equalTo(1)))
+      .andExpect(jsonPath("$.maybeCounter", Matchers.equalTo(0)))
+      .andExpect(jsonPath("$.offCounter", Matchers.equalTo(0)))
+      .andExpect(jsonPath("$.unregisteredCounter", Matchers.equalTo(1)));
+
+  }
   @Test
   public void getNonExistingParticipation() throws Exception {
     final Long userId = -1L;

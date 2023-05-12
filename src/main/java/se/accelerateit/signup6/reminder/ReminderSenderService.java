@@ -53,7 +53,7 @@ public class ReminderSenderService {
     }
 
     private List<User> findUsersToRemind(Event event) {
-        List<User> unregisteredMembers = userMapper.findUnregisteredMembers(event);
+        List<User> unregisteredMembers = userMapper.findUnregisteredMembers(event.getId());
         List<User> maybeMembers = userMapper.findMembersByStatus(ParticipationStatus.Maybe, event);
         return Stream.concat(unregisteredMembers.stream(), maybeMembers.stream()).collect(Collectors.toList());
     }

@@ -139,10 +139,14 @@ class UserMapperTest extends SignupDbTest {
 
   @Test
   void findUnregisteredMembersTest() {
-    Optional<Event> event = eventMapper.findById(-9L);
-    List<User> userList = userMapper.findUnregisteredMembers(event.orElseThrow());
+    List<User> userList = userMapper.findUnregisteredMembers(-9L);
     assertFalse(userList.isEmpty());
     assertEquals(1, userList.size());
+
+    Long eventId = -3L;
+    List<User> userListTwo = userMapper.findUnregisteredMembers(eventId);
+    assertFalse(userListTwo.isEmpty());
+    assertEquals(2, userListTwo.size());
   }
 
   @Test
