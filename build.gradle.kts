@@ -39,7 +39,7 @@ dependencies {
 
   implementation("org.postgresql:postgresql")
   implementation("org.flywaydb:flyway-core")
-  implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.1")
+  implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.2")
 
   implementation("commons-codec:commons-codec")
 
