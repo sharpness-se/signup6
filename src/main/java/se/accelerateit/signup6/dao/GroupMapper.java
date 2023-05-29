@@ -17,7 +17,7 @@ public interface GroupMapper {
   )
   Optional<Group> findById(@Param("id") Long id);
 
-  @Select("select * from groups")
+  @Select("select * from groups ORDER BY name ASC")
   List<Group> findAllGroups();
 
   @Insert("""
