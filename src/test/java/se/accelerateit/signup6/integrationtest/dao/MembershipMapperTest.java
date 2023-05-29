@@ -81,11 +81,11 @@ public class MembershipMapperTest extends SignupDbTest{
 
         User userOne = dbResponse.get(0);
         log.info("User one = {}", userOne);
-        assertEquals(-3L, userOne.getId());
+        assertEquals(-4L, userOne.getId());
 
         User userTwo = dbResponse.get(1);
         log.info("User two = {}", userTwo);
-        assertEquals(-4L, userTwo.getId());
+        assertEquals(-3L, userTwo.getId());
 
         User user2_1 = dbResponse2.get(0);
         log.info("User 2_1 = {}", user2_1);

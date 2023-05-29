@@ -23,7 +23,7 @@ public interface MembershipMapper {
 
 
 
-    @Select("SELECT u.* FROM memberships m, users u WHERE m.userx=u.id AND m.groupx=#{groupId}")
+    @Select("SELECT u.* FROM memberships m, users u WHERE m.userx=u.id AND m.groupx=#{groupId} ORDER BY u.first_name ASC")
     List<User> findUsersByGroup(@Param("groupId") Long groupId);
 
     @Select("""
