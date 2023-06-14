@@ -35,10 +35,10 @@ class ParticipationControllerTest extends SignupDbTest {
   @Test
   void findParticipationStatusByEvent() {
     RegistrationStatus registrationStatus = participationController.findParticipationStatusByEvent(-1L);
-    assertEquals(registrationStatus.onCounter, 1);
-    assertEquals(registrationStatus.maybeCounter, 0);
-    assertEquals(registrationStatus.offCounter, 0);
-    assertEquals(registrationStatus.unregisteredCounter, 1);
+    assertEquals(registrationStatus.on.size(), 1);
+    assertEquals(registrationStatus.maybe.size(), 0);
+    assertEquals(registrationStatus.off.size(), 0);
+    assertEquals(registrationStatus.unregistered.size(), 1);
 
   }
   @Test

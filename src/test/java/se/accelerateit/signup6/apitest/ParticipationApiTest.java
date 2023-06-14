@@ -64,10 +64,10 @@ public class ParticipationApiTest extends SignupApiTest {
 
     mockMvc.perform(get("/api/participations/findParticipationByEvent/" + eventId))
       .andExpect(status().isOk())
-      .andExpect(jsonPath("$.onCounter", Matchers.equalTo(1)))
-      .andExpect(jsonPath("$.maybeCounter", Matchers.equalTo(0)))
-      .andExpect(jsonPath("$.offCounter", Matchers.equalTo(0)))
-      .andExpect(jsonPath("$.unregisteredCounter", Matchers.equalTo(1)));
+      .andExpect(jsonPath("$.on.length()", Matchers.equalTo(1)))
+      .andExpect(jsonPath("$.maybe.length()", Matchers.equalTo(0)))
+      .andExpect(jsonPath("$.off.length()", Matchers.equalTo(0)))
+      .andExpect(jsonPath("$.unregistered.length()", Matchers.equalTo(1)));
 
   }
   @Test

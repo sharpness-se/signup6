@@ -13,8 +13,6 @@ import se.accelerateit.signup6.modelvalidator.EventValidator;
 import se.accelerateit.signup6.modelvalidator.NotMemberOfGroupException;
 import se.accelerateit.signup6.modelvalidator.WtfException;
 
-import java.util.List;
-
 @RestController
 public class ParticipationController extends BaseApiController {
   private final ParticipationMapper participationMapper;
@@ -37,15 +35,13 @@ public class ParticipationController extends BaseApiController {
   public RegistrationStatus findParticipationStatusByEvent(@PathVariable(value = "eventId") Long eventId) {
     Event event = eventMapper.findById(eventId).orElseThrow(EventDoesNotExistException::new);
     RegistrationStatus registrationStatus = new RegistrationStatus();
-    registrationStatus.unregisteredCounter = userMapper.findUnregisteredMembers(eventId).size();
-    registrationStatus.onCounter = userMapper.findMembersByStatus(ParticipationStatus.On, event).size();
-    registrationStatus.offCounter = userMapper.findMembersByStatus(ParticipationStatus.Off, event).size();
-    registrationStatus.maybeCounter = userMapper.findMembersByStatus(ParticipationStatus.Maybe, event).size();
+    registrationStatus.unregistered = userMapper.findUnregisteredMembers(eventId);
+    registrationStatus.on = userMapper.findMembersByStatus(ParticipationStatus.On, event);
+    registrationStatus.off = userMapper.findMembersByStatus(ParticipationStatus.Off, event);
+    registrationStatus.maybe = userMapper.findMembersByStatus(ParticipationStatus.Maybe, event);
 
     return registrationStatus;
-
   }
-
 
   @GetMapping("/participations")
   public Participation find(@RequestParam(value = "userId") Long userId,
