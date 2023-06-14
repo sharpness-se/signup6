@@ -1,1 +1,1 @@
-web: java -jar -Dspring.profiles.active=dev -Dspring.cloud.gcp.core.enabled=false build/libs/signup6-0.0.1-SNAPSHOT.jar
+web: java -jar -Dspring.profiles.active=dev build/libs/signup6-0.0.1-SNAPSHOT.jar
