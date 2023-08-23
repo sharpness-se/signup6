@@ -26,16 +26,13 @@ repositories {
 
 
 dependencies {
-  // TODO: when we have Spring Security running, see https://springdoc.org/#spring-security-support
-  //implementation("org.springdoc:springdoc-openapi-security:1.6.13")
-
   implementation("org.springframework.boot:spring-boot-starter-web")
   implementation("org.springframework.boot:spring-boot-starter-hateoas")
-  implementation("org.springframework.boot:spring-boot-starter-actuator")
   implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0")
-
   implementation("org.springframework.boot:spring-boot-starter-mail")
   implementation("org.springframework.boot:spring-boot-starter-freemarker")
+
+  //implementation("org.springframework.boot:spring-boot-starter-security")
 
   implementation("org.postgresql:postgresql")
   implementation("org.flywaydb:flyway-core")
