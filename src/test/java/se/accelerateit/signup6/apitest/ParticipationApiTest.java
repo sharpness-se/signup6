@@ -3,7 +3,9 @@ package se.accelerateit.signup6.apitest;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
+import se.accelerateit.signup6.SecurityConfiguration;
 import se.accelerateit.signup6.model.*;
 
 import java.util.ArrayList;
@@ -17,7 +19,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
-
+@Import(SecurityConfiguration.class)
 public class ParticipationApiTest extends SignupApiTest {
 
 

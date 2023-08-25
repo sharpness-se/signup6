@@ -3,6 +3,8 @@ package se.accelerateit.signup6.apitest;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.springframework.context.annotation.Import;
+import se.accelerateit.signup6.SecurityConfiguration;
 import se.accelerateit.signup6.model.Event;
 import se.accelerateit.signup6.model.Group;
 
@@ -18,7 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static se.accelerateit.signup6.model.EventStatus.Created;
 
-
+@Import(SecurityConfiguration.class)
 class EventApiTest extends SignupApiTest {
 
   @Test
