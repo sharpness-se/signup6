@@ -625,6 +625,78 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Post event request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d5c33e13-da0c-451e-a0d0-af0a83763f70",
+								"exec": [
+									"pm.test(\"Status test\", function (){\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Valid with body\", function(){\r",
+									"    pm.response.to.be.ok;\r",
+									"    pm.response.to.be.have.jsonBody;\r",
+									"})\r",
+									"\r",
+									"pm.test(\"OK to process\", function () {\r",
+									"    pm.response.to.not.be.error;\r",
+									"    pm.response.to.have.jsonBody();\r",
+									"    pm.response.to.not.have.jsonBody(\"error\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Not empty body\", function(){\r",
+									"    pm.response.to.not.have.jsonBody(\"\");\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "17a9ca4f-d474-4823-8b6a-cc2c75403b92",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"Maybe\",\r\n    \"numberOfParticipants\": 1,\r\n    \"comment\": \"Test post\",\r\n    \"userId\": -2,\r\n    \"eventId\": -2,\r\n    \"signUpTime\": \"2022-04-02T21:15:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/participations?userId=-1&eventId=-1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"participations"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "-1"
+								},
+								{
+									"key": "eventId",
+									"value": "-1"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"id": "e7a86d8a-e698-4b8b-86ff-fc5fa31f0821"
