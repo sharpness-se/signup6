@@ -15,7 +15,7 @@ public class SecurityConfiguration {
   public SecurityFilterChain configure(HttpSecurity http) throws Exception {
 
     http
-      .csrf(csrf -> csrf.disable())
+      .csrf(csrf -> csrf.disable()) //Should this be enabled?
       .authorizeHttpRequests((authorizeHttpRequests)  -> authorizeHttpRequests
         .requestMatchers(
             "/api/swagger-ui/**"
@@ -24,6 +24,7 @@ public class SecurityConfiguration {
           , "/api/events/findAllEventsByGroupId/**"
           , "/api/events/findAllUpcomingEventsByGroupId/**"
           , "/api/events/findUpcomingEventsByUser/**"
+          , "/api/events/create"
           , "/api/groups/*"
           , "/api/groups/findUsersByGroup/**"
           , "/api/groups/all"

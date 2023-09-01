@@ -4,6 +4,7 @@ import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.context.annotation.Import;
+import org.springframework.http.MediaType;
 import se.accelerateit.signup6.SecurityConfiguration;
 import se.accelerateit.signup6.model.Event;
 import se.accelerateit.signup6.model.Group;
@@ -15,6 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -195,5 +197,50 @@ class EventApiTest extends SignupApiTest {
       .andExpect(jsonPath("$.[1].startTime", Matchers.equalTo(upcomingEvent2.getStartTime().toString())))
       .andExpect(jsonPath("$.[0].endTime", Matchers.equalTo(upcomingEvent.getEndTime().toString())))
       .andExpect(jsonPath("$.[1].endTime", Matchers.equalTo(upcomingEvent2.getEndTime().toString())));
+  }
+
+  @Test
+  void createEvent() throws Exception {
+
+    Group group = new Group();
+    group.setId(-50L);
+    group.setName("Group 50");
+    group.setDescription("Beskrivning");
+    group.setMailFrom("email@email.com");
+    group.setMailSubjectPrefix("Prefix!");
+
+    Event testEvent = new Event();
+    testEvent.setId(-50L);
+    testEvent.setName("Create Event Test Name");
+    testEvent.setDescription("Event beskrivning");
+    testEvent.setStartTime(LocalDateTime.parse("2050-12-24T14:15:01"));
+    testEvent.setEndTime(LocalDateTime.parse("2050-12-24T23:00:01"));
+    testEvent.setLastSignUpDate(LocalDate.parse("2050-12-13"));
+    testEvent.setVenue("Adress 1");
+    testEvent.setAllowExtraFriends(true);
+    testEvent.setEventStatus(Created);
+    testEvent.setMaxParticipants(null);
+    testEvent.setCancellationReason(null);
+    testEvent.setGroup(group);
+
+    mockMvc.perform(post("/api/events/create")
+        .content(jsonMapper.writeValueAsString(testEvent))
+        .contentType(MediaType.APPLICATION_JSON))
+      .andExpect(status().isOk())
+      .andExpect(jsonPath("$.id", Matchers.equalTo(testEvent.getId().intValue())))
+      .andExpect(jsonPath("$.name", Matchers.equalTo(testEvent.getName())))
+      .andExpect(jsonPath("$.description", Matchers.equalTo(testEvent.getDescription())))
+      .andExpect(jsonPath("$.startTime", Matchers.equalTo("2050-12-24T14:15:01")))
+      .andExpect(jsonPath("$.endTime", Matchers.equalTo("2050-12-24T23:00:01")))
+      .andExpect(jsonPath("$.lastSignUpDate", Matchers.equalTo("2050-12-13")))
+      .andExpect(jsonPath("$.venue", Matchers.equalTo(testEvent.getVenue())))
+      .andExpect(jsonPath("$.allowExtraFriends", Matchers.equalTo(testEvent.isAllowExtraFriends())))
+      .andExpect(jsonPath("$.eventStatus", Matchers.equalTo("Created")))
+      .andExpect(jsonPath("$.maxParticipants", Matchers.equalTo(testEvent.getMaxParticipants())))
+      .andExpect(jsonPath("$.cancellationReason", Matchers.equalTo(testEvent.getCancellationReason())))
+      .andExpect(jsonPath("$.group.id", Matchers.equalTo(testEvent.getGroup().getId().intValue())));
+
+    Mockito.verify(eventMapper, Mockito.times(1)).createEvent(testEvent);
+
   }
 }
