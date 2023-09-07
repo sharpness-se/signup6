@@ -142,6 +142,71 @@
 							"response": []
 						},
 						{
+							"name": "Authenticate",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "66e78012-1c0c-4e2e-9699-d4743465d83b",
+										"exec": [
+											"pm.test(\"Status test\", function (){\r",
+											"    pm.response.to.have.status(200);\r",
+											"})\r",
+											"\r",
+											"pm.test(\"Valid with body\", function(){\r",
+											"    pm.response.to.be.ok;\r",
+											"    pm.response.to.be.have.jsonBody;\r",
+											"})\r",
+											"\r",
+											"pm.test(\"OK to process\", function () {\r",
+											"    pm.response.to.not.be.error;\r",
+											"    pm.response.to.have.jsonBody();\r",
+											"    pm.response.to.not.have.jsonBody(\"error\");\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Body content test\", function (){\r",
+											"    const responseJson = pm.response.json();\r",
+											"    pm.expect(responseJson).to.eql({\r",
+											"    \"id\": -1,\r",
+											"    \"group\": {\r",
+											"        \"id\": -1,\r",
+											"        \"name\": \"Crisp Rocket Days\",\r",
+											"        \"description\": \"För dej som vill lära dej mer\"\r",
+											"    },\r",
+											"    \"name\": \"Crisp RD\",\r",
+											"    \"description\": \"Vad jag lärde mig av BigFamilyTrip\",\r",
+											"    \"startTime\": \"2021-05-03T18:00:00\",\r",
+											"    \"endTime\": \"2021-05-03T19:00:00\",\r",
+											"    \"lastSignUpDate\": \"2021-05-02\",\r",
+											"    \"venue\": \"Crisp Office\",\r",
+											"    \"allowExtraFriends\": false,\r",
+											"    \"eventStatus\": \"Created\",\r",
+											"    \"maxParticipants\": null,\r",
+											"    \"cancellationReason\": null\r",
+											"});\r",
+											"})\r",
+											"\r",
+											"pm.test(\"Not empty body\", function(){\r",
+											"    pm.response.to.not.have.jsonBody(\"\");\r",
+											"})\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"id": "0d29e781-80a5-4647-88fc-78284a079c1f",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:8080/api/events/-1"
+							},
+							"response": []
+						},
+						{
 							"name": "eventsByGroupId",
 							"event": [
 								{
