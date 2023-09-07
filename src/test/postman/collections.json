@@ -692,7 +692,7 @@
 					"response": []
 				},
 				{
-					"name": "Post participations request Copy",
+					"name": "Register new user",
 					"event": [
 						{
 							"listen": "test",
