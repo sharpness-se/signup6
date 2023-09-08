@@ -142,71 +142,6 @@
 							"response": []
 						},
 						{
-							"name": "Authenticate",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "66e78012-1c0c-4e2e-9699-d4743465d83b",
-										"exec": [
-											"pm.test(\"Status test\", function (){\r",
-											"    pm.response.to.have.status(200);\r",
-											"})\r",
-											"\r",
-											"pm.test(\"Valid with body\", function(){\r",
-											"    pm.response.to.be.ok;\r",
-											"    pm.response.to.be.have.jsonBody;\r",
-											"})\r",
-											"\r",
-											"pm.test(\"OK to process\", function () {\r",
-											"    pm.response.to.not.be.error;\r",
-											"    pm.response.to.have.jsonBody();\r",
-											"    pm.response.to.not.have.jsonBody(\"error\");\r",
-											"});\r",
-											"\r",
-											"pm.test(\"Body content test\", function (){\r",
-											"    const responseJson = pm.response.json();\r",
-											"    pm.expect(responseJson).to.eql({\r",
-											"    \"id\": -1,\r",
-											"    \"group\": {\r",
-											"        \"id\": -1,\r",
-											"        \"name\": \"Crisp Rocket Days\",\r",
-											"        \"description\": \"För dej som vill lära dej mer\"\r",
-											"    },\r",
-											"    \"name\": \"Crisp RD\",\r",
-											"    \"description\": \"Vad jag lärde mig av BigFamilyTrip\",\r",
-											"    \"startTime\": \"2021-05-03T18:00:00\",\r",
-											"    \"endTime\": \"2021-05-03T19:00:00\",\r",
-											"    \"lastSignUpDate\": \"2021-05-02\",\r",
-											"    \"venue\": \"Crisp Office\",\r",
-											"    \"allowExtraFriends\": false,\r",
-											"    \"eventStatus\": \"Created\",\r",
-											"    \"maxParticipants\": null,\r",
-											"    \"cancellationReason\": null\r",
-											"});\r",
-											"})\r",
-											"\r",
-											"pm.test(\"Not empty body\", function(){\r",
-											"    pm.response.to.not.have.jsonBody(\"\");\r",
-											"})\r",
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"id": "0d29e781-80a5-4647-88fc-78284a079c1f",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": "http://localhost:8080/api/events/-1"
-							},
-							"response": []
-						},
-						{
 							"name": "eventsByGroupId",
 							"event": [
 								{
@@ -757,78 +692,6 @@
 					"response": []
 				},
 				{
-					"name": "Register new user",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "d5c33e13-da0c-451e-a0d0-af0a83763f70",
-								"exec": [
-									"pm.test(\"Status test\", function (){\r",
-									"    pm.response.to.have.status(200);\r",
-									"})\r",
-									"\r",
-									"pm.test(\"Valid with body\", function(){\r",
-									"    pm.response.to.be.ok;\r",
-									"    pm.response.to.be.have.jsonBody;\r",
-									"})\r",
-									"\r",
-									"pm.test(\"OK to process\", function () {\r",
-									"    pm.response.to.not.be.error;\r",
-									"    pm.response.to.have.jsonBody();\r",
-									"    pm.response.to.not.have.jsonBody(\"error\");\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Not empty body\", function(){\r",
-									"    pm.response.to.not.have.jsonBody(\"\");\r",
-									"})"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"id": "f16f22de-46d4-44f0-a827-55213650b753",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"status\": \"Maybe\",\r\n    \"numberOfParticipants\": 1,\r\n    \"comment\": \"Test post\",\r\n    \"userId\": -2,\r\n    \"eventId\": -2,\r\n    \"signUpTime\": \"2022-04-02T21:15:00\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/participations?userId=-1&eventId=-1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"participations"
-							],
-							"query": [
-								{
-									"key": "userId",
-									"value": "-1"
-								},
-								{
-									"key": "eventId",
-									"value": "-1"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Post event request",
 					"event": [
 						{
@@ -1146,7 +1009,217 @@
 		},
 		{
 			"name": "New Folder",
-			"item": [],
+			"item": [
+				{
+					"name": "Authenticate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "66e78012-1c0c-4e2e-9699-d4743465d83b",
+								"exec": [
+									"pm.test(\"Status test\", function (){\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Valid with body\", function(){\r",
+									"    pm.response.to.be.ok;\r",
+									"    pm.response.to.be.have.jsonBody;\r",
+									"})\r",
+									"\r",
+									"pm.test(\"OK to process\", function () {\r",
+									"    pm.response.to.not.be.error;\r",
+									"    pm.response.to.have.jsonBody();\r",
+									"    pm.response.to.not.have.jsonBody(\"error\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Body content test\", function (){\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.eql({\r",
+									"    \"id\": -1,\r",
+									"    \"group\": {\r",
+									"        \"id\": -1,\r",
+									"        \"name\": \"Crisp Rocket Days\",\r",
+									"        \"description\": \"För dej som vill lära dej mer\"\r",
+									"    },\r",
+									"    \"name\": \"Crisp RD\",\r",
+									"    \"description\": \"Vad jag lärde mig av BigFamilyTrip\",\r",
+									"    \"startTime\": \"2021-05-03T18:00:00\",\r",
+									"    \"endTime\": \"2021-05-03T19:00:00\",\r",
+									"    \"lastSignUpDate\": \"2021-05-02\",\r",
+									"    \"venue\": \"Crisp Office\",\r",
+									"    \"allowExtraFriends\": false,\r",
+									"    \"eventStatus\": \"Created\",\r",
+									"    \"maxParticipants\": null,\r",
+									"    \"cancellationReason\": null\r",
+									"});\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Not empty body\", function(){\r",
+									"    pm.response.to.not.have.jsonBody(\"\");\r",
+									"})\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "0d29e781-80a5-4647-88fc-78284a079c1f",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/api/events/-1"
+					},
+					"response": []
+				},
+				{
+					"name": "Register new user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d5c33e13-da0c-451e-a0d0-af0a83763f70",
+								"exec": [
+									"pm.test(\"Status test\", function (){\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Valid with body\", function(){\r",
+									"    pm.response.to.be.ok;\r",
+									"    pm.response.to.be.have.jsonBody;\r",
+									"})\r",
+									"\r",
+									"pm.test(\"OK to process\", function () {\r",
+									"    pm.response.to.not.be.error;\r",
+									"    pm.response.to.have.jsonBody();\r",
+									"    pm.response.to.not.have.jsonBody(\"error\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Not empty body\", function(){\r",
+									"    pm.response.to.not.have.jsonBody(\"\");\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "f16f22de-46d4-44f0-a827-55213650b753",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"Maybe\",\r\n    \"numberOfParticipants\": 1,\r\n    \"comment\": \"Test post\",\r\n    \"userId\": -2,\r\n    \"eventId\": -2,\r\n    \"signUpTime\": \"2022-04-02T21:15:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/participations?userId=-1&eventId=-1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"participations"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "-1"
+								},
+								{
+									"key": "eventId",
+									"value": "-1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register new user DEMO",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d5c33e13-da0c-451e-a0d0-af0a83763f70",
+								"exec": [
+									"pm.test(\"Status test\", function (){\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Valid with body\", function(){\r",
+									"    pm.response.to.be.ok;\r",
+									"    pm.response.to.be.have.jsonBody;\r",
+									"})\r",
+									"\r",
+									"pm.test(\"OK to process\", function () {\r",
+									"    pm.response.to.not.be.error;\r",
+									"    pm.response.to.have.jsonBody();\r",
+									"    pm.response.to.not.have.jsonBody(\"error\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Not empty body\", function(){\r",
+									"    pm.response.to.not.have.jsonBody(\"\");\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "5395e5db-f7f6-43fc-86a5-fa2efa691133",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"Maybe\",\r\n    \"numberOfParticipants\": 1,\r\n    \"comment\": \"Test post\",\r\n    \"userId\": -2,\r\n    \"eventId\": -2,\r\n    \"signUpTime\": \"2022-04-02T21:15:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/participations?userId=-1&eventId=-1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"participations"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "-1"
+								},
+								{
+									"key": "eventId",
+									"value": "-1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
 			"id": "6387756d-648e-4e37-8a7e-da0c700a589e"
 		}
 	]
