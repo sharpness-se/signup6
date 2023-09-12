@@ -15,6 +15,7 @@ import se.accelerateit.signup6.dao.ReminderMapper;
 import se.accelerateit.signup6.dao.UserMapper;
 import se.accelerateit.signup6.modelvalidator.EventValidator;
 import se.accelerateit.signup6.reminder.ReminderSenderService;
+import se.accelerateit.signup6.security.auth.AuthenticationController;
 
 @WebMvcTest
 public abstract class SignupApiTest {
@@ -51,6 +52,9 @@ public abstract class SignupApiTest {
 
   @MockBean
   protected ReminderController reminderController;
+
+  @MockBean
+  protected AuthenticationController authenticationController;
 
   protected final ObjectMapper jsonMapper;
 

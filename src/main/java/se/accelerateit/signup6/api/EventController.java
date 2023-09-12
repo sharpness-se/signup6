@@ -55,4 +55,10 @@ public class EventController extends BaseApiController {
     return eventMapper.findUpcomingEventsByUser(LocalDate.now(), userId);
   }
 
+  // TODO: Remove before production
+  @GetMapping("/events/luckynumber")
+  public int luckyNumber69() {
+    return 69;
+  }
+
 }

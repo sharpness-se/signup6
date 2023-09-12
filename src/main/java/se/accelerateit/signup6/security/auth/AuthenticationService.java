@@ -59,16 +59,16 @@ public class AuthenticationService {
                 .orElseThrow();
 // TODO: Again, UserDetails.
         SecUser userDetails = new SecUser();
+        userDetails.setId(user.getId());
         userDetails.setFirstName(user.getFirstName());
         userDetails.setEmail(user.getEmail());
         userDetails.setPassword(user.getPwd());
         userDetails.setPermission(user.getPermission());
 
         var jwtToken = jwtService.generateToken(userDetails);
-        System.out.println("JWT Token: " + jwtToken);
+        System.out.println("JWT Token bitch: " + jwtToken);
         //var builtToken = AuthenticationResponse.builder().token(jwtToken).build();
         //System.out.println(builtToken);
-        System.out.println(AuthenticationResponse.builder().token(jwtToken).build());
         return AuthenticationResponse.builder().token(jwtToken).build();
 
     }

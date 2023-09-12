@@ -4,10 +4,10 @@ import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.context.annotation.Import;
-import se.accelerateit.signup6.SecurityConfiguration;
 import se.accelerateit.signup6.model.Group;
 import se.accelerateit.signup6.model.Membership;
 import se.accelerateit.signup6.model.User;
+import se.accelerateit.signup6.security.config.SecurityConfiguration;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
-import se.accelerateit.signup6.SecurityConfiguration;
+import se.accelerateit.signup6.security.config.SecurityConfiguration;
 import se.accelerateit.signup6.model.Event;
 import se.accelerateit.signup6.model.Group;
 
