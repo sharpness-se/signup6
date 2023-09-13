@@ -1,10 +1,14 @@
 package se.accelerateit.signup6.apitest;
 
 import org.hamcrest.Matchers;
+import org.json.JSONObject;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.ResultActions;
 import se.accelerateit.signup6.security.config.SecurityConfiguration;
 import se.accelerateit.signup6.model.Event;
 import se.accelerateit.signup6.model.Group;
@@ -15,8 +19,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -24,6 +30,19 @@ import static se.accelerateit.signup6.model.EventStatus.Created;
 
 @Import(SecurityConfiguration.class)
 class EventApiTest extends SignupApiTest {
+
+  String token;
+
+  @BeforeEach
+  void setUp() throws Exception {
+    ResultActions resultActions = mockMvc
+      .perform(post("/v1/auth/authenticate")
+        .with(httpBasic("steffe.seker@sharpness.se", "sekerhet")));
+    MvcResult mvcResult = resultActions.andDo(print()).andReturn();
+    String contentAsString = mvcResult.getResponse().getContentAsString();
+    JSONObject json = new JSONObject(contentAsString);
+    token = "Bearer " + json.getJSONObject("data").getString("token");
+  }
 
   @Test
   void getExistingEvent() throws Exception {
@@ -54,7 +73,7 @@ class EventApiTest extends SignupApiTest {
 
     Mockito.when(eventMapper.findById(eventId)).thenReturn(Optional.of(event));
 
-    var result = mockMvc.perform(get("/api/events/" + eventId)).andExpect(status().isOk());
+    var result = mockMvc.perform(get("/api/events/" + eventId).header("Authorization", token)).andExpect(status().isOk());
 
     // TODO: verify other visibilities than Visibility.Public
     result

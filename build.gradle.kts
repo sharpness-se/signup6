@@ -50,6 +50,7 @@ dependencies {
   testAnnotationProcessor("org.projectlombok:lombok")
 
   testImplementation("org.springframework.boot:spring-boot-starter-test")
+  testImplementation("org.springframework.security:spring-security-test:6.1.3")
 
   implementation(platform("org.testcontainers:testcontainers-bom:1.19.0")) //import bill of materials (BOM)
   testImplementation("org.testcontainers:junit-jupiter")

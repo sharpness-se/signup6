@@ -16,6 +16,8 @@ import se.accelerateit.signup6.dao.UserMapper;
 import se.accelerateit.signup6.modelvalidator.EventValidator;
 import se.accelerateit.signup6.reminder.ReminderSenderService;
 import se.accelerateit.signup6.security.auth.AuthenticationController;
+import se.accelerateit.signup6.security.config.JwtAuthenticationFilter;
+import se.accelerateit.signup6.security.config.SecurityConfiguration;
 
 @WebMvcTest
 public abstract class SignupApiTest {
@@ -55,6 +57,12 @@ public abstract class SignupApiTest {
 
   @MockBean
   protected AuthenticationController authenticationController;
+
+  @MockBean
+  protected JwtAuthenticationFilter jwtAuthenticationFilter;
+
+  @MockBean
+  protected SecurityConfiguration securityConfiguration;
 
   protected final ObjectMapper jsonMapper;
 

@@ -4,7 +4,6 @@ import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.context.annotation.Import;
-//import se.accelerateit.signup6.SecurityConfiguration;
 import se.accelerateit.signup6.model.ImageProvider;
 import se.accelerateit.signup6.model.Permission;
 import se.accelerateit.signup6.model.User;

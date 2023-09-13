@@ -1,9 +1,11 @@
 package se.accelerateit.signup6.security.auth;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import se.accelerateit.signup6.model.Visibility;
 
 @Data
 @Builder
@@ -12,6 +14,6 @@ import lombok.NoArgsConstructor;
 public class AuthenticationResponse {
 
 
-    private String token;
+    @JsonView(Visibility.Public.class) private String token;
 
 }
