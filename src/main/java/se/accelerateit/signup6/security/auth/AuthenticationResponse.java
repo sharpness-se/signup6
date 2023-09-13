@@ -13,7 +13,7 @@ import se.accelerateit.signup6.model.Visibility;
 @NoArgsConstructor
 public class AuthenticationResponse {
 
-
-    @JsonView(Visibility.Public.class) private String token;
+    @JsonView(Visibility.Public.class)
+    private String token;
 
 }
