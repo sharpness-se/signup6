@@ -3,11 +3,15 @@ package se.accelerateit.signup6.apitest;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
+import se.accelerateit.signup6.api.GroupController;
+import se.accelerateit.signup6.dao.GroupMapper;
+import se.accelerateit.signup6.dao.MembershipMapper;
+import se.accelerateit.signup6.dao.UserMapper;
 import se.accelerateit.signup6.model.Group;
 import se.accelerateit.signup6.model.Membership;
 import se.accelerateit.signup6.model.User;
-import se.accelerateit.signup6.security.config.SecurityConfiguration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,8 +21,17 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@Import(SecurityConfiguration.class)
-class GroupApiTest extends SignupApiTest{
+@Import(GroupController.class)
+class GroupApiTest extends SignupApiTest {
+
+  @MockBean
+  private GroupMapper groupMapper;
+
+  @MockBean
+  private MembershipMapper membershipMapper;
+
+  @MockBean
+  private UserMapper userMapper;
 
   @Test
   void findGroupById() throws Exception {

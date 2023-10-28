@@ -1,5 +1,5 @@
 plugins {
-  id("org.springframework.boot") version "3.1.3"
+  id("org.springframework.boot") version "3.1.5"
   id("io.spring.dependency-management") version "1.1.3"
   java
 }
@@ -50,9 +50,9 @@ dependencies {
   testAnnotationProcessor("org.projectlombok:lombok")
 
   testImplementation("org.springframework.boot:spring-boot-starter-test")
-  testImplementation("org.springframework.security:spring-security-test:6.1.3")
+  testImplementation("org.springframework.security:spring-security-test")
 
-  implementation(platform("org.testcontainers:testcontainers-bom:1.19.0")) //import bill of materials (BOM)
+  implementation(platform("org.testcontainers:testcontainers-bom:1.19.1")) //import bill of materials (BOM)
   testImplementation("org.testcontainers:junit-jupiter")
   testImplementation("org.testcontainers:postgresql")
 }

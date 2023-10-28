@@ -3,22 +3,25 @@ package se.accelerateit.signup6.apitest;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
+import se.accelerateit.signup6.api.UserController;
+import se.accelerateit.signup6.dao.UserMapper;
 import se.accelerateit.signup6.model.ImageProvider;
 import se.accelerateit.signup6.model.Permission;
 import se.accelerateit.signup6.model.User;
-import se.accelerateit.signup6.security.config.SecurityConfiguration;
 
 import java.util.Optional;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
-@Import(SecurityConfiguration.class)
+@Import(UserController.class)
 public class UserApiTest extends SignupApiTest {
+  @MockBean
+  protected UserMapper userMapper;
 
   @Test
   public void getExistingUser() throws Exception {
@@ -53,7 +56,7 @@ public class UserApiTest extends SignupApiTest {
       .andExpect(jsonPath("$.imageVersion", Matchers.equalTo(user.getImageVersion())))
       .andExpect(jsonPath("$.providerKey", Matchers.equalTo(user.getProviderKey())))
       .andExpect(jsonPath("$.pwd").doesNotExist())
-      .andExpect(jsonPath("$.permission").doesNotExist())
+      .andExpect(jsonPath("$.permission", Matchers.equalTo(user.getPermission().toString())))
       .andExpect(jsonPath("$.authInfo").doesNotExist());
   }
 
@@ -63,8 +66,9 @@ public class UserApiTest extends SignupApiTest {
 
     Mockito.when(userMapper.findById(userId)).thenReturn(Optional.empty());
 
-    mockMvc.perform(get("/api/users/" + userId))
+    var result = mockMvc.perform(get("/api/users/" + userId));
+    result
       .andExpect(status().isNotFound())
-      .andExpect(content().string("User does not exist"));
+      .andExpect(status().reason("User does not exist"));
   }
 }

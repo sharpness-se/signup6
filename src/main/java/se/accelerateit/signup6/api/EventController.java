@@ -1,11 +1,15 @@
 package se.accelerateit.signup6.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 import se.accelerateit.signup6.dao.EventMapper;
 import se.accelerateit.signup6.model.Event;
-import se.accelerateit.signup6.modelvalidator.DataModelException;
 import se.accelerateit.signup6.modelvalidator.EventDoesNotExistException;
+import se.accelerateit.signup6.modelvalidator.MissingParametersException;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -23,7 +27,7 @@ public class EventController extends BaseApiController {
   @PostMapping("/events/create")
   public Event createEvent(@RequestBody Event event) {
     if (event == null || event.getGroup() == null || event.getName() == null || event.getStartTime() == null) {
-      throw new DataModelException("Invalid event data");
+      throw new MissingParametersException();
     } else {
       eventMapper.createEvent(event);
     }

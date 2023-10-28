@@ -3,10 +3,19 @@ package se.accelerateit.signup6.apitest;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
-import se.accelerateit.signup6.model.*;
-import se.accelerateit.signup6.security.config.SecurityConfiguration;
+import se.accelerateit.signup6.api.ParticipationController;
+import se.accelerateit.signup6.dao.EventMapper;
+import se.accelerateit.signup6.dao.ParticipationMapper;
+import se.accelerateit.signup6.dao.UserMapper;
+import se.accelerateit.signup6.model.Event;
+import se.accelerateit.signup6.model.Group;
+import se.accelerateit.signup6.model.Participation;
+import se.accelerateit.signup6.model.ParticipationStatus;
+import se.accelerateit.signup6.model.User;
+import se.accelerateit.signup6.modelvalidator.EventValidator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,15 +23,25 @@ import java.util.Optional;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
-@Import(SecurityConfiguration.class)
+@Import(ParticipationController.class)
 public class ParticipationApiTest extends SignupApiTest {
 
 
+  @MockBean
+  private ParticipationMapper participationMapper;
+
+  @MockBean
+  private EventValidator eventValidator;
+
+  @MockBean
+  private EventMapper eventMapper;
+
+  @MockBean
+  private UserMapper userMapper;
 
   @Test
   public void getExistingParticipation() throws Exception {
@@ -44,6 +63,7 @@ public class ParticipationApiTest extends SignupApiTest {
       .andExpect(jsonPath("$.userId", Matchers.equalTo(userId.intValue())))
       .andExpect(jsonPath("$.eventId", Matchers.equalTo(eventId.intValue())));
   }
+
   @Test
   public void findParticipationStatusByEvent() throws Exception {
     final Long eventId = -1L;
@@ -72,6 +92,7 @@ public class ParticipationApiTest extends SignupApiTest {
       .andExpect(jsonPath("$.unregistered.length()", Matchers.equalTo(1)));
 
   }
+
   @Test
   public void getNonExistingParticipation() throws Exception {
     final Long userId = -1L;
@@ -99,7 +120,7 @@ public class ParticipationApiTest extends SignupApiTest {
 
     mockMvc.perform(get("/api/participations").param("userId", userId.toString()).param("eventId", eventId.toString()))
       .andExpect(status().isNotFound())
-      .andExpect(content().string("User is not member of required group"));
+      .andExpect(status().reason("User is not member of required group"));
   }
 
   @Test
@@ -116,8 +137,8 @@ public class ParticipationApiTest extends SignupApiTest {
 
 
     mockMvc.perform(post("/api/participations")
-      .content(jsonMapper.writeValueAsString(participation))
-      .contentType(MediaType.APPLICATION_JSON))
+        .content(jsonMapper.writeValueAsString(participation))
+        .contentType(MediaType.APPLICATION_JSON))
       .andExpect(status().isOk())
       .andExpect(jsonPath("$.id", Matchers.equalTo(id.intValue())))
       .andExpect(jsonPath("$.status", Matchers.equalTo(ParticipationStatus.On.toString())))
@@ -141,8 +162,8 @@ public class ParticipationApiTest extends SignupApiTest {
     Mockito.when(eventValidator.isMemberOfGroupForEvent(userId, eventId)).thenReturn(true);
 
     mockMvc.perform(post("/api/participations")
-      .content(jsonMapper.writeValueAsString(participation))
-      .contentType(MediaType.APPLICATION_JSON))
+        .content(jsonMapper.writeValueAsString(participation))
+        .contentType(MediaType.APPLICATION_JSON))
       .andExpect(status().isOk())
       .andExpect(jsonPath("$.id", Matchers.equalTo(id.intValue())))
       .andExpect(jsonPath("$.status", Matchers.equalTo(ParticipationStatus.On.toString())))
@@ -168,10 +189,10 @@ public class ParticipationApiTest extends SignupApiTest {
 
 
     mockMvc.perform(post("/api/participations")
-      .content(jsonMapper.writeValueAsString(participation))
-      .contentType(MediaType.APPLICATION_JSON))
+        .content(jsonMapper.writeValueAsString(participation))
+        .contentType(MediaType.APPLICATION_JSON))
       .andExpect(status().isNotFound())
-      .andExpect(content().string("User is not member of required group"));
+      .andExpect(status().reason("User is not member of required group"));
 
     Mockito.verify(participationMapper, Mockito.never()).update(participation);
     Mockito.verify(participationMapper, Mockito.never()).create(participation);
@@ -190,10 +211,10 @@ public class ParticipationApiTest extends SignupApiTest {
     Mockito.when(eventValidator.isMemberOfGroupForEvent(userId, eventId)).thenReturn(true);
 
     mockMvc.perform(post("/api/participations")
-      .content(jsonMapper.writeValueAsString(participation))
-      .contentType(MediaType.APPLICATION_JSON))
+        .content(jsonMapper.writeValueAsString(participation))
+        .contentType(MediaType.APPLICATION_JSON))
       .andExpect(status().isInternalServerError())
-      .andExpect(content().string("This doesn't make sense. Don't know what's going on."));
+      .andExpect(status().reason("This doesn't make sense. Don't know what's going on."));
   }
 
 }
