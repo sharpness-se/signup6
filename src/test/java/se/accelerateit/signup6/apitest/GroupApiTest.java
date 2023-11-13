@@ -21,7 +21,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@Import(GroupController.class)
+@Import(GroupController.class) // must ask  @WebMvcTest to create the controller we are testing
 class GroupApiTest extends SignupApiTest {
 
   @MockBean

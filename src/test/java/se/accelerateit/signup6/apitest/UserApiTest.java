@@ -18,7 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
-@Import(UserController.class)
+@Import(UserController.class) // must ask  @WebMvcTest to create the controller we are testing
 public class UserApiTest extends SignupApiTest {
   @MockBean
   protected UserMapper userMapper;

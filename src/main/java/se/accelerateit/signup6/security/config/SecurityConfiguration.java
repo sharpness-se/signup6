@@ -49,12 +49,9 @@ public class SecurityConfiguration {
             "/v1/auth/**",
             "/v1/auth/*",
             "/v1/auth/register",
-            "/v1/auth/authenticate")
-          .permitAll()
-          .requestMatchers(HttpMethod.POST, "/api/participations")
-          .permitAll()
-          .anyRequest()
-          .authenticated();
+            "/v1/auth/authenticate").permitAll()
+          .requestMatchers(HttpMethod.POST, "/api/participations").permitAll()
+          .anyRequest().authenticated();
       })
       .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
     //.authenticationProvider(authenticationProvider)

@@ -30,7 +30,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static se.accelerateit.signup6.model.EventStatus.Created;
 
-@Import(EventController.class)
+@Import(EventController.class) // must ask  @WebMvcTest to create the controller we are testing
 class EventApiTest extends SignupApiTest {
 
 

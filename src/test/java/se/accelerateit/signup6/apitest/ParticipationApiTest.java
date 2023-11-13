@@ -27,7 +27,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
-@Import(ParticipationController.class)
+@Import(ParticipationController.class) // must ask  @WebMvcTest to create the controller we are testing
 public class ParticipationApiTest extends SignupApiTest {
 
 
