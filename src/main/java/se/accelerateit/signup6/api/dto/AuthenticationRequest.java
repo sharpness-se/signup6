@@ -1,4 +1,4 @@
-package se.accelerateit.signup6.security.auth;
+package se.accelerateit.signup6.api.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

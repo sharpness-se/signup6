@@ -1,4 +1,4 @@
-package se.accelerateit.signup6.security.config;
+package se.accelerateit.signup6.security;
 
 
 import io.jsonwebtoken.Claims;
@@ -18,7 +18,10 @@ import java.util.function.Function;
 @Service
 public class JwtService {
 
+    // TODO: This should be read from a file or environment variable
     private static final String SECRET_KEY = "c20f5d16450398c9209be58e649ccdb397eb14381bb11e0e3ef00e5525e02e88";
+
+    public static final int ONE_DAY_MILLIS = 1000 * 60 * 60 * 24;
 
     public String extractUsername(String jwToken) {
         return extractClaim(jwToken, Claims::getSubject);
@@ -39,7 +42,7 @@ public class JwtService {
                 .setClaims(extraClaims)
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
+                .setExpiration(new Date(System.currentTimeMillis() + ONE_DAY_MILLIS))
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)
                 .compact();
     }

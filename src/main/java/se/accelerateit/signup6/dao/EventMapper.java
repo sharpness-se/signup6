@@ -1,5 +1,6 @@
 package se.accelerateit.signup6.dao;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.One;
@@ -22,7 +23,7 @@ public interface EventMapper {
   Optional<Event> findById(@Param("id") Long id);
 
   @Select(
-          "select * from events"
+    "select * from events"
   )
   List<Event> findAll();
 
@@ -43,15 +44,19 @@ public interface EventMapper {
                   #{cancellationReason})
                   """
   )
-  void createEvent(Event event);
+  Long createEvent(Event event);
+
+  @Delete(
+    "delete from events where id=#{id}"
+  )
+  void deleteEvent(@Param("id") Long id);
+
 
   @Result(property = "group", column = "groupx", one = @One(select = "se.accelerateit.signup6.dao.GroupMapper.findById"))
   @Select(
-          "select * from events where last_signup_date >= #{dateToday}"
+    "select * from events where last_signup_date >= #{dateToday}"
   )
   List<Event> findAllUpcomingEvents(@Param("dateToday") LocalDate dateToday);
-
-  //abc
 
 
   @Result(property = "group", column = "groupx", one = @One(select = "se.accelerateit.signup6.dao.GroupMapper.findById"))

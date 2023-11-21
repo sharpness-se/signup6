@@ -1,41 +1,34 @@
-package se.accelerateit.signup6.model;
+package se.accelerateit.signup6.security;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import se.accelerateit.signup6.model.User;
 
 import java.util.Collection;
 import java.util.List;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class SecUser implements UserDetails {
+public class LoggedInUser implements UserDetails {
 
-  private Long id;
-  private String firstName;
-  private String email;
-  private String password;
-  private Permission permission;
+  private User user;
+
+  public LoggedInUser(User user) {
+    this.user = user;
+  }
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
-    return List.of(new SimpleGrantedAuthority(permission.name()));
+    return List.of(new SimpleGrantedAuthority(user.getPermission().name()));
   }
 
   @Override
   public String getPassword() {
-    return password;
+    return user.getPwd();
   }
 
   @Override
   public String getUsername() {
-    return email;
+    return user.getEmail();
   }
 
   @Override
