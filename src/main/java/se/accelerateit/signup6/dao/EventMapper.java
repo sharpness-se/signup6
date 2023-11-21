@@ -4,6 +4,7 @@ import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.One;
+import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Select;
@@ -44,7 +45,8 @@ public interface EventMapper {
                   #{cancellationReason})
                   """
   )
-  Long createEvent(Event event);
+  @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
+  void createEvent(Event event);
 
   @Delete(
     "delete from events where id=#{id}"

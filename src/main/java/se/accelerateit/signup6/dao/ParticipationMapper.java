@@ -2,6 +2,7 @@ package se.accelerateit.signup6.dao;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Select;
@@ -33,6 +34,7 @@ public interface ParticipationMapper {
     insert into participations (status, comment, userx, event, number_of_participants, signup_time)
       values (#{status}, #{comment}, #{userId}, #{eventId}, #{numberOfParticipants}, #{signUpTime})
   """)
+  @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
   int create(Participation participation);
 
   @Update("""

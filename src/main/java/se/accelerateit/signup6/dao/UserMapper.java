@@ -2,6 +2,7 @@ package se.accelerateit.signup6.dao;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import se.accelerateit.signup6.model.Event;
@@ -72,5 +73,6 @@ public interface UserMapper {
     #{authInfo})
     """
   )
+  @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
   void createUser(User user);
 }

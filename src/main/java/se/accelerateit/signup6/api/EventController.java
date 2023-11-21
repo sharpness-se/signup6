@@ -29,10 +29,10 @@ public class EventController extends BaseApiController {
   @PostMapping("/events/create")
   public Event createEvent(@RequestBody Event event) {
     try {
-      Long id = eventMapper.createEvent(event);
-      return eventMapper.findById(id).orElseThrow(WtfException::new);
+      eventMapper.createEvent(event);
+      return eventMapper.findById(event.getId()).orElseThrow(WtfException::new);
     } catch (DataIntegrityViolationException e) {
-      throw new MissingParametersException();
+      throw new MissingParametersException(e);
     }
   }
 

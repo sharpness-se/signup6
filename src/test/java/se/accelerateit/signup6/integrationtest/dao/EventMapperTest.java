@@ -20,6 +20,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -99,10 +100,11 @@ class EventMapperTest extends SignupDbTest {
     monster.setGroup(existingIdGroup);
 
     eventMapper.createEvent(monster);
+    assertNotNull(monster.getId(), "could not create the event in db");
 
 
-    Optional<Event> dbResponse = eventMapper.findById(1L);
-    assertTrue(dbResponse.isPresent(), "could not find the user in db");
+    Optional<Event> dbResponse = eventMapper.findById(monster.getId());
+    assertTrue(dbResponse.isPresent(), "could not find the event in db: " + monster.getId());
     Event event = dbResponse.get();
     log.info("event = {}", event);
 
