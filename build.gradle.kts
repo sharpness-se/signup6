@@ -1,6 +1,6 @@
 plugins {
   id("org.springframework.boot") version "3.1.5"
-  id("io.spring.dependency-management") version "1.1.4"
+  id("io.spring.dependency-management") version "1.1.3"
   java
 }
 
@@ -38,6 +38,10 @@ dependencies {
   implementation("org.flywaydb:flyway-core")
   implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.2")
 
+  implementation("io.jsonwebtoken:jjwt-api:0.11.5")
+  implementation("io.jsonwebtoken:jjwt-impl:0.11.5")
+  implementation("io.jsonwebtoken:jjwt-jackson:0.11.5")
+
   implementation("commons-codec:commons-codec")
 
   compileOnly("org.projectlombok:lombok")
@@ -46,6 +50,7 @@ dependencies {
   testAnnotationProcessor("org.projectlombok:lombok")
 
   testImplementation("org.springframework.boot:spring-boot-starter-test")
+  testImplementation("org.springframework.security:spring-security-test")
 
   implementation(platform("org.testcontainers:testcontainers-bom:1.19.3")) //import bill of materials (BOM)
   testImplementation("org.testcontainers:junit-jupiter")
