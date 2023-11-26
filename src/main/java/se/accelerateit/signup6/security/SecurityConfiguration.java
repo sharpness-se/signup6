@@ -30,36 +30,35 @@ public class SecurityConfiguration {
   public SecurityFilterChain requestMatchers(HttpSecurity httpSecurity) throws Exception {
     httpSecurity.
       csrf(AbstractHttpConfigurer::disable)
-      .authorizeHttpRequests(auth -> {
-        auth.requestMatchers(HttpMethod.GET,
-            "/api/v1/auth/**",
-            "/api/swagger-ui/**",
-            "/api/v3/api-docs/**",
-            "/api/events/findAllEventsByGroupId/**",
-            "/api/events/findAllUpcomingEventsByGroupId/**",
-            "/api/events/findUpcomingEventsByUser/**",
-            "/api/events/*",
-            "/api/groups/*",
-            "/api/groups/findUsersByGroup/**",
-            "/api/groups/all",
-            "/api/participations",
-            "/api/participations/registration",
-            "/api/participations/findParticipationByEvent/**",
-            "/api/users/*",
-            "/api/reminders/trigger",
-            "/api/reminders/findAllRemindersByEventId/**",
-            "/api/logentry/findEntriesByEventId/**",
-            "/api/v1/auth/register",
-            "/api/v1/auth/**",
-            "/api/v1/auth/*",
-            "/api/v1/*",
-            "/v1/auth/**",
-            "/v1/auth/*",
-            "/v1/auth/register",
-            "/v1/auth/authenticate").permitAll()
-          .requestMatchers(HttpMethod.POST, "/api/participations").permitAll()
-          .anyRequest().authenticated();
-      })
+      .authorizeHttpRequests(auth -> auth.requestMatchers(HttpMethod.GET,
+          "/api/v1/auth/**",
+          "/api/swagger-ui/**",
+          "/api/v3/api-docs/**",
+          "/api/events/findAllEventsByGroupId/**",
+          "/api/events/findAllUpcomingEventsByGroupId/**",
+          "/api/events/findUpcomingEventsByUser/**",
+          "/api/events/*",
+          "/api/groups/*",
+          "/api/groups/findUsersByGroup/**",
+          "/api/groups/all",
+          "/api/participations",
+          "/api/participations/registration",
+          "/api/participations/findParticipationByEvent/**",
+          "/api/users/*",
+          "/api/reminders/trigger",
+          "/api/reminders/findAllRemindersByEventId/**",
+          "/api/logentry/findEntriesByEventId/**",
+          "/api/v1/auth/register",
+          "/api/v1/auth/**",
+          "/api/v1/auth/*",
+          "/api/v1/*",
+          "/v1/auth/**",
+          "/v1/auth/*",
+          "/v1/auth/register",
+          "/v1/auth/authenticate").permitAll()
+        .requestMatchers(HttpMethod.POST, "/api/participations").permitAll()
+        .requestMatchers("/error").permitAll() // stops Spring Security from converting 404 to 401 errors
+        .anyRequest().authenticated())
       .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
     .authenticationProvider(authenticationProvider())
     .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

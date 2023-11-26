@@ -1,8 +1,10 @@
 {
 	"info": {
-		"_postman_id": "0ea2e7e7-e725-46b9-ad77-3d5f9c61ba48",
-		"name": "Goblin Collection",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+		"_postman_id": "7da1097d-3260-4529-9c5d-e7355240141d",
+		"name": "Signup6 API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26211674",
+		"_collection_link": "https://sharpness-ab.postman.co/workspace/Team-Workspace~1b22975d-1d10-4d79-89dd-bd39a1540fd1/collection/26211674-7da1097d-3260-4529-9c5d-e7355240141d?action=share&source=collection_link&creator=26211674"
 	},
 	"item": [
 		{
@@ -17,7 +19,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "66e78012-1c0c-4e2e-9699-d4743465d83b",
 										"exec": [
 											"pm.test(\"Status test\", function (){\r",
 											"    pm.response.to.have.status(200);\r",
@@ -65,14 +66,20 @@
 									}
 								}
 							],
-							"id": "523d5cfe-11c0-4399-b346-a4baa83f9975",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "http://localhost:8080/api/events/-1"
+								"url": {
+									"raw": "{{host}}/api/events/-1",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"events",
+										"-1"
+									]
+								}
 							},
 							"response": []
 						},
@@ -82,7 +89,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "66e78012-1c0c-4e2e-9699-d4743465d83b",
 										"exec": [
 											"pm.test(\"Status test\", function (){\r",
 											"    pm.response.to.have.status(200);\r",
@@ -130,14 +136,20 @@
 									}
 								}
 							],
-							"id": "0e6253b0-33b1-4304-8b27-05a0d343a96d",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "http://localhost:8080/api/events/-1"
+								"url": {
+									"raw": "{{host}}/api/events/-1",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"events",
+										"-1"
+									]
+								}
 							},
 							"response": []
 						},
@@ -147,7 +159,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "2ab4e135-97d0-488e-a258-7f22080d9f37",
 										"exec": [
 											"pm.test(\"Status test\", function (){\r",
 											"    pm.response.to.have.status(200);\r",
@@ -251,14 +262,21 @@
 									}
 								}
 							],
-							"id": "b8a78e20-55a3-4c75-bf10-f6a2617c5d07",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "http://localhost:8080/api/events/findAllEventsByGroupId/-1"
+								"url": {
+									"raw": "{{host}}/api/events/findAllEventsByGroupId/-1",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"events",
+										"findAllEventsByGroupId",
+										"-1"
+									]
+								}
 							},
 							"response": []
 						},
@@ -268,7 +286,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "98e01bf8-fec9-44ae-b82b-967a006883e1",
 										"exec": [
 											"pm.test(\"Status test\", function (){\r",
 											"    pm.response.to.have.status(200);\r",
@@ -316,14 +333,21 @@
 									}
 								}
 							],
-							"id": "89a56cf9-06a9-41c5-aeaa-8b3e1d0f11cf",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "http://localhost:8080/api/events/findAllUpcomingEventsByGroupId/-59"
+								"url": {
+									"raw": "{{host}}/api/events/findAllUpcomingEventsByGroupId/-59",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"events",
+										"findAllUpcomingEventsByGroupId",
+										"-59"
+									]
+								}
 							},
 							"response": []
 						},
@@ -333,7 +357,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "0c57cdfc-482b-4fa1-8a9e-449add3218e2",
 										"exec": [
 											"pm.test(\"Status test\", function (){\r",
 											"    pm.response.to.have.status(200);\r",
@@ -381,19 +404,25 @@
 									}
 								}
 							],
-							"id": "8485a0dd-82c5-4585-8992-0b654700932c",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "http://localhost:8080/api/events/findUpcomingEventsByUser/-69"
+								"url": {
+									"raw": "{{host}}/api/events/findUpcomingEventsByUser/-69",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"events",
+										"findUpcomingEventsByUser",
+										"-69"
+									]
+								}
 							},
 							"response": []
 						}
-					],
-					"id": "b704fd74-856b-4113-bf2a-3bb3e9c2fd97"
+					]
 				},
 				{
 					"name": "User Tests",
@@ -404,7 +433,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "f73c1ffe-3c4f-4a51-9ee9-2c8698498120",
 										"exec": [
 											"pm.test(\"Status test\", function (){\r",
 											"    pm.response.to.have.status(200);\r",
@@ -444,19 +472,24 @@
 									}
 								}
 							],
-							"id": "6592ae64-740f-4618-90de-858c97275791",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "localhost:8080/api/users/-1"
+								"url": {
+									"raw": "{{host}}/api/users/-1",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"-1"
+									]
+								}
 							},
 							"response": []
 						}
-					],
-					"id": "970eb862-f134-4740-ade1-8f760ba740de"
+					]
 				},
 				{
 					"name": "Participations Tests",
@@ -467,7 +500,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "d5c33e13-da0c-451e-a0d0-af0a83763f70",
 										"exec": [
 											"pm.test(\"Status test\", function (){\r",
 											"    pm.response.to.have.status(200);\r",
@@ -505,20 +537,14 @@
 									}
 								}
 							],
-							"id": "d27d9b60-97b4-4678-b8a2-2da90ce80694",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
 							"request": {
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/api/participations?userId=-1&eventId=-1",
-									"protocol": "http",
+									"raw": "{{host}}/api/participations?userId=-1&eventId=-1",
 									"host": [
-										"localhost"
+										"{{host}}"
 									],
-									"port": "8080",
 									"path": [
 										"api",
 										"participations"
@@ -537,8 +563,7 @@
 							},
 							"response": []
 						}
-					],
-					"id": "eb3756fe-b65b-4919-b000-509eca848eac"
+					]
 				},
 				{
 					"name": "Reminders Tests",
@@ -549,7 +574,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "db4a3240-e90f-448f-b31e-2db7c1eddcca",
 										"exec": [
 											"pm.test(\"Status test\", function (){\r",
 											"    pm.response.to.have.status(200);\r",
@@ -599,22 +623,27 @@
 									}
 								}
 							],
-							"id": "7d451205-f328-4cd4-b705-d4546bf40235",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "http://localhost:8080/api/reminders/findAllRemindersByEventId/-9"
+								"url": {
+									"raw": "{{host}}/api/reminders/findAllRemindersByEventId/-9",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"reminders",
+										"findAllRemindersByEventId",
+										"-9"
+									]
+								}
 							},
 							"response": []
 						}
-					],
-					"id": "ed33486f-b3bc-4759-85cd-111773d3f2f6"
+					]
 				}
-			],
-			"id": "bfce48cb-f931-4a11-acea-d665769f2ac6"
+			]
 		},
 		{
 			"name": "Posts",
@@ -625,7 +654,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "d5c33e13-da0c-451e-a0d0-af0a83763f70",
 								"exec": [
 									"pm.test(\"Status test\", function (){\r",
 									"    pm.response.to.have.status(200);\r",
@@ -650,10 +678,6 @@
 							}
 						}
 					],
-					"id": "fa752b3f-28be-4b11-8027-d09e237129be",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -667,12 +691,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/participations?userId=-1&eventId=-1",
-							"protocol": "http",
+							"raw": "{{host}}/api/participations?userId=-1&eventId=-1",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"participations"
@@ -697,7 +719,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "d5c33e13-da0c-451e-a0d0-af0a83763f70",
 								"exec": [
 									"pm.test(\"Status test\", function (){\r",
 									"    pm.response.to.have.status(200);\r",
@@ -722,10 +743,6 @@
 							}
 						}
 					],
-					"id": "17a9ca4f-d474-4823-8b6a-cc2c75403b92",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -739,12 +756,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/participations?userId=-1&eventId=-1",
-							"protocol": "http",
+							"raw": "{{host}}/api/participations?userId=-1&eventId=-1",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"participations"
@@ -763,8 +778,7 @@
 					},
 					"response": []
 				}
-			],
-			"id": "e7a86d8a-e698-4b8b-86ff-fc5fa31f0821"
+			]
 		},
 		{
 			"name": "Errors",
@@ -775,15 +789,14 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "f73c1ffe-3c4f-4a51-9ee9-2c8698498120",
 								"exec": [
 									"pm.test(\"Status test\", function (){\r",
 									"    pm.response.to.have.status(404);\r",
 									"})\r",
 									"\r",
-									"pm.test(\"Body is correct\", function () {\r",
-									"    pm.response.to.have.body(\"User does not exist\");\r",
-									"});\r",
+									"//pm.test(\"Body is correct\", function () {\r",
+									"//    pm.response.to.have.body(\"User does not exist\");\r",
+									"//});\r",
 									"\r",
 									""
 								],
@@ -791,14 +804,20 @@
 							}
 						}
 					],
-					"id": "6d4a15f5-71f6-4cd3-87f4-e263c9854920",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "localhost:8080/api/users/-1000"
+						"url": {
+							"raw": "{{host}}/api/users/-1000",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"-1000"
+							]
+						}
 					},
 					"response": []
 				},
@@ -808,29 +827,34 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "66e78012-1c0c-4e2e-9699-d4743465d83b",
 								"exec": [
 									"pm.test(\"Status test\", function (){\r",
 									"    pm.response.to.have.status(404);\r",
 									"})\r",
 									"\r",
-									"pm.test(\"Body is correct\", function () {\r",
-									"    pm.response.to.have.body(\"Event does not exist\");\r",
-									"});\r",
+									"//pm.test(\"Body is correct\", function () {\r",
+									"//   pm.response.to.have.body(\"Event does not exist\");\r",
+									"//});\r",
 									""
 								],
 								"type": "text/javascript"
 							}
 						}
 					],
-					"id": "e3e873f5-e257-412f-9ec5-3db393a86208",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "http://localhost:8080/api/events/-10000"
+						"url": {
+							"raw": "{{host}}/api/events/-10000",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"events",
+								"-10000"
+							]
+						}
 					},
 					"response": []
 				},
@@ -840,34 +864,27 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "d5c33e13-da0c-451e-a0d0-af0a83763f70",
 								"exec": [
 									"pm.test(\"Status test\", function (){\r",
 									"    pm.response.to.have.status(404);\r",
 									"})\r",
 									"\r",
-									"pm.test(\"Body is correct\", function () {\r",
-									"    pm.response.to.have.body(\"User is not member of required group\");\r",
-									"});"
+									"//pm.test(\"Body is correct\", function () {\r",
+									"//    pm.response.to.have.body(\"User is not member of required group\");\r",
+									"//});"
 								],
 								"type": "text/javascript"
 							}
 						}
 					],
-					"id": "419e00c8-6551-4114-8401-3bb3782440d3",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/participations?userId=-100000&eventId=-1",
-							"protocol": "http",
+							"raw": "{{host}}/api/participations?userId=-100000&eventId=-1",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"participations"
@@ -892,34 +909,27 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "d5c33e13-da0c-451e-a0d0-af0a83763f70",
 								"exec": [
 									"pm.test(\"Status test\", function (){\r",
 									"    pm.response.to.have.status(404);\r",
 									"})\r",
 									"\r",
-									"pm.test(\"Body is correct\", function () {\r",
-									"    pm.response.to.have.body(\"User is not member of required group\");\r",
-									"});"
+									"//pm.test(\"Body is correct\", function () {\r",
+									"//    pm.response.to.have.body(\"User is not member of required group\");\r",
+									"//});"
 								],
 								"type": "text/javascript"
 							}
 						}
 					],
-					"id": "303e830a-08bc-4919-bc06-d14c7122beaa",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/participations?userId=-1&eventId=-10000",
-							"protocol": "http",
+							"raw": "{{host}}/api/participations?userId=-1&eventId=-10000",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"participations"
@@ -944,7 +954,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "d5c33e13-da0c-451e-a0d0-af0a83763f70",
 								"exec": [
 									"pm.test(\"Status test\", function (){\r",
 									"    pm.response.to.have.status(404);\r",
@@ -954,19 +963,16 @@
 									"    pm.response.to.not.have.jsonBody(\"\");\r",
 									"})\r",
 									"\r",
-									"pm.test(\"Body is correct\", function () {\r",
-									"    pm.response.to.have.body(\"User is not member of required group\");\r",
-									"});\r",
+									"\r",
+									"//pm.test(\"Body is correct\", function () {\r",
+									"//    pm.response.to.have.body(\"User is not member of required group\");\r",
+									"//});\r",
 									""
 								],
 								"type": "text/javascript"
 							}
 						}
 					],
-					"id": "b64f9682-9e99-4c60-9eca-3f6361c229d0",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -980,12 +986,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/participations?userId=-1&eventId=-1",
-							"protocol": "http",
+							"raw": "{{host}}/api/participations?userId=-1&eventId=-1",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"participations"
@@ -1004,295 +1008,17 @@
 					},
 					"response": []
 				}
-			],
-			"id": "77126bff-6b2f-4e1b-8801-5e83c7fa8e04"
+			]
 		},
 		{
-			"name": "New Folder",
-			"item": [
-				{
-					"name": "Authenticate",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "66e78012-1c0c-4e2e-9699-d4743465d83b",
-								"exec": [
-									"pm.test(\"Status test\", function (){\r",
-									"    pm.response.to.have.status(200);\r",
-									"})\r",
-									"\r",
-									"pm.test(\"Valid with body\", function(){\r",
-									"    pm.response.to.be.ok;\r",
-									"    pm.response.to.be.have.jsonBody;\r",
-									"})\r",
-									"\r",
-									"pm.test(\"OK to process\", function () {\r",
-									"    pm.response.to.not.be.error;\r",
-									"    pm.response.to.have.jsonBody();\r",
-									"    pm.response.to.not.have.jsonBody(\"error\");\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Body content test\", function (){\r",
-									"    const responseJson = pm.response.json();\r",
-									"    pm.expect(responseJson).to.eql({\r",
-									"    \"id\": -1,\r",
-									"    \"group\": {\r",
-									"        \"id\": -1,\r",
-									"        \"name\": \"Crisp Rocket Days\",\r",
-									"        \"description\": \"För dej som vill lära dej mer\"\r",
-									"    },\r",
-									"    \"name\": \"Crisp RD\",\r",
-									"    \"description\": \"Vad jag lärde mig av BigFamilyTrip\",\r",
-									"    \"startTime\": \"2021-05-03T18:00:00\",\r",
-									"    \"endTime\": \"2021-05-03T19:00:00\",\r",
-									"    \"lastSignUpDate\": \"2021-05-02\",\r",
-									"    \"venue\": \"Crisp Office\",\r",
-									"    \"allowExtraFriends\": false,\r",
-									"    \"eventStatus\": \"Created\",\r",
-									"    \"maxParticipants\": null,\r",
-									"    \"cancellationReason\": null\r",
-									"});\r",
-									"})\r",
-									"\r",
-									"pm.test(\"Not empty body\", function(){\r",
-									"    pm.response.to.not.have.jsonBody(\"\");\r",
-									"})\r",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"id": "0d29e781-80a5-4647-88fc-78284a079c1f",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": "http://localhost:8080/api/events/-1"
-					},
-					"response": []
-				},
-				{
-					"name": "Register new user",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "d5c33e13-da0c-451e-a0d0-af0a83763f70",
-								"exec": [
-									"pm.test(\"Status test\", function (){\r",
-									"    pm.response.to.have.status(200);\r",
-									"})\r",
-									"\r",
-									"pm.test(\"Valid with body\", function(){\r",
-									"    pm.response.to.be.ok;\r",
-									"    pm.response.to.be.have.jsonBody;\r",
-									"})\r",
-									"\r",
-									"pm.test(\"OK to process\", function () {\r",
-									"    pm.response.to.not.be.error;\r",
-									"    pm.response.to.have.jsonBody();\r",
-									"    pm.response.to.not.have.jsonBody(\"error\");\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Not empty body\", function(){\r",
-									"    pm.response.to.not.have.jsonBody(\"\");\r",
-									"})"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"id": "f16f22de-46d4-44f0-a827-55213650b753",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"status\": \"Maybe\",\r\n    \"numberOfParticipants\": 1,\r\n    \"comment\": \"Test post\",\r\n    \"userId\": -2,\r\n    \"eventId\": -2,\r\n    \"signUpTime\": \"2022-04-02T21:15:00\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/participations?userId=-1&eventId=-1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"participations"
-							],
-							"query": [
-								{
-									"key": "userId",
-									"value": "-1"
-								},
-								{
-									"key": "eventId",
-									"value": "-1"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Register new user DEMO",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "d5c33e13-da0c-451e-a0d0-af0a83763f70",
-								"exec": [
-									"pm.test(\"Status test\", function (){\r",
-									"    pm.response.to.have.status(200);\r",
-									"})\r",
-									"\r",
-									"pm.test(\"Valid with body\", function(){\r",
-									"    pm.response.to.be.ok;\r",
-									"    pm.response.to.be.have.jsonBody;\r",
-									"})\r",
-									"\r",
-									"pm.test(\"OK to process\", function () {\r",
-									"    pm.response.to.not.be.error;\r",
-									"    pm.response.to.have.jsonBody();\r",
-									"    pm.response.to.not.have.jsonBody(\"error\");\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Not empty body\", function(){\r",
-									"    pm.response.to.not.have.jsonBody(\"\");\r",
-									"})"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"id": "5395e5db-f7f6-43fc-86a5-fa2efa691133",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"status\": \"Maybe\",\r\n    \"numberOfParticipants\": 1,\r\n    \"comment\": \"Test post\",\r\n    \"userId\": -2,\r\n    \"eventId\": -2,\r\n    \"signUpTime\": \"2022-04-02T21:15:00\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/participations?userId=-1&eventId=-1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"participations"
-							],
-							"query": [
-								{
-									"key": "userId",
-									"value": "-1"
-								},
-								{
-									"key": "eventId",
-									"value": "-1"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Auth user DEMO",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "d5c33e13-da0c-451e-a0d0-af0a83763f70",
-								"exec": [
-									"pm.test(\"Status test\", function (){\r",
-									"    pm.response.to.have.status(200);\r",
-									"})\r",
-									"\r",
-									"pm.test(\"Valid with body\", function(){\r",
-									"    pm.response.to.be.ok;\r",
-									"    pm.response.to.be.have.jsonBody;\r",
-									"})\r",
-									"\r",
-									"pm.test(\"OK to process\", function () {\r",
-									"    pm.response.to.not.be.error;\r",
-									"    pm.response.to.have.jsonBody();\r",
-									"    pm.response.to.not.have.jsonBody(\"error\");\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Not empty body\", function(){\r",
-									"    pm.response.to.not.have.jsonBody(\"\");\r",
-									"})"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"id": "0920379e-d936-45d2-95c0-afce99f0a52c",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"status\": \"Maybe\",\r\n    \"numberOfParticipants\": 1,\r\n    \"comment\": \"Test post\",\r\n    \"userId\": -2,\r\n    \"eventId\": -2,\r\n    \"signUpTime\": \"2022-04-02T21:15:00\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/participations?userId=-1&eventId=-1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"participations"
-							],
-							"query": [
-								{
-									"key": "userId",
-									"value": "-1"
-								},
-								{
-									"key": "eventId",
-									"value": "-1"
-								}
-							]
-						}
-					},
-					"response": []
-				}
-			],
-			"id": "6387756d-648e-4e37-8a7e-da0c700a589e"
+			"name": "Secured",
+			"item": []
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "http://localhost:8080"
 		}
 	]
 }
