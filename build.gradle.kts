@@ -38,7 +38,7 @@ dependencies {
   implementation("org.flywaydb:flyway-core")
   implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.2")
 
-  implementation("io.jsonwebtoken:jjwt-api:0.11.5")
+  implementation("io.jsonwebtoken:jjwt-api:0.12.4")
   implementation("io.jsonwebtoken:jjwt-impl:0.11.5")
   implementation("io.jsonwebtoken:jjwt-jackson:0.11.5")
 
